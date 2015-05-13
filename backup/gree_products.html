@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Products</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	*{margin:0;padding:0;font-family:"微软雅黑";}
+	ul{list-style-type:none;}
+	a{text-decoration:none;color:black;}
+	.clear{clear:both;}
+	#top{
+		padding-top:0px;
+		width:900px;
+		margin:0 auto;
+	}
+	#logo{
+		width:200px;
+		margin-left:5px;
+		margin-top:2px;
+	}
+	#title span{
+		position:relative;
+		top:-19px;
+		font-size:25px;
+	}
+	#search{
+		display:none;
+		float:right;
+		margin:17px 0px 3px 0px;
+	}
+	#search img{
+		width:30px;
+		height:30px;
+		float:right;
+		background-color:#414141;
+	}
+	#search input{
+		width:120px;
+		height:26px;
+	}
+	#nav{
+		background-color:rgba(65,65,65,0.6);
+	}
+	#nav li{
+		color:white;
+		padding:10px 0px;
+		width:130px;
+		text-align:center;
+		cursor:default;
+	}
+	#nav ul li:hover{
+		background-color:rgba(65,65,65,0.6);
+	}
+	#first_ul{
+		width:900px;
+		margin:0 auto;
+	}
+	#first_ul>li{
+		float:left;
+		margin:0 10px;
+	}
+	#first_ul>li:hover .second_ul{
+		display:block;
+	}
+	.second_ul{
+		display:none;
+		position:absolute;
+		margin-top:10px;
+		z-index:1;
+	}
+	.second_ul{
+		background-color:rgba(65,65,65,0.6);
+	}
+	#first_ul>li:hover .second_ul li:hover{
+		background-color:rgba(65,65,65,0.6);
+	}
+	#subtitle h1{
+		width:900px;
+		margin:0 auto;
+		padding-top:60px;
+	}
+	#subtitle h1 span{
+		color:#226ddd;
+		border-left:5px solid #226ddd;
+	}
+	#subtitle>ul{
+		width:900px;
+		margin:30px auto 0 auto;
+		font-size:15px;
+	}
+	#subtitle>ul>li>span{
+		font-size:16px;
+	}
+	.second_class{
+		display:none;
+		position:absolute;
+		margin-top:5px;
+		padding-top:5px;
+		color:white;
+		z-index:1;
+	}
+	.second_class li{
+		float:left;
+		padding:5px 10px;
+		font-size:13px;
+		text-align:center;
+		cursor:default;
+	}
+	.second_class li:hover{
+		background-color:white;
+		color:#22222a;
+	}
+	#sc1{margin-left:-10px;}
+	#sc2{margin-left:-128px;}
+	#sc3{margin-left:-10px;}
+	#sc4{margin-left:-210px;}
+	#sc5{margin-left:-600px;}
+	#subtitle>ul>li{
+		float:left;
+		padding:5px 10px;
+		margin:0 10px;
+		text-align:center;
+		cursor:default;
+	}
+	#subtitle>ul>li:hover .second_class{
+	}
+	.products_box{
+		display:none;
+		position:absolute;
+		left:0;
+		margin-top:5px;
+		padding-top:5px;
+		width:100%;
+		height:165px;
+		background-color:rgba(65,65,65,0.3);
+	}
+	#subtitle li:hover .products_box{
+	}
+	.products_box img{
+		width:110px;
+		height:110px;
+		margin:20px 10px 0 10px;
+	}
+	.products_name span{
+		display:inline-block;
+		width:110px;
+		margin:0px 10px 0 10px;
+		font-size:13px;
+	}
+	#p_details{
+		margin:200px auto 0 auto;
+		width:900px;
+		height:600px;
+	}
+	#products_nav{}
+	#products_nav span{
+		font-size:13px;
+	}
+	.link{
+		cursor:pointer;
+	}
+	.not_link{
+		cursor:default;
+	}
+	#products_nav span:last-child{
+		color:#226ddd;
+	}
+	.sell_well{
+		text-align:center;
+		margin:40px 20px;
+	}
+	.sell_well p{
+		text-align:left;
+		margin-bottom:20px;
+		font-size:20px;
+		color:#226ddd;
+	}
+	.sell_well img{
+		border:1px;
+		margin:0 10px;
+		width:160px;
+		height:160px;
+	}
+</style>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+</head>
+<body>
+    <div id="top">
+    	<!--
+    	<div id="title">
+    		<img id="logo" src="./img/gree_logo.png">
+    		<span>东莞市忠胜格力产品销售中心</span>
+    	</div>
+    	-->
+    	<div class="clear"></div>
+    </div>
+    <div id="nav">
+    	<ul id="first_ul">
+    		<li>首页</li>
+    		<li>
+    			<span>产品中心</span>
+    			<ul class="second_ul">
+    				<li>家用空调</li>
+    				<li>商用空调</li>
+    				<li>小家电</li>
+    				<li>晶弘冰箱</li>
+    				<li>空气能热水器</li>
+    				<li>净水机</li>
+    			</ul>
+    		</li>
+    		<li>
+    			<span>新闻中心</span>
+    			<ul class="second_ul">
+    				<li>公司新闻</li>
+    				<li>行业动态</li>
+    			</ul>
+    		</li>
+    		<li>
+    			<span>人才招聘</span>
+    			<ul class="second_ul">
+    				<li>空调维修师</li>
+    				<li>空调安装师</li>
+    			</ul>
+    		</li>
+    		<li>
+    			<span>企业文化</span>
+    			<ul class="second_ul">
+    				<li>公司简介</li>
+    				<li>企业文化</li>
+    				<li>企业荣誉</li>
+    				<li>领导致辞</li>
+    				<li>销售网络</li>
+    			</ul>
+    		</li>
+    		<li>联系我们</li>
+    		<p class="clear"></p>
+    	</ul>
+    </div>
+    <div id="subtitle">
+    	<h1><span>&nbsp;PRODUCTS</span> / 产品中心</h1>
+    	<ul>
+    		<li id="products_all">
+    			<span>全部</span>
+    			<div class="products_box">
+    				<img src="./img/Product_KH284000100.png">
+    				<img src="./img/Product_A0011007200.png">
+    				<img src="./img/Product_9511355002.png">
+    				<img src="./img/Product_KH284000100.png">
+    				<img src="./img/Product_A0011007200.png">
+    				<img src="./img/Product_9511355002.png">
+    				<img src="./img/Product_KH284000100.png">
+    				<p class="products_name">
+    					<span>Q铂 KFR-50LW</span>
+    					<span>S-0502a</span>
+    					<span>BCD-218TGK</span>
+    					<span>Q铂 KFR-50LW</span>
+    					<span>S-0502a</span>
+    					<span>BCD-218TGK</span>
+    					<span>Q铂 KFR-50LW</span>
+    				</p>
+    			</div>
+    		</li>
+    		<li>
+    			<span>家用空调</span>
+    			<ul class="second_class" id="sc1">
+    				<li>挂机</li>
+    				<li>柜机</li>
+    			</ul>
+    			<div class="products_box">
+    				<img src="./img/Product_KH284000100.png">
+    				<img src="./img/Product_A0011007200.png">
+    				<img src="./img/Product_9511355002.png">
+    				<img src="./img/Product_KH284000100.png">
+    				<img src="./img/Product_A0011007200.png">
+    				<img src="./img/Product_9511355002.png">
+    				<img src="./img/Product_KH284000100.png">
+    				<p class="products_name">
+    					<span>Q铂 KFR-50LW</span>
+    					<span>S-0502a</span>
+    					<span>BCD-218TGK</span>
+    					<span>Q铂 KFR-50LW</span>
+    					<span>S-0502a</span>
+    					<span>BCD-218TGK</span>
+    					<span>Q铂 KFR-50LW</span>
+    				</p>
+    			</div>
+    		</li>
+    		<li>
+    			<span>生活电器</span>
+    			<ul class="second_class" id="sc2">
+    				<li>电饭煲</li>
+    				<li>电磁炉</li>
+    				<li>电压力锅</li>
+    				<li>除湿机</li>
+    				<li>电风扇</li>
+    				<li>电暖器</li>
+    				<li>干衣机</li>
+    				<li>加湿机</li>
+    				<li>空气净化器</li>
+    				<li>热水壶</li>
+    				<li>空调扇</li>
+    			</ul>
+    			<div class="products_box">
+    				<img src="./img/Product_KH284000100.png">
+    				<img src="./img/Product_A0011007200.png">
+    				<img src="./img/Product_9511355002.png">
+    				<p class="products_name">
+    					<span>Q铂 KFR-50LW</span>
+    					<span>S-0502a</span>
+    					<span>BCD-218TGK</span>
+    				</p>
+    			</div>
+    		</li>
+    		<li>
+    			<span>晶弘冰箱</span>
+    			<ul class="second_class" id="sc3">
+    				<li>双开门</li>
+    				<li>三门</li>
+    				<li>对开门</li>
+    				<li>意式</li>
+    				<li>多门</li>
+    			</ul>
+    			<div class="products_box">
+    				<img src="./img/Product_KH284000100.png">
+    				<img src="./img/Product_A0011007200.png">
+    				<img src="./img/Product_9511355002.png">
+    				<img src="./img/Product_KH284000100.png">
+    				<img src="./img/Product_A0011007200.png">
+    				<img src="./img/Product_9511355002.png">
+    				<p class="products_name">
+    					<span>Q铂 KFR-50LW</span>
+    					<span>S-0502a</span>
+    					<span>BCD-218TGK</span>
+    					<span>Q铂 KFR-50LW</span>
+    					<span>S-0502a</span>
+    					<span>BCD-218TGK</span>
+    				</p>
+    			</div>
+    		</li>
+    		<li>
+    			<span>空气能热水器</span>
+    			<ul class="second_class" id="sc4">
+    				<li>海洋之韵</li>
+    				<li>全能王-舒尊</li>
+    				<li>泉之恋</li>
+    				<li>善水方</li>
+    				<li>水之恋</li>
+    				<li>水之韵</li>
+    				<li>御享</li>
+    				<li>御雅</li>
+    			</ul>
+    			<div class="products_box">
+    				<img src="./img/Product_KH284000100.png">
+    				<img src="./img/Product_A0011007200.png">
+    				<img src="./img/Product_9511355002.png">
+    				<img src="./img/Product_KH284000100.png">
+    				<p class="products_name">
+    					<span>Q铂 KFR-50LW</span>
+    					<span>S-0502a</span>
+    					<span>BCD-218TGK</span>
+    					<span>Q铂 KFR-50LW</span>
+    				</p>
+    			</div>
+    		</li>
+    		<li>
+    			<span>中央空调</span>
+    			<ul class="second_class" id="sc5">
+    				<li>Free家用多联机</li>
+    				<li>GMV-Star家用多联机</li>
+    				<li>GMV-Unic全能一体机</li>
+    				<li>客餐厅独立家用中央空调</li>
+    				<li>光伏直驱变频多联机</li>
+    				<li>卧室独立家用中央空调</li>
+    				<li>翼之恋隐形家用中央空调</li>
+    			</ul>
+    			<div class="products_box">
+    				<img src="./img/Product_KH284000100.png">
+    				<img src="./img/Product_A0011007200.png">
+    				<img src="./img/Product_9511355002.png">
+    				<p class="products_name">
+    					<span>Q铂 KFR-50LW</span>
+    					<span>S-0502a</span>
+    					<span>BCD-218TGK</span>
+    				</p>
+    			</div>
+    		</li>
+    	</ul>
+    	<div class="clear"></div>
+    </div>
+    <div id="p_details">
+    	<p id="products_nav">
+    		<span class="not_link">当前位置 : </span>
+    		<span class="link">产品中心</span>
+    		<span class="not_link"> &gt; </span>
+    		<span class="link">家用空调</span>
+    		<span class="not_link"> &gt; </span>
+    		<span class="link">Q铂 KFR-50LW</span>
+    	</p>
+    	<div id="susume">
+    		<div class="sell_well">
+    			<p>热销产品</p>
+    			<img src="">
+    			<img src="">
+    			<img src="">
+    			<img src="">
+    		</div>
+    		<div class="sell_well">
+    			<p>家用空调</p>
+    			<img src="">
+    			<img src="">
+    			<img src="">
+    			<img src="">
+    		</div>
+    		<div class="sell_well">
+    			<p>生活电器</p>
+    			<img src="">
+    			<img src="">
+    			<img src="">
+    			<img src="">
+    		</div>
+    		<div class="sell_well">
+    			<p>晶弘冰箱</p>
+    			<img src="">
+    			<img src="">
+    			<img src="">
+    			<img src="">
+    		</div>
+    		<div class="sell_well">
+    			<p>空气能热水器</p>
+    			<img src="">
+    			<img src="">
+    			<img src="">
+    			<img src="">
+    		</div>
+    		<div class="sell_well">
+    			<p>中央空调</p>
+    			<img src="">
+    			<img src="">
+    			<img src="">
+    			<img src="">
+    		</div>
+    	</div>
+    </div>
+    <script>
+    	$("#subtitle>ul>li").on({
+    		"click":function(){
+    			$(this).css({
+    				"background-color":"rgba(65,65,65,0.3)",
+    				"color":"white"
+    			});
+    			$(".products_box").hide();
+    			$(".products_box",this).show();
+    			$("#subtitle>ul>li").unbind("mouseout");
+    			$("#subtitle>ul>li").mouseout(function(){
+    				$(this).css({
+    					"background-color":"transparent",
+    					"color":"#22222a"
+    				});
+    				$(".second_class",this).hide();
+    			});
+    			$(this).unbind("mouseout");
+    			$("#subtitle>ul>li").mouseout();
+    			$(".second_class",this).show();
+    		},
+    		"mouseover":function(){
+    			$(this).css({
+    				"background-color":"rgba(65,65,65,0.3)",
+    				"color":"white"
+    			});
+    		},
+    		"mouseout":function(){
+    			$(this).css({
+    				"background-color":"transparent",
+    				"color":"#22222a"
+    			});
+    		}
+    	});
+    	$(".second_class li").click(function(){
+    		$(".products_box").hide();
+    		$(this).next().show();
+    	});
+    	$("#products_all").click(function(){
+    		$(".products_box").hide();
+    		$(".products_box",this).show();
+    	});
+    	$(".products_box img").click(function(){
+    		$("#p_details").show();
+    	});
+    	$("#subtitle li:eq(0)").click();
+    </script>
+</body>
+</html>

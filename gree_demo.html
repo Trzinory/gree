@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>gree</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	*{margin:0;padding:0;font-family:"微软雅黑"}
+	ul{list-style-type:none;}
+	a{text-decoration:none;color:black;}
+	.clear{clear:both;}
+	#top{
+		padding-top:10px;
+		width:900px;
+		margin:0 auto;
+	}
+	#logo{
+		width:200px;
+		margin-left:5px;
+		margin-top:2px;
+	}
+	#title span{
+		position:relative;
+		top:-19px;
+		font-size:25px;
+	}
+	#search{
+		display:none;
+		float:right;
+		margin:17px 0px 3px 0px;
+	}
+	#search img{
+		width:30px;
+		height:30px;
+		float:right;
+		background-color:#414141;
+	}
+	#search input{
+		width:120px;
+		height:26px;
+	}
+	#nav{
+		background-color:rgba(65,65,65,0.6);
+	}
+	#nav li{
+		color:white;
+		padding:10px 0px;
+		width:130px;
+		text-align:center;
+		cursor:default;
+	}
+	#nav ul li:hover{
+		background-color:rgba(65,65,65,0.6);
+	}
+	#first_ul{
+		width:900px;
+		margin:0 auto;
+	}
+	#first_ul>li{
+		float:left;
+		margin:0 10px;
+	}
+	#first_ul>li:hover .second_ul{
+		display:block;
+	}
+	.second_ul{
+		display:none;
+		position:absolute;
+		margin-top:10px;
+	}
+	.second_ul{
+		background-color:rgba(65,65,65,0.6);
+	}
+	#first_ul>li:hover .second_ul li:hover{
+		background-color:rgba(65,65,65,0.6);
+	}
+	#bgpic{
+		position:absolute;
+		top:78px;
+		opacity:0.8;
+		z-index:-1;
+	}
+	#bgpic>img{
+		width:100%;
+	}
+	#title2{
+		margin-top:135px;
+		margin-bottom:154px;
+	}
+	#img_title{
+		color:white;
+		font-size:60px;
+	}
+	#title2 p:last-child{
+		color:white;
+		font-size:30px;
+	}
+	#title2 p{
+		text-align:center;
+	}
+	#products{
+		background-color:white;
+		padding-bottom:50px;
+	}
+	#news{
+		background-color:none;
+		padding-bottom:30px;
+	}
+	.control{
+		position:relative;
+		text-align:center;
+		width:100px;
+		margin-left:auto;
+		margin-right:auto;
+		z-index:1;
+	}
+	#p_details .control{
+		margin-top:20px;
+		background-color:white;
+	}
+	#n_details .control{
+		margin-top:0px;
+		background-color:#f1f1f1;
+	}
+	.control div{
+		display:inline-block;
+		margin:0px 4px 0px 4px;
+		padding:1px 7px 4px 7px;
+		width:17px;
+		cursor:default;
+	}
+	#p_details .control div{
+		background-color:#e1e1e1;
+		color:white;
+	}
+	#n_details .control div{
+		background-color:#d1d1d1;
+		color:white;
+	}
+	#p_details .control div:hover,#n_details .control div:hover{
+		background-color:#226ddd;
+		color:white;
+	}
+	.details hr{
+		position:relative;
+		top:-15px;
+		width:810px;
+		margin:0 auto;
+	}
+	#n_details hr{
+		border:1px solid #a1a1a1;
+	}
+	.subtitle{
+		width:900px;
+		margin:0 auto;
+		padding:50px 30px 0px 30px;
+	}
+	.subtitle span:first-child{
+		margin-left:5%;
+		font-size:25px;
+		font-weight:600;
+	}
+	.subtitle b{
+		color:#226ddd;
+	}
+	.subtitle p{
+		margin-left:5%;
+		margin-top:10px;
+		font-size:13px;
+		color:#616161;
+	}
+	#catalog{
+		display:table;
+		position:relative;
+		top:0px;
+		padding:0 5px;
+		margin:60px auto 0px auto;
+		font-size:18px;
+		background-color:white;
+		z-index:9;
+	}
+	#catalog a{
+		color:#226ddd;
+	}
+	#box{
+		margin:0 auto 20px auto;
+		position:relative;
+		top:-12px;
+		width:400px;
+		height:18px;
+		background-color:white;
+	}
+	#p_details hr{
+		border:1px solid #c1c1c1;
+	}
+	#p_details img,#box{
+		border:2px solid #cccccc;
+	}
+	/*
+	.subtitle span:last-child{
+		margin-right:2.5%;
+		float:right;
+		margin-top:5px;
+	}*/
+	.details{
+	}
+	#products_top,#products_bottom{
+		width:800px;
+		margin:0 auto;
+	}
+	#products_top>div,#products_bottom>div{
+		float:left;
+		width:20%;
+		margin-left:4%;
+		background-color:#fafafa;
+	}
+	#p_details img{
+		width:85%;
+		margin:10px 0px 7px 10px;
+	}
+	#p_details div div p{
+		display:none;
+		margin-top:-3px;
+		text-align:center;
+		padding:5px;
+		font-size:13px;
+	}
+	#products_top{
+	}
+	#products_bottom{
+		display:none;
+		margin-top:25px;
+	}
+	#products_top:hover .mask{
+		position:absolute;
+		top:200px;
+		left:-1px;
+		width:100%;
+		height:201px;
+		z-index:1;
+		background-color:rgba(65,65,65,0.9);
+	}
+	.mask:hover{
+		display:none;
+	}
+	#products_bottom:hover .mask{
+		position:absolute;
+		top:-201px;
+		left:-1px;
+		width:100%;
+		height:201px;
+		background-color:rgba(65,65,65,0.9);
+	}
+	#n_details {
+		padding-top:30px;
+	}
+	#news_main{
+		padding-top:20px;
+	}
+	#news_main>div{
+		margin:0 auto 30px auto;
+		width:800px;
+		height:170px;
+		background-color:white;
+	}
+	#news_main img{
+		width:170px;
+		height:170px;
+		background-color:#226ddd;
+	}
+	.news_text{
+		position:relative;
+		width:630px;
+		height:100%;
+		text-indent:20px;
+		background-color:#fafafa;
+	}
+	.ntright{
+		float:right;
+	}
+	.ntleft{
+		float:left;
+	}
+	.news_title{
+		margin-top:25px;
+		font-size:19px;
+		text-overflow:ellipsis;
+		overflow:hidden;
+		white-space:nowrap;
+		color:#226ddd;
+	}
+	.news_summary{
+		height:40%;
+		margin-top:20px;
+		margin-left:20px;
+		margin-right:20px;
+		font-size:13px;
+		color:#414141;
+		word-break:break-all;
+	}
+	.news_text div{
+		position:absolute;
+		bottom:15px;
+		right:15px;
+		padding:5px 20px 5px 5px;
+		font-size:13px;
+		color:#616161;
+		cursor:pointer;
+	}
+	#intro{
+		padding:40px;
+		background-color:#f1f1f1;
+	}
+	#intro>div{
+		width:15%;
+		margin:0 1%;
+		min-height:1px;
+		float:left;
+	}
+	#intro img{
+		display:block;
+		margin:0 auto;
+		opacity:1;
+	}
+	#intro p{
+		text-align:center;
+	}
+	.p1{
+		color:#22222a;
+		margin:5px 0;
+		font-size:20px;
+	}
+	.p2{
+		color:#616161;
+		font-size:12px;
+	}
+	#foot_bar{
+		padding:30px;
+		font-size:14px;
+		color:white;
+		background-color:rgb(24,38,41);
+	}
+	#foot_bar ul{
+		display:table;
+		margin:0 auto;
+	}
+	#foot_bar li{
+		float:left;
+	}
+	#foot_bar p{
+		margin-top:5px;
+		text-align:center;
+		clear:both;
+	}
+</style>
+</head>
+<body>
+    <div id="top">
+    	<div id="search">
+    		<input type="text">
+    		<img src="">
+    	</div>
+    	<div id="title">
+    		<img id="logo" src="./img/gree_logo.png">
+    		<span>东莞市忠胜格力产品销售中心</span>
+    	</div>
+    	<div class="clear"></div>
+    </div>
+    <div id="nav">
+    	<ul id="first_ul">
+    		<li>首页</li>
+    		<li>
+    			<span>产品中心</span>
+    			<ul class="second_ul">
+    				<li>家用空调</li>
+    				<li>商用空调</li>
+    				<li>小家电</li>
+    				<li>晶弘冰箱</li>
+    				<li>空气能热水器</li>
+    				<li>净水机</li>
+    			</ul>
+    		</li>
+    		<li>
+    			<span>新闻中心</span>
+    			<ul class="second_ul">
+    				<li>公司新闻</li>
+    				<li>行业动态</li>
+    			</ul>
+    		</li>
+    		<li>
+    			<span>人才招聘</span>
+    			<ul class="second_ul">
+    				<li>空调维修师</li>
+    				<li>空调安装师</li>
+    			</ul>
+    		</li>
+    		<li>
+    			<span>企业文化</span>
+    			<ul class="second_ul">
+    				<li>公司简介</li>
+    				<li>企业文化</li>
+    				<li>企业荣誉</li>
+    				<li>领导致辞</li>
+    				<li>销售网络</li>
+    			</ul>
+    		</li>
+    		<li>联系我们</li>
+    		<p class="clear"></p>
+    	</ul>
+    </div>
+    <div id="bgpic">
+    	<img src="./img/bgpic4.jpg">
+    </div>
+    <div id="title2">
+    	<p id="img_title"><b>G R E E</b></p>
+    	<p id="phrase">核 心 科 技 &nbsp;&nbsp;世 界 水 准</p>
+    </div>
+    <div id="products">
+    	<div class="subtitle">
+    		<span><b>PRODUCT</b> / 产品</span>
+    		<p>包括家用空调、中央空调、电磁炉、电风扇、冰箱、热水器等</p>
+    		<div id="catalog">
+    			<a href="">家用空调</a>
+    			<span> | </span>
+    			<a href="">中央空调</a>
+    			<span> | </span>
+    			<a href="">生活电器</a>
+    			<span> | </span>
+    			<a href="">冰箱</a>
+    			<span> | </span>
+    			<a href="">热水器</a>
+    		</div>
+    		<div id="box"></div>
+    	</div>
+    	<div class="details" id="p_details">
+    		<div id="products_top">
+    			<div>
+    				<img src="./img/Product_KH284000100.png">
+    				<p>Q铂 KFR-50LW/(50596)FNAa-A3</p>
+    				<p>变频 冷暖 2匹机 立柜式空调</p>
+    			</div>
+    			<div>
+    				<img src="./img/Product_A0011007200.png">
+    				<p>S-0502a</p>
+    				<p>空调扇 4档风速调节</p>
+    			</div>
+    			<div>
+    				<img src="./img/Product_9511355002.png">
+    				<p>BCD-218TGK</p>
+    				<p>三门冰箱</p>
+    			</div>
+    			<div>
+    				<img src="./img/Product_KH284000100.png">
+    				<p>Q铂 KFR-50LW/(50596)FNAa-A3</p>
+    				<p>变频 冷暖 2匹机 立柜式空调</p>
+    			</div>
+    			<p class="clear"></p>
+    		</div>
+    		<div id="products_bottom">
+    			<div>
+    				<img src="./img/Product_A0011007200.png">
+    				<p>S-0502a</p>
+    				<p>空调扇 4档风速调节</p>
+    			</div>
+    			<div>
+    				<img src="./img/Product_KH284000100.png">
+    				<p>Q铂 KFR-50LW/(50596)FNAa-A3</p>
+    				<p>变频 冷暖 2匹机 立柜式空调</p>
+    			</div>
+    			<div>
+    				<img src="./img/Product_A0011007200.png">
+    				<p>S-0502a</p>
+    				<p>空调扇 4档风速调节</p>
+    			</div>
+    			<div>
+    				<img src="./img/Product_9511355002.png">
+    				<p>BCD-218TGK</p>
+    				<p>三门冰箱</p>
+    			</div>
+    			<p class="clear"></p>
+    		</div>
+    		<!--
+    		<div class="control">
+    			<div>＜</div>
+    			<div>＞</div>
+    		</div>
+    		<hr />
+    		-->
+    	</div>
+    </div>
+    <div id="intro">
+    	<div> </div>
+    	<div>
+    		<img src="./img/diamond.png" alt="企业荣誉">
+    		<p class="p1">世界名牌</p>
+    		<p class="p2">从这里了解我们></p>
+    	</div>
+    	<div>
+    		<img src="./img/shop.png" alt="店面展示">
+    		<p class="p1">店面展示</p>
+    		<p class="p2">门店众多，给予您优质服务></p>
+    	</div>
+    	<div>
+    		<img src="./img/video.png" alt="工程案例">
+    		<p class="p1">工程案例</p>
+    		<p class="p2">为您提供合适的工程计划></p>
+    	</div>
+    	<div>
+    		<img src="./img/world.png" alt="销售网络">
+    		<p class="p1">销售网络</p>
+    		<p class="p2">我们的销售点遍布全国></p>
+    	</div>
+    	<div> </div>
+    	<p class="clear"></p>
+    </div>
+    <div id="news">
+    	<div class="subtitle">
+    		<span><b>NEWS</b> / 新闻</span>
+    		<p>即时了解本公司的最新情况</p>
+    	</div>
+    	<div class="details" id="n_details">
+    		<div id="news_main">
+    			<div>
+    				<div class="news_text ntright">
+    					<p class="news_title">创新不断 格力获广东省2014年科学技术奖特等奖</p>
+    					<p class="news_summary">2月27日下午，格力电器董事长董明珠代表格力电器在深圳领取了“2014年度广东省科学技术奖”。格力此次获奖的项目是“新型高效磁阻电机的研发及其在变频压缩机和空调中的应用”。近几年，中国变频空调的普及速度加快，为了保证变频空调的高能效以及抗退磁...</p>
+    					<div>查看详情></div>
+    				</div>
+    				<img src="./img/news1.jpg" alt=" ">
+    			</div>
+    			<div>
+    				<img src="./img/news2.jpg" alt=" ">
+    				<div class="news_text ntleft">
+    					<p class="news_title">格力工业制品首次亮相中国制冷展</p>
+    					<p class="news_summary">4月8日-10日，第二十六届中国制冷展在上海新国际展览中心举办。格力电器除了展出光伏直驱变频离心机、磁悬浮变频离心式冷水机组、GWV致越全能一体机等系列节能环保产品外，格力工业制品产品也将首次亮相中国制冷展。...</p>
+    					<div>查看详情></div>
+    				</div>
+    			</div>
+    		</div>
+    		<p class="clear"></p>
+    	</div>
+    </div>
+    <div id="foot_bar">
+    	<ul>
+    		<li>关于我们</li>
+    		<li>&nbsp;|&nbsp;</li>
+    		<li>联系我们</li>
+    		<li>&nbsp;|&nbsp;</li>
+    		<li>文件下载</li>
+    		<li>&nbsp;|&nbsp;</li>
+    		<li>人才招聘</li>
+    		<li>&nbsp;|&nbsp;</li>
+    		<li>友情链接</li>
+    	</ul>
+    	<p>版权所有 CopyRight(C)2013-2015 东莞市忠胜格力产品销售中心</p>
+    </div>
+</body>
+</html>
