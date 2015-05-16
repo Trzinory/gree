@@ -45,6 +45,9 @@
 	#nav{
 		background-color:rgba(65,65,65,0.6);
 	}
+	#nav a{
+		color:white;
+	}
 	#nav li{
 		color:white;
 		padding:10px 0px;
@@ -87,14 +90,108 @@
 		color:#226ddd;
 		border-left:5px solid #226ddd;
 	}
+	#r_details{
+		margin:80px auto 0 auto;
+		width:900px;
+	}
+	#rec_nav{}
+	#rec_nav span{
+		font-size:13px;
+	}
+	#rec_nav span:last-child{
+		color:#226ddd;
+	}
+	/*-------------------------------------------------*/
+	.rec_box{
+		margin:45px auto;
+		padding:30px 20px;
+		width:80%;
+		background-color:#f1f1f1;
+	}
+	.rec_box:hover{
+		background-color:#e1e1e1;
+	}
+	.rec_box h3{
+		padding-bottom:10px;
+		border-bottom:2px solid #a1a1a1;
+		color:#34333f;
+	}
+	.rec_box>p{
+		margin-top:5px;
+	}
+	.rec_box p span:first-child{
+		display:inline-block;
+		width:90px;
+		font-size:15px;
+		color:#22222a;
+		text-align:right;
+	}
+	.rec_box p span:last-child{
+		font-size:15px;
+		color:#616161;
+	}
+	.rec_box div{
+		margin-top:15px;
+	}
+	.rec_box div div{
+		font-size:16px;
+		font-weight:bold;
+		color:#34333f;
+	}
+	.rec_box div p{
+		margin-top:5px;
+		margin-left:15px;
+		font-size:15px;
+		color:#616161;
+	}
+	/*---------------------------------------*/
+	#rec_nav2{
+		display:none;
+		float:left;
+		margin-top:40px;
+		margin-left:30px;
+		width:25%;
+	}
+	#rec_nav2 li{
+		padding:5px 0;
+		width:100px;
+		background-color:#c1c1c1;
+		color:white;
+		text-align:center;
+		cursor:default;
+	}
+	#rec_nav2 li:hover{
+		background-color:#a1a1a1;
+	}
+	#rec_nav2>ul>li{
+		position:relative;
+		margin-top:5px;
+	}
+	#rec_nav2>ul>li:hover ul{
+		display:block;
+	}
+	#rec_nav2>ul>li:hover .arrow{
+		display:inline;
+	}
+	#rec_nav2 ul ul{
+	}
+	.arrow{
+		display:none;
+		position:absolute;
+		left:100px;
+		top:10px;
+		border-left:5px solid #a1a1a1;
+		border-top:5px solid transparent;
+		border-bottom:5px solid transparent;
+	}
 </style>
 </head>
 <body>
     <div id="nav">
 		<ul id="first_ul">
-			<li>首页</li>
+			<li><a href="./gree_demo.html">首页</a></li>
 			<li>
-				<span>产品中心</span>
+				<a href="./gree_products.html">产品中心</a>
 				<ul class="second_ul">
 					<li>家用空调</li>
 					<li>商用空调</li>
@@ -105,7 +202,7 @@
 				</ul>
 			</li>
 			<li>
-				<span>新闻中心</span>
+				<a href="./gree_news.html">新闻中心</a>
 				<ul class="second_ul">
 					<li>公司新闻</li>
 					<li>行业动态</li>
@@ -119,7 +216,7 @@
 				</ul>
 			</li>
 			<li>
-				<span>企业文化</span>
+				<a href="./gree_culture.html">企业文化</a>
 				<ul class="second_ul">
 					<li>公司简介</li>
 					<li>企业文化</li>
@@ -134,6 +231,80 @@
 	</div>
 	<div id="subtitle">
 		<h1><span>&nbsp;RECRUITMENT</span> / 招聘中心</h1>
+	</div>
+	<div id="r_details">
+		<p id="rec_nav">
+			<span class="not_link">当前位置 : </span>
+			<span class="link">招聘中心</span>
+			<span class="not_link"> &gt; </span>
+			<span class="link">招聘岗位</span>
+		</p>
+		<div class="rec_box">
+			<h3>空调维修师</h3>
+			<p><span>职位名称：</span><span>空调维修师</span></p>
+			<p><span>职位类型：</span><span>全职</span></p>
+			<p><span>工作经验：</span><span>2年</span></p>
+			<p><span>学历要求：</span><span>初中毕业</span></p>
+			<p><span>工作地区：</span><span>广东</span></p>
+			<p><span>招聘人数：</span><span>20</span></p>
+			<p><span>月薪：</span><span>免谈</span></p>
+			<div>
+				<div>职位描述</div>
+				<p>安装、保养，工具自带，公司包住不包吃，有伙食补贴，待遇面议</p>
+			</div>
+			<div>
+				<div>职位要求</div>
+				<p>1、具备两年以上安装工作经验。</p>
+				<p>2、服从工作安排。</p>
+				<p>3、具有良好的服务意识，工作认真负责。</p>
+				<p>4、诚实老实，不怕吃苦，勤奋好学。</p>
+				<p>5、较强的事故判断和处理能力，动手能力强。</p>
+			</div>
+		</div>
+		<div class="rec_box">
+			<h3>空调安装师</h3>
+			<p><span>职位名称：</span><span>空调安装师</span></p>
+			<p><span>职位类型：</span><span>全职</span></p>
+			<p><span>工作经验：</span><span>2年</span></p>
+			<p><span>学历要求：</span><span>初中毕业</span></p>
+			<p><span>工作地区：</span><span>广东</span></p>
+			<p><span>招聘人数：</span><span>20</span></p>
+			<p><span>月薪：</span><span>免谈</span></p>
+			<div>
+				<div>职位描述</div>
+				<p>安装、保养，工具自带，公司包住不包吃，有伙食补贴，待遇面议</p>
+			</div>
+			<div>
+				<div>职位要求</div>
+				<p>1、具备两年以上安装工作经验。</p>
+				<p>2、服从工作安排。</p>
+				<p>3、具有良好的服务意识，工作认真负责。</p>
+				<p>4、诚实老实，不怕吃苦，勤奋好学。</p>
+				<p>5、较强的事故判断和处理能力，动手能力强。</p>
+			</div>
+		</div>
+		<div id="rec_nav2">
+			<ul>
+				<li>
+					<span>招聘信息</span>
+				</li>
+				<li>
+					<span>招聘岗位</span>
+					<div class="arrow"></div>
+					<ul>
+						<li>空调维修师</li>
+						<li>空调安装师</li>
+					</ul>
+				</li>
+				<li>
+					<span>职业发展</span>
+				</li>
+				<li>
+					<span>人才战略</span>
+				</li>
+			</ul>
+			<p class="clear"></p>
+		</div>
 	</div>
 </body>
 </html>
