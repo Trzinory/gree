@@ -270,16 +270,19 @@
 		background-color:white;
 	}
 	#news_main img{
-		width:170px;
+		width:230px;
 		height:170px;
 		background-color:#226ddd;
 	}
 	.news_text{
 		position:relative;
-		width:630px;
+		width:570px;
 		height:100%;
 		text-indent:20px;
 		background-color:#fafafa;
+	}
+	.news_text:hover{
+		background-color:#f1f1f1;
 	}
 	.ntright{
 		float:right;
@@ -313,6 +316,9 @@
 		color:#616161;
 		cursor:pointer;
 	}
+	.news_text div:hover{
+		color:#226ddd;
+	}
 	#intro{
 		padding:40px;
 		background-color:#f1f1f1;
@@ -340,6 +346,9 @@
 		color:#616161;
 		font-size:12px;
 	}
+	.p2 a:hover{
+		color:#226ddd;
+	}
 	#foot_bar{
 		padding:30px;
 		font-size:14px;
@@ -359,6 +368,7 @@
 		clear:both;
 	}
 </style>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 </head>
 <body>
     <div id="top">
@@ -568,5 +578,15 @@
     	</ul>
     	<p>版权所有 CopyRight(C)2013-2015 东莞市忠胜格力产品销售中心</p>
     </div>
+    <script type="text/javascript">
+    	$("#intro div").mouseover(function(){
+    		var s=$("img",this).attr("src").replace(/\.png/,"2.png");
+    		$("img",this).attr({"src":s});
+    	});
+    	$("#intro div").mouseout(function(){
+    		var s=$("img",this).attr("src").replace(/2\.png/,".png");
+    		$("img",this).attr({"src":s});
+    	});
+    </script>
 </body>
 </html>

@@ -156,7 +156,8 @@
 		color:white;
 	}
 	#p_details{
-		margin:80px auto 0 auto;
+		padding:80px 0;
+		margin:0px auto 0 auto;
 		width:900px;
 		height:600px;
 	}
@@ -219,17 +220,29 @@
 	#spcf{
 		padding:30px 0;
 		width:55%;
-		height:400px;
 		float:right;
 	}
 	#spcf table{
+		border:transparent;
+		border-left:transparent;
 		border-collapse:collapse;
 		width:450px;
 		margin:0 auto;
 		text-align:center;
 	}
 	#spcf td{
-		height:31px;
+		height:25px;
+		font-size:15px;
+	}
+	.table_child td:first-child{
+		background-color:#e1e1e1;
+	}
+	.table_child td:last-child{
+		text-align:left;
+		text-indent:30px;
+	}
+	.table_title{
+		color:white;
 	}
 	#susume{
 		display:none;
@@ -249,6 +262,25 @@
 		margin:0 10px;
 		width:160px;
 		height:160px;
+	}
+	/*-----------------------------------*/
+	#foot_bar{
+		padding:30px;
+		font-size:14px;
+		color:white;
+		background-color:rgb(24,38,41);
+	}
+	#foot_bar ul{
+		display:table;
+		margin:0 auto;
+	}
+	#foot_bar li{
+		float:left;
+	}
+	#foot_bar p{
+		margin-top:5px;
+		text-align:center;
+		clear:both;
 	}
 </style>
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
@@ -432,76 +464,87 @@
 			</div>
 			<div id="spcf">
 				<table border="1" contenteditable>
-					<tr>
-						<td colspan="4">标题</td>
-					</tr>
-					<tr>
+					<tr class="table_title">
 						<td colspan="4">主体</td>
 					</tr>
-					<tr>
+					<tr class="table_child">
 						<td width="25%">系列</td>
-						<td colspan="3"></td>
+						<td colspan="3"> Q铂</td>
 					</tr>
-					<tr>
+					<tr class="table_child">
 						<td width="25%">型号</td>
-						<td colspan="3"></td>
+						<td colspan="3">KFR-50LW</td>
 					</tr>
-					<tr>
+					<tr class="table_child">
 						<td width="25%">类别</td>
-						<td colspan="3"></td>
+						<td colspan="3">立柜式</td>
 					</tr>
-					<tr>
+					<tr class="table_title">
 						<td colspan="4">功能</td>
 					</tr>
-					<tr>
+					<tr class="table_child">
 						<td width="25%">制冷</td>
-						<td width="25%"></td>
+						<td colspan="3">冷暖</td>
+					</tr>
+					<tr class="table_child">
 						<td width="25%">匹数</td>
-						<td></td>
+						<td colspan="3">2匹-3匹</td>
 					</tr>
-					<tr>
+					<tr class="table_child">
 						<td>变频/定频</td>
-						<td></td>
+						<td colspan="3">直流变频</td>
+					</tr>
+					<tr class="table_child">
 						<td>能效等级</td>
-						<td></td>
+						<td colspan="3">3级</td>
 					</tr>
-					<tr>
+					<tr class="table_child">
 						<td>制冷量</td>
-						<td></td>
+						<td colspan="3">5500-6000</td>
+					</tr>
+					<tr class="table_child">
 						<td>制冷功率</td>
-						<td></td>
+						<td colspan="3">1600-2500</td>
 					</tr>
-					<tr>
+					<tr class="table_child">
 						<td>内机噪音</td>
-						<td></td>
+						<td colspan="3">22-46</td>
+					</tr>
+					<tr class="table_child">
 						<td>外机噪音</td>
-						<td></td>
+						<td colspan="3">42-56</td>
 					</tr>
-					<tr>
+					<tr class="table_child">
 						<td>适用面积</td>
-						<td></td>
+						<td colspan="3">20-30</td>
+					</tr>
+					<tr class="table_child">
 						<td>循环风量</td>
-						<td></td>
+						<td colspan="3">800-1000</td>
 					</tr>
 					</tr>
-					<tr>
+					<tr class="table_title">
 						<td colspan="4">规格</td>
 					</tr>
-					<tr>
+					<tr class="table_child">
 						<td>电压/频率</td>
+						<td colspan="3">220/50</td>
+					</tr>
+					<tr class="table_child">
+						<td>外机尺寸</td>
 						<td colspan="3"></td>
 					</tr>
-					<tr>
-						<td>外机尺寸</td>
-						<td></td>
+					<tr class="table_child">
 						<td>内机尺寸</td>
-						<td></td>
+						<td colspan="3"></td>
 					</tr>
-					<tr>
+					<tr class="table_child">
 						<td>内机重量</td>
-						<td></td>
+						<td colspan="3"></td>
+					</tr>
+					<tr class="table_child">
 						<td>外机重量</td>
-						<td></td>
+						<td colspan="3"></td>
 					</tr>
 				</table>
 			</div>
@@ -551,6 +594,20 @@
 			</div>
 		</div>
 	</div>
+    <div id="foot_bar">
+    	<ul>
+    		<li>关于我们</li>
+    		<li>&nbsp;|&nbsp;</li>
+    		<li>联系我们</li>
+    		<li>&nbsp;|&nbsp;</li>
+    		<li>文件下载</li>
+    		<li>&nbsp;|&nbsp;</li>
+    		<li>人才招聘</li>
+    		<li>&nbsp;|&nbsp;</li>
+    		<li>友情链接</li>
+    	</ul>
+    	<p>版权所有 CopyRight(C)2013-2015 东莞市忠胜格力产品销售中心</p>
+    </div>
 	<script>
 		var flag=0;
 		$("#subtitle>ul>li").on({
@@ -610,6 +667,21 @@
 			$("#p_details").show();
 		});
 		$("#subtitle li:eq(0)").click();
+
+		//表格格式
+		var trCount=0;
+		$(".table_title td").css("background-color","#226ddd");
+		for(var i=0;i<$("#spcf tr").length;i++){
+			if($("#spcf tr:eq("+i+")").hasClass("table_title")){
+				trCount=0;
+			}
+			else{
+				trCount++;
+			}
+			if(trCount&&trCount%2==0){
+				$("#spcf tr:eq("+i+")").css("background-color","#f1f1f1");
+			}
+		}
 	</script>
 </body>
 </html>
