@@ -103,9 +103,11 @@
 	}
 	/*-------------------------------------------------*/
 	.rec_box{
-		margin:45px auto;
+		float:right;
+		margin:45px 0;
+		margin-right:30px;
 		padding:30px 20px;
-		width:80%;
+		width:70%;
 		background-color:#f1f1f1;
 	}
 	.rec_box:hover{
@@ -146,45 +148,47 @@
 	}
 	/*---------------------------------------*/
 	#rec_nav2{
-		display:none;
+		position:relative;
 		float:left;
 		margin-top:40px;
 		margin-left:30px;
-		width:25%;
 	}
 	#rec_nav2 li{
+		margin-top:5px;
 		padding:5px 0;
 		width:100px;
-		background-color:#c1c1c1;
-		color:white;
+		background-color:#f1f1f1;
+		color:#34333f;
 		text-align:center;
 		cursor:default;
 	}
+	#rec_nav2 li:last-child{
+	}
 	#rec_nav2 li:hover{
-		background-color:#a1a1a1;
+		background-color:#e1e1e1;
 	}
-	#rec_nav2>ul>li{
-		position:relative;
-		margin-top:5px;
-	}
-	#rec_nav2>ul>li:hover ul{
-		display:block;
-	}
-	#rec_nav2>ul>li:hover .arrow{
-		display:inline;
-	}
-	#rec_nav2 ul ul{
-	}
-	.arrow{
-		display:none;
+	#rec_nav2 div{
 		position:absolute;
-		left:100px;
+		left:50px;
 		top:10px;
-		border-left:5px solid #a1a1a1;
-		border-top:5px solid transparent;
-		border-bottom:5px solid transparent;
+		width:1px;
+		height:200px;
+		border-left:1px solid #e1e1e1;
+		z-index:-1;
+	}
+	#rec_nav2 div p{
+		margin-top:180px;
+		margin-left:-30px;
+		padding:4px 0;
+		width:60px;
+		font-weight:bold;
+		text-indent:2px;
+		color:#34333f;
+		background-color:#e1e1e1;
+		text-align:center;
 	}
 </style>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 </head>
 <body>
     <div id="nav">
@@ -225,7 +229,9 @@
 					<li>销售网络</li>
 				</ul>
 			</li>
-			<li>联系我们</li>
+			<li>
+				<a href="./gree_contact.html">联系我们</a>
+			</li>
 			<p class="clear"></p>
 		</ul>
 	</div>
@@ -239,6 +245,15 @@
 			<span class="not_link"> &gt; </span>
 			<span class="link">招聘岗位</span>
 		</p>
+		<div id="rec_nav2">
+			<div>
+				<p>END</p>
+			</div>
+			<ul>
+				<li>空调维修师</li>
+				<li>空调安装师</li>
+			</ul>
+		</div>
 		<div class="rec_box">
 			<h3>空调维修师</h3>
 			<p><span>职位名称：</span><span>空调维修师</span></p>
@@ -283,6 +298,7 @@
 				<p>5、较强的事故判断和处理能力，动手能力强。</p>
 			</div>
 		</div>
+		<!--
 		<div id="rec_nav2">
 			<ul>
 				<li>
@@ -305,6 +321,23 @@
 			</ul>
 			<p class="clear"></p>
 		</div>
+		-->
 	</div>
+	<script type="text/javascript">
+	window.onload=function(){
+		var sTop=$("#rec_nav2").offset().top;
+		$(window).scroll(function(){
+			$("#rec_nav2").stop();
+			var wScrollTop=$(window).scrollTop();
+			var r=wScrollTop-sTop;
+			if(r>0){
+				$("#rec_nav2").offset({top:wScrollTop});
+			}
+			else{
+				$("#rec_nav2").offset({top:sTop});
+			}
+		});
+	}
+	</script>
 </body>
 </html>

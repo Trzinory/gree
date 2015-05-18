@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Contact</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	*{margin:0;padding:0;font-family:"微软雅黑";}
+	ul{list-style-type:none;}
+	a{text-decoration:none;color:black;}
+	.clear{clear:both;}
+	#top{
+		padding-top:0px;
+		width:900px;
+		margin:0 auto;
+	}
+	#logo{
+		width:200px;
+		margin-left:5px;
+		margin-top:2px;
+	}
+	#title span{
+		position:relative;
+		top:-19px;
+		font-size:25px;
+	}
+	#search{
+		display:none;
+		float:right;
+		margin:17px 0px 3px 0px;
+	}
+	#search img{
+		width:30px;
+		height:30px;
+		float:right;
+		background-color:#414141;
+	}
+	#search input{
+		width:120px;
+		height:26px;
+	}
+	#nav{
+		background-color:rgba(65,65,65,0.6);
+	}
+	#nav a{
+		color:white;
+	}
+	#nav li{
+		color:white;
+		padding:10px 0px;
+		width:130px;
+		text-align:center;
+		cursor:default;
+	}
+	#nav ul li:hover{
+		background-color:rgba(65,65,65,0.6);
+	}
+	#first_ul{
+		width:900px;
+		margin:0 auto;
+	}
+	#first_ul>li{
+		float:left;
+		margin:0 10px;
+	}
+	#first_ul>li:hover .second_ul{
+		display:block;
+	}
+	.second_ul{
+		display:none;
+		position:absolute;
+		margin-top:10px;
+		z-index:1;
+	}
+	.second_ul{
+		background-color:rgba(65,65,65,0.6);
+	}
+	#first_ul>li:hover .second_ul li:hover{
+		background-color:rgba(65,65,65,0.6);
+	}
+	#subtitle h1{
+		width:900px;
+		margin:0 auto;
+		padding-top:60px;
+	}
+	#subtitle h1 span{
+		color:#226ddd;
+		border-left:5px solid #226ddd;
+	}
+	#details{
+		padding:40px 0 200px 0;
+		margin-top:60px;
+		background-color:#f1f1f1;
+	}
+	#contact_way{
+		width:900px;
+		margin:0 auto;
+	}
+	#contact_way div:first-child{
+		font-size:25px;
+	}
+	#contact_way div:last-child{
+		padding-top:10px;
+		width:400px;
+		margin-top:30px;
+		margin-left:60px;
+		border:2px solid #a1a1a1;
+		color:#616161;
+	}
+	#contact_way p{
+		font-size:16px;
+		margin-top:15px;
+	}
+	#contact_way p span:first-child{
+		display:inline-block;
+		width:120px;
+		text-indent:30px;
+		font-weight:bold;
+	}
+	#contact_way p span:last-child{
+		display:inline-block;
+		text-indent:20px;
+		color:#818181;
+	}
+	#message{
+		display:inline-block;
+		float:right;
+		padding:5px 8px;
+		margin-right:30px;
+		margin-bottom:15px;
+		background-color:#ddd;
+		cursor:pointer;
+	}
+	#message:hover{
+		background-color:#4187F1;
+		color:white;
+	}
+</style>
+</head>
+<body>
+    <div id="nav">
+		<ul id="first_ul">
+			<li><a href="./gree_demo.html">首页</a></li>
+			<li>
+				<a href="./gree_products.html">产品中心</a>
+				<ul class="second_ul">
+					<li>家用空调</li>
+					<li>商用空调</li>
+					<li>小家电</li>
+					<li>晶弘冰箱</li>
+					<li>空气能热水器</li>
+					<li>净水机</li>
+				</ul>
+			</li>
+			<li>
+				<a href="./gree_news.html">新闻中心</a>
+				<ul class="second_ul">
+					<li>公司新闻</li>
+					<li>行业动态</li>
+				</ul>
+			</li>
+			<li>
+				<a href="./gree_recruitment.html">人才招聘</a>
+				<ul class="second_ul">
+					<li>空调维修师</li>
+					<li>空调安装师</li>
+				</ul>
+			</li>
+			<li>
+				<a href="./gree_culture.html">企业文化</a>
+				<ul class="second_ul">
+					<li>公司简介</li>
+					<li>企业文化</li>
+					<li>企业荣誉</li>
+					<li>领导致辞</li>
+					<li>销售网络</li>
+				</ul>
+			</li>
+			<li>联系我们</li>
+			<p class="clear"></p>
+		</ul>
+	</div>
+	<div id="subtitle">
+		<h1><span>&nbsp;Contact us</span> / 联系我们</h1>
+		<div class="clear"></div>
+	</div>
+	<div id="details">
+		<div id="contact_way">
+			<div>联系方式</div>
+			<div>
+				<p><span>地址</span><span>东莞市樟木头镇柏地东城路68号</span></p>
+				<p><span>电话</span><span>87568836</span></p>
+				<p><span>电子邮箱</span><span>dgzsdq@163.com</span></p>
+				<p><span>邮政编码</span><span>523635</span></p>
+				<p id="message">马上留言</p>
+				<p class="clear"></p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
