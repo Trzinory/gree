@@ -6,310 +6,15 @@
 <title>Products</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
-<link href="" rel="stylesheet">
-<style type="text/css">
-	*{margin:0;padding:0;font-family:"微软雅黑";}
-	ul{list-style-type:none;}
-	a{text-decoration:none;color:black;}
-	.clear{clear:both;}
-	#top{
-		padding-top:0px;
-		width:900px;
-		margin:0 auto;
-	}
-	#logo{
-		width:200px;
-		margin-left:5px;
-		margin-top:2px;
-	}
-	#title span{
-		position:relative;
-		top:-19px;
-		font-size:25px;
-	}
-	#search{
-		display:none;
-		float:right;
-		margin:17px 0px 3px 0px;
-	}
-	#search img{
-		width:30px;
-		height:30px;
-		float:right;
-		background-color:#414141;
-	}
-	#search input{
-		width:120px;
-		height:26px;
-	}
-	#nav{
-		background-color:rgba(65,65,65,0.6);
-	}
-	#nav a{
-		color:white;
-	}
-	#nav li{
-		color:white;
-		padding:10px 0px;
-		width:130px;
-		text-align:center;
-		cursor:default;
-	}
-	#nav ul li:hover{
-		background-color:rgba(65,65,65,0.6);
-	}
-	#first_ul{
-		width:900px;
-		margin:0 auto;
-	}
-	#first_ul>li{
-		float:left;
-		margin:0 10px;
-	}
-	#first_ul>li:hover .second_ul{
-		display:block;
-	}
-	.second_ul{
-		display:none;
-		position:absolute;
-		margin-top:10px;
-		z-index:1;
-	}
-	.second_ul{
-		background-color:rgba(65,65,65,0.6);
-	}
-	#first_ul>li:hover .second_ul li:hover{
-		background-color:rgba(65,65,65,0.6);
-	}
-	#subtitle h1{
-		width:900px;
-		margin:0 auto;
-		padding-top:60px;
-		cursor:default;
-	}
-	#subtitle h1 span{
-		color:#226ddd;
-		border-left:5px solid #226ddd;
-	}
-	#subtitle>ul{
-		width:900px;
-		margin:30px auto 0 auto;
-		font-size:15px;
-	}
-	#subtitle>ul>li>span{
-		font-size:16px;
-		padding-bottom:2px;
-	}
-	.second_class{
-		display:none;
-		position:absolute;
-		margin-top:5px;
-		padding:6px 6px;
-		color:#22222a;
-		background-color:white;
-		z-index:1;
-	}
-	.second_class li{
-		float:left;
-		padding:5px 10px;
-		font-size:13px;
-		text-align:center;
-		cursor:default;
-	}
-	.second_class li:hover{
-		background-color:rgba(65,65,65,0.3);
-		color:white;
-	}
-	#sc1{margin-left:-20px;}
-	#sc2{margin-left:-134px;}
-	#sc3{margin-left:-10px;}
-	#sc4{margin-left:-210px;}
-	#sc5{margin-left:-600px;}
-	#subtitle>ul>li{
-		float:left;
-		padding:5px 10px;
-		margin:0 10px;
-		text-align:center;
-		cursor:pointer;
-	}
-	#subtitle>ul>li:hover .second_class{
-	}
-	#products_box{
-		margin-top:61px;
-		padding-bottom:30px;
-		width:100%;
-		text-align:center;
-		background-color:rgba(65,65,65,0.3);
-	}
-	#products_box div{
-		display:none;
-		display:inline-block;
-		width:110px;
-		margin:0px 10px 0 10px;
-	}
-	#subtitle li:hover .products_box{
-	}
-	#products_box img{
-		width:100%;
-	}
-	#products_box p{
-		font-size:13px;
-		color:white;
-	}
-	#p_details{
-		padding:80px 0;
-		margin:0px auto 0 auto;
-		width:900px;
-		height:600px;
-	}
-	#products_nav{}
-	#products_nav span{
-		font-size:13px;
-	}
-	.link{
-		cursor:pointer;
-	}
-	.not_link{
-		cursor:default;
-	}
-	#products_nav span:last-child{
-		color:#226ddd;
-	}
-	#pictures{
-		width:45%;
-		float:left;
-		padding-top:30px;
-		text-align:center;
-	}
-	#b_pic_box{
-		width:370px;
-		height:370px;
-		margin:0 auto;
-		border:1px solid;
-	}
-	#b_pic_box img{
-		width:75%;
-	}
-	#s_pics{
-		padding-top:10px;
-	}
-	#s_pics img{
-		margin:0 3px;
-		width:100px;
-		height:100px;
-	}
-	#s_pics>div{
-		width:17px;
-		height:100px;
-		display:inline-block;
-		border:1px solid #f1f1f1;
-	}
-	#s_pics>div:first-child{
-		background:-webkit-linear-gradient(right,#fcfcfc,#eee);
-	}
-	#s_pics>div:last-child{
-		background:-webkit-linear-gradient(left,#fcfcfc,#eee);
-	}
-	#s_pics>div:first-child:hover{
-		background:-webkit-linear-gradient(right,#fff,#eee);
-	}
-	#s_pics>div:last-child:hover{
-		background:-webkit-linear-gradient(left,#fff,#eee);
-	}
-	#s_pics>div:first-child:active{
-		background:-webkit-linear-gradient(right,#fcfcfc,#eee);
-	}
-	#s_pics>div:last-child:active{
-		background:-webkit-linear-gradient(left,#fcfcfc,#eee);
-	}
-	#left_ap{
-		margin-top:40px;
-		margin-right:3px;
-		border-right:solid 10px #ccc;
-		border-top:solid 10px transparent;
-		border-bottom:solid 10px transparent;
-	}
-	#right_ap{
-		margin-top:40px;
-		margin-left:3px;
-		border-left:solid 10px #ccc;
-		border-top:solid 10px transparent;
-		border-bottom:solid 10px transparent;
-	}
-	#spcf{
-		padding:30px 0;
-		width:55%;
-		float:right;
-	}
-	#spcf table{
-		border:white;
-		border-collapse:collapse;
-		width:450px;
-		margin:0 auto;
-		text-align:center;
-	}
-	#spcf td{
-		height:25px;
-		font-size:15px;
-	}
-	.table_child td:first-child{
-		background-color:#e1e1e1;
-		cursor:default;
-	}
-	.table_child td:last-child{
-		text-align:left;
-		text-indent:30px;
-	}
-	.table_title{
-		color:white;
-		cursor:default;
-	}
-	#susume{
-		display:none;
-	}
-	.sell_well{
-		text-align:center;
-		margin:40px 20px;
-	}
-	.sell_well p{
-		text-align:left;
-		margin-bottom:20px;
-		font-size:20px;
-		color:#226ddd;
-	}
-	.sell_well img{
-		border:1px;
-		margin:0 10px;
-		width:160px;
-		height:160px;
-	}
-	/*-----------------------------------*/
-	#foot_bar{
-		padding:30px;
-		font-size:14px;
-		color:white;
-		background-color:rgb(24,38,41);
-	}
-	#foot_bar ul{
-		display:table;
-		margin:0 auto;
-	}
-	#foot_bar li{
-		float:left;
-	}
-	#foot_bar p{
-		margin-top:5px;
-		text-align:center;
-		clear:both;
-	}
-</style>
+<link href="./css/products.css" rel="stylesheet">
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<script src="./js/products.js"></script>
 </head>
 <body>
 	<div id="top">
 		<!--
 		<div id="title">
-			<img id="logo" src="./img/gree_logo.png">
+			<img id="logo" src="./img/products/gree_logo.png">
 			<span>东莞市忠胜格力产品销售中心</span>
 		</div>
 		-->
@@ -426,31 +131,31 @@
 		</ul>
 		<div id="products_box">
 			<div class="all hac life_ea fridge water_heater cac">
-				<img src="./img/Product_KH284000100.png">
+				<img src="./img/products/Product_KH284000100.png">
 				<p>Q铂 KFR-50LW</p>
 			</div>
 			<div class="all hac life_ea fridge water_heater cac">
-				<img src="./img/Product_A0011007200.png">
+				<img src="./img/products/Product_A0011007200.png">
 				<p>S-0502a</p>
 			</div>
 			<div class="all hac life_ea fridge water_heater cac">
-				<img src="./img/Product_9511355002.png">
+				<img src="./img/products/Product_9511355002.png">
 				<p>BCD-218TGK</p>
 			</div>
 			<div class="all hac fridge water_heater">
-				<img src="./img/Product_KH284000100.png">
+				<img src="./img/products/Product_KH284000100.png">
 				<p>Q铂 KFR-50LW</p>
 			</div>
 			<div class="all hac fridge">
-				<img src="./img/Product_A0011007200.png">
+				<img src="./img/products/Product_A0011007200.png">
 				<p>S-0502a</p>
 			</div>
 			<div class="all hac">
-				<img src="./img/Product_9511355002.png">
+				<img src="./img/products/Product_9511355002.png">
 				<p>BCD-218TGK</p>
 			</div>
 			<div class="all">
-				<img src="./img/Product_KH284000100.png">
+				<img src="./img/products/Product_KH284000100.png">
 				<p>Q铂 KFR-50LW</p>
 			</div>
 		</div>
@@ -468,7 +173,7 @@
 		<div id="products_show">
 			<div id="pictures">
 				<div id="b_pic_box">
-					<img src="./img/Product_KH284000100.png">
+					<img src="./img/products/Product_KH284000100.png">
 				</div>
 				<div id="s_pics">
 					<div>
@@ -629,79 +334,6 @@
     	<p>版权所有 CopyRight(C)2013-2015 东莞市忠胜格力产品销售中心</p>
     </div>
 	<script>
-		var flag=0;
-		$("#subtitle>ul>li").on({
-			"click":function(){
-				if(flag==0){
-					$("#flag").remove();
-				}
-				else if(flag==1){
-					flag=0;
-				}
-				$("#subtitle>ul>li").css({
-					"background-color":"white",
-					"color":"#22222a"
-				});
-				$(this).css({
-					"background-color":"rgba(65,65,65,0.3)",
-					"color":"white"
-				});
-				$(">span",this).css({
-					"border-bottom":"none"
-				});
-				$(".all").hide();
-				$("."+this.id).show();
-				//处理mouseout的不同性
-				$("#subtitle>ul>li").unbind("mouseout");
-				$("#subtitle>ul>li").mouseout(function(){
-					$(">span",this).css({
-						"border-bottom":"none"
-					});
-					$(".second_class",this).hide();
-				});
-				$(this).unbind("mouseout");
-				$("#subtitle>ul>li").mouseout();
-				$(this).mouseout(function(){
-					$(".second_class",this).hide();
-				});
-				//处理mouseover的不同性
-				$("#subtitle>ul>li").unbind("mouseover");
-				$("#subtitle>ul>li").mouseover(function(){
-					$(">span",this).css({
-						"border-bottom":"2px solid"
-					});
-					$(".second_class",this).show();
-				});
-				$(this).unbind("mouseover");
-				$(this).mouseover(function(){
-					$(".second_class",this).show();
-				});
-			}
-		});
-		$(".second_class li").click(function(){
-			flag=1;
-			$("#flag").remove();
-			$(this).parent().prev().append("<span id='flag'> ＞"+$(this).text()+"</span>");
-		});
-		$(".products_box img").click(function(){
-			$("#p_details").show();
-		});
-		$("#subtitle li:eq(0)").click();
-
-		//表格格式
-		var trCount=0;
-		$(".table_title td").css("background-color","#226ddd");
-		for(var i=0;i<$("#spcf tr").length;i++){
-			if($("#spcf tr:eq("+i+")").hasClass("table_title")){
-				trCount=0;
-			}
-			else{
-				trCount++;
-			}
-			if(trCount&&trCount%2==0){
-				$("#spcf tr:eq("+i+")").css("background-color","#f1f1f1");
-			}
-		}
 	</script>
 </body>
 </html>
