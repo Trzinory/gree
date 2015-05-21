@@ -8,7 +8,7 @@
 <meta name="keywords" content="">
 <link href="" rel="stylesheet">
 <style type="text/css">
-	*{margin:0;padding:0;font-family:"微软雅黑"}
+	*{margin:0;padding:0;font-family:"微软雅黑";}
 	ul{list-style-type:none;}
 	a{text-decoration:none;color:black;}
 	.clear{clear:both;}
@@ -165,6 +165,7 @@
 		margin-left:5%;
 		font-size:25px;
 		font-weight:600;
+		cursor:pointer;
 	}
 	.subtitle b{
 		color:#226ddd;
@@ -174,6 +175,7 @@
 		margin-top:10px;
 		font-size:13px;
 		color:#616161;
+		cursor:default;
 	}
 	#catalog{
 		display:table;
@@ -200,7 +202,7 @@
 		border:1px solid #c1c1c1;
 	}
 	#p_details img,#box{
-		border:2px solid #cccccc;
+		outline:2px solid #ccc;
 	}
 	/*
 	.subtitle span:last-child{
@@ -215,23 +217,32 @@
 		margin:0 auto;
 	}
 	#products_top>div,#products_bottom>div{
+		position:relative;
 		float:left;
 		width:20%;
 		margin-left:4%;
 		background-color:#fafafa;
+		cursor:pointer;
 	}
 	#p_details img{
 		width:85%;
-		margin:10px 0px 7px 10px;
+		margin:12px 0px 7px 12px;
 	}
-	#p_details div div p{
-		display:none;
-		margin-top:-3px;
+	#p_details div p{
 		text-align:center;
 		padding:5px;
 		font-size:13px;
 	}
-	#products_top{
+	#products_top div div{
+		display:none;
+		width:100%;
+		position:absolute;
+		bottom:0;
+		color:white;
+		background-color:rgba(65,65,65,0.3);
+	}
+	#products_top>div:hover div{
+		display:block;
 	}
 	#products_bottom{
 		display:none;
@@ -297,6 +308,7 @@
 		overflow:hidden;
 		white-space:nowrap;
 		color:#226ddd;
+		cursor:default;
 	}
 	.news_summary{
 		height:40%;
@@ -306,6 +318,7 @@
 		font-size:13px;
 		color:#414141;
 		word-break:break-all;
+		cursor:default;
 	}
 	.news_text div{
 		position:absolute;
@@ -341,6 +354,7 @@
 		color:#22222a;
 		margin:5px 0;
 		font-size:20px;
+		cursor:default;
 	}
 	.p2{
 		color:#616161;
@@ -350,9 +364,9 @@
 		color:#226ddd;
 	}
 	#foot_bar{
+		color:white;
 		padding:30px;
 		font-size:14px;
-		color:white;
 		background-color:rgb(24,38,41);
 	}
 	#foot_bar ul{
@@ -361,6 +375,9 @@
 	}
 	#foot_bar li{
 		float:left;
+	}
+	#foot_bar a{
+		color:white;
 	}
 	#foot_bar p{
 		margin-top:5px;
@@ -454,23 +471,31 @@
     		<div id="products_top">
     			<div>
     				<img src="./img/Product_KH284000100.png">
-    				<p>Q铂 KFR-50LW/(50596)FNAa-A3</p>
-    				<p>变频 冷暖 2匹机 立柜式空调</p>
+    				<div>
+    					<p>Q铂 KFR-50LW/(50596)FNAa-A3</p>
+    					<p>变频 冷暖 2匹机 立柜式空调</p>
+    				</div>
     			</div>
     			<div>
     				<img src="./img/Product_A0011007200.png">
-    				<p>S-0502a</p>
-    				<p>空调扇 4档风速调节</p>
+    				<div>
+    					<p>S-0502a</p>
+    					<p>空调扇 4档风速调节</p>
+    				</div>
     			</div>
     			<div>
     				<img src="./img/Product_9511355002.png">
-    				<p>BCD-218TGK</p>
-    				<p>三门冰箱</p>
+    				<div>
+    					<p>BCD-218TGK</p>
+    					<p>三门冰箱</p>
+    				</div>
     			</div>
     			<div>
     				<img src="./img/Product_KH284000100.png">
-    				<p>Q铂 KFR-50LW/(50596)FNAa-A3</p>
-    				<p>变频 冷暖 2匹机 立柜式空调</p>
+    				<div>
+    					<p>Q铂 KFR-50LW/(50596)FNAa-A3</p>
+    					<p>变频 冷暖 2匹机 立柜式空调</p>
+    				</div>
     			</div>
     			<p class="clear"></p>
     		</div>
@@ -566,15 +591,15 @@
     </div>
     <div id="foot_bar">
     	<ul>
-    		<li>关于我们</li>
+    		<li><a href="">关于我们</a></li>
     		<li>&nbsp;|&nbsp;</li>
-    		<li>联系我们</li>
+    		<li><a href="">联系我们</a></li>
     		<li>&nbsp;|&nbsp;</li>
-    		<li>文件下载</li>
+    		<li><a href="">文件下载</a></li>
     		<li>&nbsp;|&nbsp;</li>
-    		<li>人才招聘</li>
+    		<li><a href="">人才招聘</a></li>
     		<li>&nbsp;|&nbsp;</li>
-    		<li>友情链接</li>
+    		<li><a href="">友情链接</a></li>
     	</ul>
     	<p>版权所有 CopyRight(C)2013-2015 东莞市忠胜格力产品销售中心</p>
     </div>

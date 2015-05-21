@@ -102,16 +102,42 @@
 		color:#226ddd;
 	}
 	/*-------------------------------------------------*/
-	.rec_box{
+	.view{
+		position:relative;
 		float:right;
-		margin:45px 0;
 		margin-right:30px;
-		padding:30px 20px;
 		width:70%;
+		-webkit-perspective:1000;
+	}
+	.rec_box{
+		margin:45px 0;
+		padding:30px 20px;
 		background-color:#f1f1f1;
+	}
+	@-webkit-keyframes rotate {
+		from {-webkit-transform:rotateY(0deg)}
+		to {-webkit-transform:rotateY(90deg)}
+	}
+	@-webkit-keyframes rotate2 {
+		from {-webkit-transform:rotateY(-90deg)}
+		to {-webkit-transform:rotateY(0deg)}
 	}
 	.rec_box:hover{
 		background-color:#e1e1e1;
+	}
+	.apply{
+		border:1px solid #a1a1a1;
+		float:right;
+		position:relative;
+		top:-53px;
+		padding:3px 6px;
+		font-size:15px;
+		cursor:pointer;
+	}
+	.apply:hover{
+		border:#4187F1 1px solid;
+		background-color:#4187F1;
+		color:white;
 	}
 	.rec_box h3{
 		padding-bottom:10px;
@@ -273,48 +299,54 @@
 				<li>空调安装师</li>
 			</ul>
 		</div>
-		<div class="rec_box">
-			<h3>空调维修师</h3>
-			<p><span>职位名称：</span><span>空调维修师</span></p>
-			<p><span>职位类型：</span><span>全职</span></p>
-			<p><span>工作经验：</span><span>2年</span></p>
-			<p><span>学历要求：</span><span>初中毕业</span></p>
-			<p><span>工作地区：</span><span>广东</span></p>
-			<p><span>招聘人数：</span><span>20</span></p>
-			<p><span>月薪：</span><span>免谈</span></p>
-			<div>
-				<div>职位描述</div>
-				<p>安装、保养，工具自带，公司包住不包吃，有伙食补贴，待遇面议</p>
-			</div>
-			<div>
-				<div>职位要求</div>
-				<p>1、具备两年以上安装工作经验。</p>
-				<p>2、服从工作安排。</p>
-				<p>3、具有良好的服务意识，工作认真负责。</p>
-				<p>4、诚实老实，不怕吃苦，勤奋好学。</p>
-				<p>5、较强的事故判断和处理能力，动手能力强。</p>
+		<div class="view">
+			<div class="rec_box">
+				<h3>空调维修师</h3>
+				<!--<div class="apply">立刻申请</div>-->
+				<p><span>职位名称：</span><span>空调维修师</span></p>
+				<p><span>职位类型：</span><span>全职</span></p>
+				<p><span>工作经验：</span><span>2年</span></p>
+				<p><span>学历要求：</span><span>初中毕业</span></p>
+				<p><span>工作地区：</span><span>广东</span></p>
+				<p><span>招聘人数：</span><span>20</span></p>
+				<p><span>月薪：</span><span>免谈</span></p>
+				<div>
+					<div>职位描述</div>
+					<p>安装、保养，工具自带，公司包住不包吃，有伙食补贴，待遇面议</p>
+				</div>
+				<div>
+					<div>职位要求</div>
+					<p>1、具备两年以上安装工作经验。</p>
+					<p>2、服从工作安排。</p>
+					<p>3、具有良好的服务意识，工作认真负责。</p>
+					<p>4、诚实老实，不怕吃苦，勤奋好学。</p>
+					<p>5、较强的事故判断和处理能力，动手能力强。</p>
+				</div>
 			</div>
 		</div>
-		<div class="rec_box">
-			<h3>空调安装师</h3>
-			<p><span>职位名称：</span><span>空调安装师</span></p>
-			<p><span>职位类型：</span><span>全职</span></p>
-			<p><span>工作经验：</span><span>2年</span></p>
-			<p><span>学历要求：</span><span>初中毕业</span></p>
-			<p><span>工作地区：</span><span>广东</span></p>
-			<p><span>招聘人数：</span><span>20</span></p>
-			<p><span>月薪：</span><span>免谈</span></p>
-			<div>
-				<div>职位描述</div>
-				<p>安装、保养，工具自带，公司包住不包吃，有伙食补贴，待遇面议</p>
-			</div>
-			<div>
-				<div>职位要求</div>
-				<p>1、具备两年以上安装工作经验。</p>
-				<p>2、服从工作安排。</p>
-				<p>3、具有良好的服务意识，工作认真负责。</p>
-				<p>4、诚实老实，不怕吃苦，勤奋好学。</p>
-				<p>5、较强的事故判断和处理能力，动手能力强。</p>
+		<div class="view">
+			<div class="rec_box">
+				<h3>空调安装师</h3>
+				<!--<div class="apply">立刻申请</div>-->
+				<p><span>职位名称：</span><span>空调安装师</span></p>
+				<p><span>职位类型：</span><span>全职</span></p>
+				<p><span>工作经验：</span><span>2年</span></p>
+				<p><span>学历要求：</span><span>初中毕业</span></p>
+				<p><span>工作地区：</span><span>广东</span></p>
+				<p><span>招聘人数：</span><span>20</span></p>
+				<p><span>月薪：</span><span>免谈</span></p>
+				<div>
+					<div>职位描述</div>
+					<p>安装、保养，工具自带，公司包住不包吃，有伙食补贴，待遇面议</p>
+				</div>
+				<div>
+					<div>职位要求</div>
+					<p>1、具备两年以上安装工作经验。</p>
+					<p>2、服从工作安排。</p>
+					<p>3、具有良好的服务意识，工作认真负责。</p>
+					<p>4、诚实老实，不怕吃苦，勤奋好学。</p>
+					<p>5、较强的事故判断和处理能力，动手能力强。</p>
+				</div>
 			</div>
 		</div>
 		<div class="clear"></div>

@@ -85,6 +85,7 @@
 		width:900px;
 		margin:0 auto;
 		padding-top:60px;
+		cursor:default;
 	}
 	#subtitle h1 span{
 		color:#226ddd;
@@ -201,7 +202,25 @@
 		width:17px;
 		height:100px;
 		display:inline-block;
-		background:-webkit-linear-gradient(top,#fff,#eee);
+		border:1px solid #f1f1f1;
+	}
+	#s_pics>div:first-child{
+		background:-webkit-linear-gradient(right,#fcfcfc,#eee);
+	}
+	#s_pics>div:last-child{
+		background:-webkit-linear-gradient(left,#fcfcfc,#eee);
+	}
+	#s_pics>div:first-child:hover{
+		background:-webkit-linear-gradient(right,#fff,#eee);
+	}
+	#s_pics>div:last-child:hover{
+		background:-webkit-linear-gradient(left,#fff,#eee);
+	}
+	#s_pics>div:first-child:active{
+		background:-webkit-linear-gradient(right,#fcfcfc,#eee);
+	}
+	#s_pics>div:last-child:active{
+		background:-webkit-linear-gradient(left,#fcfcfc,#eee);
 	}
 	#left_ap{
 		margin-top:40px;
@@ -223,8 +242,7 @@
 		float:right;
 	}
 	#spcf table{
-		border:transparent;
-		border-left:transparent;
+		border:white;
 		border-collapse:collapse;
 		width:450px;
 		margin:0 auto;
@@ -236,6 +254,7 @@
 	}
 	.table_child td:first-child{
 		background-color:#e1e1e1;
+		cursor:default;
 	}
 	.table_child td:last-child{
 		text-align:left;
@@ -243,6 +262,7 @@
 	}
 	.table_title{
 		color:white;
+		cursor:default;
 	}
 	#susume{
 		display:none;
@@ -463,7 +483,7 @@
 				</div>
 			</div>
 			<div id="spcf">
-				<table border="1" contenteditable>
+				<table border="1">
 					<tr class="table_title">
 						<td colspan="4">主体</td>
 					</tr>

@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Backup</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	*{margin:0;padding:0;font-family:"微软雅黑"}
+	body{overflow-x:hidden;}
+	ul{list-style-type:none;}
+	td{}
+	.clear{clear:both;}
+	#left{
+		position:fixed;
+		width:140px;
+		height:100%;
+		background-color:rgba(65,65,65,0.3);
+		z-index:1;
+	}
+	#left>div:first-child{
+		height:60px;
+		background-color:#226ddd;
+	}
+	#left img{
+		margin-top:5px;
+		width:30px;
+		height:30px;
+	}
+	#list{
+		margin-top:-1px;
+	}
+	#list ul{
+		padding-top:32px;
+	}
+	#list li{
+		width:100%;
+		font-size:15px;
+		padding:10px 0;
+		text-indent:30px;
+		color:#f1f1f1;
+		cursor:default;
+	}
+	#right{
+		margin-left:140px;
+		min-width:700px;
+	}
+	#top{
+		position:fixed;
+		width:100%;
+		height:60px;
+		background-color:rgb(197,197,197);
+	}
+	#top>div{
+		float:right;
+		width:70px;
+		height:60px;
+	}
+	#top>div>div{
+		text-align:center;
+		margin-top:5px;
+		height:50px;
+	}
+	#top>div:first-child>div{
+		border-left:1px solid #e1e1e1;
+	}
+	#top>div:last-child>div{
+		border-right:1px solid #e1e1e1;
+	}
+	#top img{
+		margin-top:10px;
+		width:30px;
+		height:30px;
+		background-color:white;
+	}
+	#content{
+		padding-top:60px;
+	}
+	#function{
+		position:fixed;
+		width:100%;
+		background-color:#f1f1f1;
+	}
+	#function ul{
+		display:none;
+		margin-left:40px;
+	}
+	#function ul li:first-child{
+		border-left:1px solid #e1e1e1;
+	}
+	#function li{
+		float:left;
+		padding:6px 12px;
+		font-size:14px;
+		text-align:center;
+		color:#34333f;
+		border-right:1px solid #e1e1e1;
+		cursor:default;
+	}
+	/*---------------------主内容块---------------------*/
+	/*编辑框*/
+	.edit_box{
+		min-width:500px;
+		border:1px solid;
+	}
+	.edit_function{
+		background-color:#e1e1e1;
+	}
+	.edit_function span{
+		display:inline-block;
+		padding:3px 5px;
+		background-color:#e1e1e1;
+		text-align:center;
+	}
+	.edit_function span:last-child{
+		float:right;
+	}
+	.text_box{
+		height:300px;
+	}
+	/*---------------------------------------*/
+	#details{
+		padding-top:32px;
+		font-size:14px;
+	}
+	#details>div{
+		padding-top:40px;
+		padding-left:40px;
+		display:none;
+	}
+	#details>div>div{
+		margin-bottom:40px;
+	}
+	#details>div>div>table>tbody>tr>td{
+		vertical-align:top;
+		padding-bottom:40px;
+	}
+	#details>div>div>table>tbody>tr>td:first-child{
+		text-align:right;
+	}
+	div.index_pic img,div.products_pic img,div.news_pic img{
+		width:400px;
+	}
+	.button{
+		padding:2px 6px 3px 6px;
+		font-size:14px;
+		border:1px solid #34333f;
+		cursor:pointer;
+	}
+	/*-------------------------------------*/
+	div.index_pic{}
+	div.index_pic div{
+	}
+	/*-------------------------------------*/
+	div.index_phrase div{
+	}
+	div.index_phrase div span:first-child{
+		display:inline-block;
+		width:80px;
+		text-align:right;
+	}
+	#new_phrase{
+		width:200px;
+	}
+	#phrase_confirm{
+		margin-left:5px;
+		padding:0 5px;
+	}
+	/*-------------------products_type------------------*/
+	div.products_type input{
+		width:200px;
+	}
+	div.products_type .button{
+		margin-left:10px;
+	}
+	/*------------------products_edit-------------------*/
+	div.products_edit table table td{
+		padding-left:20px;
+		padding-bottom:10px;
+	}
+	div.products_edit table table tr td{
+		text-align:center;
+	}
+	div.products_edit .button{
+		margin:0px 5px;
+	}
+	/*------------------products_details-------------------*/
+	#products_pics{
+	}
+	#products_pics div{
+		display:inline-block;
+		width:100px;
+		text-align:center;
+	}
+	#products_pics div img{
+		width:100%;
+		height:100px;
+	}
+	#products_pics div input{
+	}
+	div.products_details table table{
+		padding-top:20px;
+	}
+	div.products_details table table td{
+		padding-right:20px;
+		padding-bottom:10px;
+		text-align:center;
+	}
+	div.products_details .button{
+		margin-right:10px;
+	}
+	/*
+	div.products_details table table{
+		border:white;
+		border-collapse:collapse;
+		width:450px;
+		text-align:center;
+	}
+	div.products_details table table td{
+		height:25px;
+		font-size:15px;
+	}
+	.table_child td:first-child{
+		background-color:#e1e1e1;
+		cursor:default;
+	}
+	.table_child td:last-child{
+		text-align:left;
+		text-indent:30px;
+	}
+	.table_title{
+		color:white;
+		cursor:default;
+	}
+	*/
+	/*------------------products_type_susume-------------------*/
+	div.products_type_susume input{
+		width:200px;
+	}
+	div.products_type_susume .button{
+		margin-left:10px;
+	}
+	/*------------------products_susume-------------------*/
+	div.products_susume table table td{
+		padding-left:20px;
+		padding-bottom:10px;
+	}
+	div.products_susume table table tr td{
+		text-align:center;
+	}
+	div.products_susume .button{
+		margin:0px 5px;
+	}
+	/*------------------news_pic-------------------*/
+	/*------------------news_edit-------------------*/
+	div.news_edit table table td{
+		padding-left:20px;
+		padding-bottom:10px;
+	}
+	div.news_edit table table tr:first-child td{
+		text-align:center;
+	}
+	div.news_edit table table tr td:first-child{
+		text-align:center;
+	}
+	div.news_edit .button{
+		margin:0px 5px;
+	}
+	#page{
+		text-align:center;
+	}
+	#page div{
+		display:inline-block;
+		border:1px solid;
+		padding:1px 3px;
+		margin:0 3px;
+		width:24px;
+		text-align:center;
+		cursor:pointer;
+	}
+	/*------------------recruitment_type-------------------*/
+	div.recruitment_type input{
+		width:200px;
+	}
+	div.recruitment_type .button{
+		margin-left:10px;
+	}
+	/*------------------recruitment_require-------------------*/
+	#rr_table input{
+		display:none;
+	}
+	div.recruitment_require table table td{
+		padding-left:20px;
+		padding-bottom:10px;
+	}
+	div.recruitment_require table table td{
+		text-align:center;
+	}
+	#rr_table .button{
+		margin:0px 5px;
+	}
+	/*------------------culture_summary-------------------*/
+	#intro{
+		font-size:12px;
+		color:#34333f;
+		line-height:35px;
+		text-align:center;
+	}
+	/*------------------culture_spirit-------------------*/
+	#spirit p{
+		width:400px;
+		font-size:15px;
+		color:#34333f;
+		line-height:35px;
+	}
+	#spirit p span:first-child{
+		display:inline-block;
+		width:100px;
+		font-weight:bold;
+		text-align:right;
+	}
+	#spirit p span:last-child{
+		display:inline-block;
+		text-indent:50px;
+	}
+	/*------------------culture_speech-------------------*/
+	#speech{
+		width:800px;
+		text-indent:30px;
+		font-size:15px;
+		color:#34333f;
+		line-height:35px;
+	}
+	/*------------------culture_honor-------------------*/
+	#honor_pics div{
+		display:inline-block;
+		width:100px;
+		text-align:center;
+	}
+	#honor_pics div img{
+		width:100%;
+		height:100px;
+	}
+</style>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+</head>
+<body>
+    <div id="left">
+    	<div>
+    		<p></p>
+    	</div>
+    	<div id="list">
+    		<ul>
+    			<li class="index">主页</li>
+    			<li class="products">产品中心</li>
+    			<li class="news">新闻中心</li>
+    			<li class="recruitment">人才招聘</li>
+    			<li class="culture">企业文化</li>
+    			<li class="contact">联系我们</li>
+    		</ul>
+    	</div>
+    </div>
+    	<div id="top">
+    		<div>
+    			<div>
+    				<img src="">
+    			</div>
+    		</div>
+    		<div>
+    			<div>
+    				<img src="">
+    			</div>
+    		</div>
+    		<div>
+    			<div>
+    				<img src="">
+    			</div>
+    		</div>
+    	</div>
+    <div id="right">
+    	<div id="content">
+    		<div id="function">
+    			<ul class="index">
+    				<li class="index_pic">背景图片</li>
+    				<li class="index_phrase">宣传标语</li>
+    				<li class="index_products">产品展示栏</li>
+    				<li class="index_news">新闻展示栏</li>
+    			</ul>
+    			<ul class="products">
+    				<li class="products_pic">背景图片</li>
+    				<li class="products_type">产品分类</li>
+    				<li class="products_edit">产品编辑</li>
+    				<li class="products_details">产品详情</li>
+    				<li class="products_type_susume">推荐分类</li>
+    				<li class="products_susume">推荐产品</li>
+    			</ul>
+    			<ul class="news">
+    				<li class="news_pic">背景图片</li>
+    				<li class="news_edit">新闻编辑</li>
+    			</ul>
+    			<ul class="recruitment">
+    				<li class="recruitment_type">岗位类别</li>
+    				<li class="recruitment_require">招聘要求</li>
+    			</ul>
+    			<ul class="culture">
+    				<li class="culture_summary">公司简介</li>
+    				<li class="culture_spirit">格力精神</li>
+    				<li class="culture_speech">领导致辞</li>
+    				<li class="culture_honor">企业荣誉</li>
+    			</ul>
+    			<p class="clear"></p>
+    		</div>
+    		<div id="details">
+    			<div class="index_pic">
+    				<div>
+    					<span>当前图片：</span>
+    					<img src="./img/bgpic4.jpg" align="top">
+    				</div>
+    				<div>
+    					<span>上传图片：</span>
+    					<input type="file">
+    				</div>
+    			</div>
+    			<div class="index_phrase">
+    				<div>
+    					<span>当前标语：</span>
+    					<span>核心科技 世界水准</span>
+    				</div>
+    				<div>
+    					<span>新标语：</span>
+    					<input id="new_phrase" type="text">
+    					<input  id="phrase_confirm" type="button" value="确定">
+    				</div>
+    			</div>
+    			<div class="index_products">3</div>
+    			<div class="index_news">4</div>
+    			<div class="products_pic">
+    				<div>
+    					<span>当前图片：</span>
+    					<img src="./img/bgpic4.jpg" align="top">
+    				</div>
+    				<div>
+    					<span>上传图片：</span>
+    					<input type="file">
+    				</div>
+    			</div>
+    			<div class="products_type">
+    				<div>
+    					<table>
+    						<tr>
+    							<td>
+    								<span>一级分类：</span>
+    							</td>
+    							<td>
+    								<select>
+    									<option>家用空调</option>
+    									<option>生活电器</option>
+    									<option>晶弘冰箱</option>
+    									<option>空气能热水器</option>
+    									<option>中央空调</option>
+    								</select>
+    							</td>
+    							<td>
+    								<span class="button">添加</span>
+    							</td>
+    							<td>
+    								<span class="button">删除</span>
+    							</td>
+    							<td>
+    								<span class="button">修改</span>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>添加一级分类：</span>
+    							</td>
+    							<td>
+    								<input type="text">
+    							</td>
+    							<td>
+    								<span class="button">确定</span>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>修改一级分类：</span>
+    							</td>
+    							<td>
+    								<input type="text">
+    							</td>
+    							<td>
+    								<span class="button">确定</span>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>删除一级分类：</span>
+    							</td>
+    							<td>
+    								<input type="text">
+    							</td>
+    							<td>
+    								<span class="button">确定</span>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>二级分类：</span>
+    							</td>
+    							<td>
+    								<select>
+    									<option>挂机</option>
+    									<option>柜机</option>
+    								</select>
+    							</td>
+    							<td>
+    								<span class="button">添加</span>
+    							</td>
+    							<td>
+    								<span class="button">删除</span>
+    							</td>
+    							<td>
+    								<span class="button">修改</span>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>添加二级分类：</span>
+    							</td>
+    							<td>
+    								<input type="text">
+    							</td>
+    							<td>
+    								<span class="button">确定</span>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>修改二级分类：</span>
+    							</td>
+    							<td>
+    								<input type="text">
+    							</td>
+    							<td>
+    								<span class="button">确定</span>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>删除二级分类：</span>
+    							</td>
+    							<td>
+    								<input type="text">
+    							</td>
+    							<td>
+    								<span class="button">确定</span>
+    							</td>
+    						</tr>
+    					</table>
+    				</div>
+    			</div>
+    			<div class="products_edit">
+    				<div>
+    					<table>
+    						<tr>
+    							<td>
+    								<span>产品一级分类：</span>
+    							</td>
+    							<td>
+    								<select>
+    									<option>家用空调</option>
+    									<option>生活电器</option>
+    									<option>晶弘冰箱</option>
+    									<option>空气能热水器</option>
+    									<option>中央空调</option>
+    								</select>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>二级分类：</span>
+    							</td>
+    							<td>
+    								<select>
+    									<option>挂式</option>
+    									<option>柜式</option>
+    								</select>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>产品列表：</span>
+    							</td>
+    							<td>
+    								<table>
+    									<tr>
+    										<td>
+    											<span>序号</span>
+    										</td>
+    										<td>
+    											<span>系列</span>
+    										</td>
+    										<td>
+    											<span>型号</span>
+    										</td>
+    										<td>
+    											<span>操作</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>1</span>
+    										</td>
+    										<td>
+    											<span>Q铂</span>
+    										</td>
+    										<td>
+    											<span>KFR-50LW</span>
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">删除</span>
+    											<span class="button">修改</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>2</span>
+    										</td>
+    										<td>
+    											<span>Q铂</span>
+    										</td>
+    										<td>
+    											<span>KFR-72LW</span>
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">删除</span>
+    											<span class="button">修改</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>3</span>
+    										</td>
+    										<td>
+    											<span>Q铂</span>
+    										</td>
+    										<td>
+    											<span>KFR-26GW</span>
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">删除</span>
+    											<span class="button">修改</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>4</span>
+    										</td>
+    										<td>
+    											<span>Q铂</span>
+    										</td>
+    										<td>
+    											<span>KFR-32GW</span>
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">删除</span>
+    											<span class="button">修改</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>5</span>
+    										</td>
+    										<td>
+    											<span>Q铂</span>
+    										</td>
+    										<td>
+    											<span>KFR-35GW</span>
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">删除</span>
+    											<span class="button">修改</span>
+    										</td>
+    									</tr>
+    								</table>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>添加产品：</span>
+    							</td>
+    							<td>
+    								<table>
+    									<tr>
+    										<td>
+    											<span>系列</span>
+    										</td>
+    										<td>
+    											<span>型号</span>
+    										</td>
+    										<td>
+    											<span>操作</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<input type="text">
+    										</td>
+    										<td>
+    											<input type="text">
+    										</td>
+    										<td>
+    											<span class="button">确定</span>
+    										</td>
+    									</tr>
+    								</table>
+    							</td>
+    						</tr>
+    					</table>
+    				</div>
+    			</div>
+    			<div class="products_details">
+    				<div>
+    					<table>
+    						<tr>
+    							<td>
+    								<span>产品一级分类：</span>
+    							</td>
+    							<td>
+    								<select>
+    									<option>家用空调</option>
+    									<option>生活电器</option>
+    									<option>晶弘冰箱</option>
+    									<option>空气能热水器</option>
+    									<option>中央空调</option>
+    								</select>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>二级分类：</span>
+    							</td>
+    							<td>
+    								<select>
+    									<option>挂式</option>
+    									<option>柜式</option>
+    								</select>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>系列型号：</span>
+    							</td>
+    							<td>
+    								<select>
+    									<option>Q铂 KFR-50LW</option>
+    									<option>Q铂 KFR-50LW</option>
+    									<option>Q铂 KFR-26GW</option>
+    									<option>Q铂 KFR-32GW</option>
+    									<option>Q铂 KFR-35GW</option>
+    								</select>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>展示图片：</span>
+    							</td>
+    							<td id="products_pics">
+    								<div>
+    									<img src="">
+    									<input type="checkbox">
+    								</div>
+    								<div>
+    									<img src="">
+    									<input type="checkbox">
+    								</div>
+    								<div>
+    									<img src="">
+    									<input type="checkbox">
+    								</div>
+    								<div>
+    									<img src="">
+    									<input type="checkbox">
+    								</div>
+    								<div>
+    									<img src="">
+    									<input type="checkbox">
+    								</div>
+    								<div>
+    									<img src="">
+    									<input type="checkbox">
+    								</div>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>删除图片：</span>
+    							</td>
+    							<td>
+    								<span class="button">删除</span>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>添加图片：</span>
+    							</td>
+    							<td>
+    								<input type="file">
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>产品参数：</span>
+    							</td>
+    							<td>
+    								<select>
+    									<option>主体</option>
+    									<option>功能</option>
+    									<option>规格</option>
+    								</select>
+    								<table>
+    									<tr>
+    										<td>
+    											<span>参数类型</span>
+    										</td>
+    										<td>
+    											<span>具体描述</span>
+    										</td>
+    										<td>
+    											<span>操作</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>系列</span>
+    										</td>
+    										<td>
+    											<span>Q铂</span>
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">修改</span>
+    											<span class="button">删除</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>型号</span>
+    										</td>
+    										<td>
+    											<span>KFR-50LW</span>
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">修改</span>
+    											<span class="button">删除</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>类别</span>
+    										</td>
+    										<td>
+    											<span>柜式</span>
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">修改</span>
+    											<span class="button">删除</span>
+    										</td>
+    									</tr>
+    								</table>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>添加参数：</span>
+    							</td>
+    							<td>
+    								<select>
+    									<option>主体</option>
+    									<option>功能</option>
+    									<option>规格</option>
+    								</select>
+    								<input type="text">
+    								<span class="button">确认</span>
+    							</td>
+    						</tr>
+    					</table>
+    				</div>
+    			</div>
+    			<div class="products_type_susume">
+    				<div>
+    					<table>
+    						<tr>
+    							<td>
+    								<span>推荐分类：</span>
+    							</td>
+    							<td>
+    								<select>
+    									<option>热销中</option>
+    									<option>家用空调</option>
+    									<option>生活电器</option>
+    									<option>晶弘冰箱</option>
+    									<option>空气能热水器</option>
+    									<option>中央空调</option>
+    								</select>
+    							</td>
+    							<td>
+    								<span class="button">添加</span>
+    							</td>
+    							<td>
+    								<span class="button">删除</span>
+    							</td>
+    							<td>
+    								<span class="button">修改</span>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>添加推荐分类：</span>
+    							</td>
+    							<td>
+    								<input type="text">
+    							</td>
+    							<td>
+    								<span class="button">确定</span>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>删除推荐分类：</span>
+    							</td>
+    							<td>
+    								<input type="text">
+    							</td>
+    							<td>
+    								<span class="button">确定</span>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>修改推荐分类：</span>
+    							</td>
+    							<td>
+    								<input type="text">
+    							</td>
+    							<td>
+    								<span class="button">确定</span>
+    							</td>
+    						</tr>
+    					</table>
+    				</div>
+    			</div>
+    			<div class="products_susume">
+    				<div>
+    					<table>
+    						<tr>
+    							<td>
+    								<span>推荐分类：</span>
+    							</td>
+    							<td>
+    								<select>
+    									<option>热销中</option>
+    									<option>家用空调</option>
+    									<option>生活电器</option>
+    									<option>晶弘冰箱</option>
+    									<option>空气能热水器</option>
+    									<option>中央空调</option>
+    								</select>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>推荐产品：</span>
+    							</td>
+    							<td>
+    								<table>
+    									<tr>
+    										<td>
+    											<span>序号</span>
+    										</td>
+    										<td>
+    											<span>一级分类</span>
+    										</td>
+    										<td>
+    											<span>二级分类</span>
+    										</td>
+    										<td>
+    											<span>系列</span>
+    										</td>
+    										<td>
+    											<span>型号</span>
+    										</td>
+    										<td>
+    											<span>操作</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>1</span>
+    										</td>
+    										<td>
+    											<span>家用空调</span>
+    										</td>
+    										<td>
+    											<span>柜式</span>
+    										</td>
+    										<td>
+    											<span>Q铂</span>
+    										</td>
+    										<td>
+    											<span>KFR-50LW</span>
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">删除</span>
+    											<span class="button">修改</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>2</span>
+    										</td>
+    										<td>
+    											<span>家用空调</span>
+    										</td>
+    										<td>
+    											<span>柜式</span>
+    										</td>
+    										<td>
+    											<span>Q铂</span>
+    										</td>
+    										<td>
+    											<span>KFR-72LW</span>
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">删除</span>
+    											<span class="button">修改</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>3</span>
+    										</td>
+    										<td>
+    											<span>家用空调</span>
+    										</td>
+    										<td>
+    											<span>挂式</span>
+    										</td>
+    										<td>
+    											<span>Q铂</span>
+    										</td>
+    										<td>
+    											<span>KFR-26GW</span>
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">删除</span>
+    											<span class="button">修改</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>4</span>
+    										</td>
+    										<td>
+    											<span>家用空调</span>
+    										</td>
+    										<td>
+    											<span>挂式</span>
+    										</td>
+    										<td>
+    											<span>Q铂</span>
+    										</td>
+    										<td>
+    											<span>KFR-32GW</span>
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">删除</span>
+    											<span class="button">修改</span>
+    										</td>
+    									</tr>
+    								</table>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>添加推荐：</span>
+    							</td>
+    							<td>
+    								<table>
+    									<tr>
+    										<td>
+    											<span>二级分类</span>
+    										</td>
+    										<td>
+    											<span>系列型号</span>
+    										</td>
+    										<td>
+    											<span>产品图片</span>
+    										</td>
+    										<td>
+    											<span>操作</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<select>
+    												<option>柜式</option>
+    												<option>挂式</option>
+    											</select>
+    										</td>
+    										<td>
+    											<select>
+    												<option>Q铂 KFR-50LW</option>
+    												<option>Q铂 KFR-72LW</option>
+    											</select>
+    										</td>
+    										<td>
+    											<input type="file">
+    										</td>
+    										<td>
+    											<span class="button">确定</span>
+    										</td>
+    									</tr>
+    								</table>
+    							</td>
+    						</tr>
+    					</table>
+    				</div>
+    			</div>
+    			<div class="news_pic">
+    				<div>
+    					<span>当前图片：</span>
+    					<img src="./img/bgpic4.jpg" align="top">
+    				</div>
+    				<div>
+    					<span>上传图片：</span>
+    					<input type="file">
+    				</div>
+    			</div>
+    			<div class="news_edit">
+    				<div>
+    					<table>
+    						<tr>
+    							<td>
+    								<span>新闻列表：</span>
+    							</td>
+    							<td>
+    								<table>
+    									<tr>
+    										<td>
+    											<span>序号</span>
+    										</td>
+    										<td>
+    											<span>标题</span>
+    										</td>
+    										<td>
+    											<span>发布时间</span>
+    										</td>
+    										<td>
+    											<span>操作</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>1</span>
+    										</td>
+    										<td>
+    											<span>格力参展117届春季广交会 绿色科技惊艳全球</span>
+    										</td>
+    										<td>
+    											<span>2015 4 15</span>
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">删除</span>
+    											<span class="button">修改</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>2</span>
+    										</td>
+    										<td>
+    											<span>2015中国制冷展今起开幕 制冷风向标格力参展看点多</span>
+    										</td>
+    										<td>
+    											<span>2015 4 08</span>
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">删除</span>
+    											<span class="button">修改</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>3</span>
+    										</td>
+    										<td>
+    											<span>格力工业制品首次亮相中国制冷展</span>
+    										</td>
+    										<td>
+    											<span>2015 4 08</span>
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">删除</span>
+    											<span class="button">修改</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>4</span>
+    										</td>
+    										<td>
+    											<span>格力点亮2015中国制冷展 成国内唯一获AHRI表彰企业</span>
+    										</td>
+    										<td>
+    											<span>2015 4 08</span>
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">删除</span>
+    											<span class="button">修改</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>5</span>
+    										</td>
+    										<td>
+    											<span>第二届金叶轮奖暖通空调设计大赛于上海启动</span>
+    										</td>
+    										<td>
+    											<span>2015 4 08</span>
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">删除</span>
+    											<span class="button">修改</span>
+    										</td>
+    									</tr>
+    								</table>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td> </td>
+    							<td>
+    								<div id="page"></div>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>添加新闻：</span>
+    							</td>
+    							<td>
+    								<span class="button click_edit">点击编写新闻</span>
+    							</td>
+    						</tr>
+    					</table>
+    				</div>
+    			</div>
+    			<div class="recruitment_type">
+    				<div>
+    					<table>
+    						<tr>
+    							<td>
+    								<span>岗位类别：</span>
+    							</td>
+    							<td>
+    								<select>
+    									<option>空调安装师</option>
+    									<option>空调维修师</option>
+    								</select>
+    							</td>
+    							<td>
+    								<span class="button">添加</span>
+    								<span class="button">删除</span>
+    								<span class="button">修改</span>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>添加岗位类别：</span>
+    							</td>
+    							<td>
+    								<input type="text">
+    							</td>
+    							<td>
+    								<span class="button">确定</span>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>修改岗位类别：</span>
+    							</td>
+    							<td>
+    								<input type="text">
+    							</td>
+    							<td>
+    								<span class="button">确定</span>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>删除岗位类别：</span>
+    							</td>
+    							<td>
+    								<input type="text">
+    							</td>
+    							<td>
+    								<span class="button">确定</span>
+    							</td>
+    						</tr>
+    					</table>
+    				</div>
+    			</div>
+    			<div class="recruitment_require">
+    				<div>
+    					<table>
+    						<tr>
+    							<td>
+    								<span>岗位选择：</span>
+    							</td>
+    							<td>
+    								<select>
+    									<option>空调安装师</option>
+    									<option>空调维修师</option>
+    								</select>
+    							</td>
+    							<td> </td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>具体要求：</span>
+    							</td>
+    							<td>
+    								<table id="rr_table">
+    									<tr>
+    										<td>
+    											<span>类别</span>
+    										</td>
+    										<td>
+    											<span>具体描述</span>
+    										</td>
+    										<td> </td>
+    										<td>
+    											<span>操作</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>职业名称</span>
+    										</td>
+    										<td>
+    											<span>空调安装师</span>
+    										</td>
+    										<td>
+    											<input type="text">
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">修改</span>
+    											<span class="button">删除</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>职业类型</span>
+    										</td>
+    										<td>
+    											<span>全职</span>
+    										</td>
+    										<td>
+    											<input type="text">
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">修改</span>
+    											<span class="button">删除</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>工作经验</span>
+    										</td>
+    										<td>
+    											<span>2年</span>
+    										</td>
+    										<td>
+    											<input type="text">
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">修改</span>
+    											<span class="button">删除</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>学历要求</span>
+    										</td>
+    										<td>
+    											<span>初中毕业</span>
+    										</td>
+    										<td>
+    											<input type="text">
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">修改</span>
+    											<span class="button">删除</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>工作地区</span>
+    										</td>
+    										<td>
+    											<span>广东</span>
+    										</td>
+    										<td>
+    											<input type="text">
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">修改</span>
+    											<span class="button">删除</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>招聘人数</span>
+    										</td>
+    										<td>
+    											<span>20</span>
+    										</td>
+    										<td>
+    											<input type="text">
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">修改</span>
+    											<span class="button">删除</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<span>月薪</span>
+    										</td>
+    										<td>
+    											<span>面谈</span>
+    										</td>
+    										<td>
+    											<input type="text">
+    										</td>
+    										<td>
+    											<span class="button">添加</span>
+    											<span class="button">修改</span>
+    											<span class="button">删除</span>
+    										</td>
+    									</tr>
+    								</table>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>添加要求：</span>
+    							</td>
+    							<td>
+    								<table id="rr_table2">
+    									<tr>
+    										<td>
+    											<span>要求项</span>
+    										</td>
+    										<td>
+    											<span>具体描述</span>
+    										</td>
+    										<td>
+    											<span>操作</span>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td>
+    											<input type="text">
+    										</td>
+    										<td>
+    											<input type="text">
+    										</td>
+    										<td>
+    											<span class="button">确定</span>
+    										</td>
+    									</tr>
+    								</table>
+    							</td>
+    						</tr>
+    					</table>
+    				</div>
+    			</div>
+    			<div class="culture_summary">
+    				<div>
+    					<table>
+    						<tr>
+    							<td>
+    								<span>简介正文：</span>
+    							</td>
+    							<td id="intro">
+    								<p>东莞市忠胜格力产品销售中心成立于1992年，是一家集中央空调批发、销售、设计、安装、保养的专业化企业，本公司现有80余人。
+    								</p>
+									<p>我司拥有实力雄厚、专业技术水平较高的售后队伍，全体服务人员都经过厂家严格的专业培训持证上岗。
+									</p>
+									<p>我司在塘厦、凤岗、樟木头等镇均设有服务网点，售后服务实行计算机一体化专业管理，24小时制售后跟踪服务，我司主要针对服务行业设有专门售后技术人员4小时内上门服务。
+									</p>
+									<p>我司凭借高水平、高要求、高效益的管理体制，以“用一流的技术、做一流的服务”为宗旨。经过多年的创业与发展，在同行业内已树立起良好的口碑，受到了广大客户的一致好评。
+									</p>
+									<p>我司在全体员工的共同努力和社会各界友好人士的鼎力支持下，规模和经营范围不断扩大、业务蒸蒸日上。
+									</p>
+									<p>公司重视人才，以人为本，给员工提供充分发挥才能的平台。本着诚信为本，服务至上，精进卓越，亲和共生的经营理念，给顾客提供优质的服务。
+									</p>
+								</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>编辑：</span>
+    							</td>
+    							<td>
+    								<span class="button click_edit">点击这里编辑</span>
+    							</td>
+    						</tr>
+    					</table>
+    				</div>
+    			</div>
+    			<div class="culture_spirit">
+    				<div>
+    					<table>
+    						<tr>
+    							<td>
+    								<span>正文：</span>
+    							</td>
+    							<td id="spirit">
+    								<p><span>企业精神</span><span>忠诚、友善、勤奋、进取</span></p>
+									<p><span>经营理念</span><span>制造最好的空调奉献给广大消费者</span></p>
+									<p><span>管理理念</span><span>创新永无止境</span></p>
+									<p><span>管理特色</span><span>合理化、科学化、变准化、网络化</span></p>
+									<p><span>服务理念</span><span>您的每一件小事都是格力的大事</span></p>
+									<p><span>人力资源理念</span><span>以人为本</span></p>
+								</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>编辑：</span>
+    							</td>
+    							<td>
+    								<span class="button click_edit">点击这里编辑</span>
+    							</td>
+    						</tr>
+    					</table>
+    				</div>
+    			</div>
+    			<div class="culture_speech">
+    				<div>
+    					<table>
+    						<tr>
+    							<td>
+    								<span>正文：</span>
+    							</td>
+    							<td id="speech">
+    								<p>我公司自建立以来，承蒙各生产厂家和客户朋友鼎立相助，公司规模逐渐壮大，取得了较好的成绩。在此，我谨代表全体同仁发自内心地相各位致以深深的谢意！常言道：十年修得同船渡。相逢是缘，相交更是缘。公司全体员工在这十余年的路途上，本着“与人方便，自己方便”的古训为人做事，时刻与各厂家和用户朋友亲密相处，精诚合作、风雨同舟、甘苦共享。我们深以与你们同行共渡为容！我们更看重和珍惜彼此间的事业和友情。无论何时何地，我们全体员工都会不遗余力地投入到工作之中，竭尽所能为各位朋友提供满意的服务,以达到我们彼此的共赢和多赢。朋友们：闲时请来公司做客忙时电话短信问候。承蒙各生产厂家和客户朋友鼎立相助，公司规模逐渐壮大，取得了较好的成绩。在此，我谨代表全体同仁发自内心地相各位致以深深的谢意！常言道：十年修得同船渡。相逢是缘，相交更是缘。公司全体员工在这十余年的路途上，本着“与人方便，自己方便”的古训为人做事，时刻与各厂家和用户朋友亲密相处，精诚合作、风雨同舟、甘苦共享。我们深以与你们同行共渡为容！我们更看重和珍惜彼此间的事业和友情。无论何时何地，我们全体员工都会不遗余力地投入到工作之中，竭尽所能为各位朋友提供满意的服务,以达到我们彼此的共赢和多赢。朋友们：闲时请来公司做客忙时电话短信问候。</p>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>编辑：</span>
+    							</td>
+    							<td>
+    								<span class="button click_edit">点击这里编辑</span>
+    							</td>
+    						</tr>
+    					</table>
+    				</div>
+    			</div>
+    			<div class="culture_honor">
+    				<div>
+    					<table>
+    						<tr>
+    							<td>
+    								<span>图片：</span>
+    							</td>
+    							<td id="honor_pics">
+    								<div>
+    									<img src="">
+    									<input type="checkbox">
+    								</div>
+    								<div>
+    									<img src="">
+    									<input type="checkbox">
+    								</div>
+    								<div>
+    									<img src="">
+    									<input type="checkbox">
+    								</div>
+    								<div>
+    									<img src="">
+    									<input type="checkbox">
+    								</div>
+    								<div>
+    									<img src="">
+    									<input type="checkbox">
+    								</div>
+    								<div>
+    									<img src="">
+    									<input type="checkbox">
+    								</div>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>删除图片：</span>
+    							</td>
+    							<td>
+    								<span class="button">删除</span>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<span>添加图片：</span>
+    							</td>
+    							<td>
+    								<input type="file">
+    							</td>
+    						</tr>
+    					</table>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <script type="text/javascript">
+    	$("#right").css("width",(window.innerWidth-140)+"px");
+   		window.onresize=function(){
+    		$("#right").css("width",(window.innerWidth-140)+"px");
+    	}
+
+    	//选项选择和点击时的效果
+    	$("#list li").mouseover(function(){
+    		$(this).css("background-color","rgba(65,65,65,0.2)");
+    	});
+    	$("#list li").mouseout(function(){
+    		$(this).css("background-color","transparent");
+    	});
+    	$("#list li").click(function(){
+    		$("#list li").css({"background-color":"transparent","color":"#f1f1f1"});
+    		$(this).css({"background-color":"white","color":"#34333f"});
+    		$("#list li").unbind("mouseover");
+    		$("#list li").mouseover(function(){
+    			$(this).css("background-color","rgba(65,65,65,0.2)");
+    		});
+    		$(this).unbind("mouseover");
+    		$("#list li").unbind("mouseout");
+    		$("#list li").mouseout(function(){
+    			$(this).css("background-color","transparent");
+    		});
+    		$(this).unbind("mouseout");
+    		$("#function ul").hide();
+    		$("#function ."+this.className).show();
+    		$("#function ."+this.className+" li:eq(0)").click();
+    	});
+    	$("#function li").click(function(){
+    		$("#function li").css({"background-color":"transparent"});
+    		$(this).css({"background-color":"white"});
+    		$("#function li").unbind("mouseover");
+    		$("#function li").mouseover(function(){
+    			$(this).css("background-color","rgba(65,65,65,0.1)");
+    		});
+    		$(this).unbind("mouseover");
+    		$("#function li").unbind("mouseout");
+    		$("#function li").mouseout(function(){
+    			$(this).css("background-color","transparent");
+    		});
+    		$(this).unbind("mouseout");
+    	});
+    	//选项点击后主页面内容显示对应内容
+    	var liRecord="";
+    	$("#function li").click(function(){
+    		if(liRecord){
+    			$("#details ."+liRecord).hide();
+    		}
+    		liRecord=this.className;
+    		$("#details ."+liRecord).show();
+    	});
+
+		/*表格格式
+		var trCount=0;
+		var s="div.products_details table table";
+		$(".table_title td").css("background-color","#226ddd");
+		for(var i=0;i<$(s+" tr").length;i++){
+			if($(s+" tr:eq("+i+")").hasClass("table_title")){
+				trCount=0;
+			}
+			else{
+				trCount++;
+			}
+			if(trCount&&trCount%2==0){
+				$(s+" tr:eq("+i+")").css("background-color","#f1f1f1");
+			}
+		}
+		*/
+		//页码生成函数
+		function showPage(n,id,pn){
+			//根据显示项数目生成Ajax式页码栏
+			if(n<=24){
+				$("#"+id).html("No More");
+				return;
+			}
+			var max=10;
+			var half=Math.floor((max-1)/2);
+			var pages=Math.ceil(n/8);
+			var gridrecord=0;
+			var grid,pagerecord=1;
+			if(pages<=max){
+				for(var i=1;i<=pages;i++){
+					$("#"+id).append("<div>"+i+"</div>");
+				}
+				$("#"+id).append("<div>></div>");
+				grid=pages;
+				$("#"+id+" div").click(function(){
+					if(pn){
+						var c=parseInt(pn);
+					}
+					else{
+						var c=parseInt($(this).text());
+					}
+					if(!c){
+						if(pagerecord<pages)
+							c=pagerecord+1;
+						else
+							return;
+					}
+					$("#"+id+" div:eq("+gridrecord+")").css("background-color","white");
+					$("#"+id+" div:eq("+(c-1)+")").css("background-color","#c1c1c1");
+					gridrecord=c-1;
+					pagerecord=c;
+				});
+			}
+			else{
+				for(var i=1;i<=max-1;i++){
+					$("#"+id).append("<div>"+i+"</div>");
+				}
+				$("#"+id).append("<div>...</div><div>"+pages+"</div>")
+				$("#"+id).append("<div>></div>");
+				grid=max+1;
+				$("#"+id+" div").click(function(){
+					if(pn){
+						var c=parseInt(pn);
+					}
+					else{
+						var c=parseInt($(this).text());
+					}
+					if(!c){
+						var clickText=$(this).text();
+						if(clickText=="..."){
+							if($(this).prev().text()=="1"){
+								c=pagerecord-4;
+							}
+							else{
+								c=pagerecord+4;
+							}
+						}
+						else if(pagerecord<pages)
+							c=pagerecord+1;
+						else
+							return;
+					}
+					if(c-half>2&&c+half<pages-1){
+						$("#"+id+" div:eq("+1+")").text("...");
+						$("#"+id+" div:eq("+(max-1)+")").text("...");
+						for(var i=2;i<(max-1);i++){
+							$("#"+id+" div:eq("+i+")").text(i+c-(half+1));
+						}
+						$("#"+id+" div:eq("+gridrecord+")").css("background-color","white");
+						$("#"+id+" div:eq("+(half+1)+")").css("background-color","#c1c1c1");
+						gridrecord=(half+1);
+					}
+					else if(c-half<=2){
+						$("#"+id+" div:eq("+(max-1)+")").text("...");
+						for(var i=1;i<(max-1);i++){
+							$("#"+id+" div:eq("+i+")").text(i+1);
+						}
+						$("#"+id+" div:eq("+gridrecord+")").css("background-color","white");
+						$("#"+id+" div:eq("+(c-1)+")").css("background-color","#c1c1c1");
+						gridrecord=c-1;
+					}
+					else if(c+half>=pages-1){
+						$("#"+id+" div:eq("+1+")").text("...");
+						for(var i=2;i<max;i++){
+							$("#"+id+" div:eq("+i+")").text(i+pages-max);
+						}
+						$("#"+id+" div:eq("+gridrecord+")").css("background-color","white");
+						$("#"+id+" div:eq("+(max-(pages-c))+")").css("background-color","#c1c1c1");
+						gridrecord=max-(pages-c);
+					}
+					else{
+						alert("Error!")
+					}
+					pagerecord=c;
+				});
+			}
+			
+		}
+		showPage(100,"page");
+
+		//编写新闻
+		$(".click_edit").click(function(){
+			$(this).parent().append("<div class='edit_box'><div class='edit_function'><span>插入图片</span><span>发布新闻</span></div><div class='text_box' contenteditable></div></div>");
+			$(this).hide();
+		});
+    </script>
+</body>
+</html>
