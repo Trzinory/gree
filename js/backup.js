@@ -43,7 +43,8 @@ window.onload=function(){
     		$(this).unbind("mouseout");
     	});
     	//选项点击后主页面内容显示对应内容
-    	var liRecord="";
+    	var liRecord="welcome_phrase";
+    	$("#details ."+liRecord).show();
     	$("#function li").click(function(){
     		if(liRecord){
     			$("#details ."+liRecord).hide();
@@ -180,7 +181,7 @@ window.onload=function(){
 		}
 		showPage(100,"page");
 
-		//编写新闻
+		//编写框
 		$(".click_edit").click(function(){
 			$(this).parent().append("<div class='edit_box'><div class='edit_function'><span>插入图片</span><span>发布新闻</span></div><div class='text_box' contenteditable></div></div>");
 			$(this).hide();
