@@ -51,6 +51,14 @@ window.onload=function(){
     		liRecord=this.className;
     		$("#details ."+liRecord).show();
     	});
+    	$("#top>div").click(function(){
+    		$("#function ul").hide();
+    		if(liRecord){
+    			$("#details ."+liRecord).hide();
+    		}
+    		liRecord=this.className;
+    		$("#details ."+liRecord).show();
+    	});
 
 		/*表格格式
 		var trCount=0;

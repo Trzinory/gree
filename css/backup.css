@@ -140,6 +140,33 @@
 		border:1px solid #34333f;
 		cursor:pointer;
 	}
+	/*------------------account_manage-------------------*/
+	div.account_manage table table td{
+		padding-left:20px;
+		padding-right:50px;
+		padding-bottom:10px;
+	}
+	div.account_manage table table tr td{
+		text-align:center;
+	}
+	div.account_manage .button{
+		margin:0px 5px;
+	}
+	div.account_manage td p{
+		margin-bottom:15px;
+	}
+	/*------------------my_account-------------------*/
+	div.my_account table{
+		margin:0 auto;
+	}
+	div.my_account table td{
+		padding:0 30px;
+	}
+	div.my_account img{
+		margin-top:20px;
+		width:100px;
+		height:30px;
+	}
 	/*-------------------------------------*/
 	div.index_pic{}
 	div.index_pic div{
