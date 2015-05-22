@@ -11,9 +11,15 @@
 		background-color:rgba(65,65,65,0.3);
 		z-index:1;
 	}
+	#left p{
+		padding-top:12px;
+		color:white;
+		font-size:25px;
+	}
 	#left>div:first-child{
 		height:60px;
 		background-color:#226ddd;
+		text-align:center;
 	}
 	#left img{
 		margin-top:5px;
@@ -49,22 +55,18 @@
 		width:70px;
 		height:60px;
 	}
+	#top>div:hover{
+		background-color:#a1a1a1;
+	}
 	#top>div>div{
 		text-align:center;
 		margin-top:5px;
 		height:50px;
 	}
-	#top>div:first-child>div{
-		border-left:1px solid #e1e1e1;
-	}
-	#top>div:last-child>div{
-		border-right:1px solid #e1e1e1;
-	}
 	#top img{
 		margin-top:10px;
 		width:30px;
 		height:30px;
-		background-color:white;
 	}
 	#content{
 		padding-top:60px;

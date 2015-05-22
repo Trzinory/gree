@@ -1,0 +1,3 @@
+主页	无
+产品	{"first_class":"all"|"home_ac"|"life_ea"|"fridge"|"air_heater"|"center_ac"}
+	{"second_class":""}
