@@ -46,16 +46,21 @@
 		text-align:center;
 		cursor:default;
 	}
+	#nav li a{
+		display:block;
+		cursor:default;
+	}
 	#nav ul li:hover{
 		background-color:rgba(65,65,65,0.6);
 	}
 	#first_ul{
-		width:900px;
+		position:relative;
+		left:-10px;
+		width:1050px;
 		margin:0 auto;
 	}
 	#first_ul>li{
 		float:left;
-		margin:0 10px;
 	}
 	#first_ul>li:hover .second_ul{
 		display:block;
@@ -206,9 +211,9 @@
 	}
 	/*-------------------------------*/
 	#foot_bar{
+		color:white;
 		padding:30px;
 		font-size:14px;
-		color:white;
 		background-color:rgb(24,38,41);
 	}
 	#foot_bar ul{
@@ -217,6 +222,9 @@
 	}
 	#foot_bar li{
 		float:left;
+	}
+	#foot_bar a{
+		color:white;
 	}
 	#foot_bar p{
 		margin-top:5px;

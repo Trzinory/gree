@@ -105,4 +105,37 @@ window.onload=function(){
 			$("img",this).animate({"left":"+="+w*n+"px"});
 		}
     }
+    //点击显示图片
+    	$("#popup_bottom").click(function(){
+			$("#popup,#origin_pic,#origin_pic img").hide();
+		});
+		$("#origin_pic img").css({"max-width":$(window).width()/2+"px","max-height":$(window).height()/2+"px"});
+		$(window).resize(function(){
+			base=$(document).width();
+			$("#origin_pic img").css({"max-width":$(window).width()/2+"px","max-height":$(window).height()/2+"px"});
+			if($("#origin_pic").css("display")!="none"){
+				var pich=parseInt($("#origin_pic img").css("height"));
+				var picw=parseInt($("#origin_pic img").css("width"));
+				$("#origin_pic").css({marginTop:-pich/2+"px",marginLeft:-picw/2+"px"});
+			}
+		});
+    	$("#pic_box img").click(function(){
+		$("#popup,#origin_pic").show();
+		var s=$(this).attr("src");
+		if($("#origin_pic img").attr("src")==s){
+			var pich=parseInt($("#origin_pic img").css("height"));
+			var picw=parseInt($("#origin_pic img").css("width"));
+			$("#origin_pic").css({marginTop:-pich/2+"px",marginLeft:-picw/2+"px"});
+			setTimeout(function(){$("#origin_pic img").show();},100);
+		}
+		else{
+			$("#origin_pic img").attr({"src":s});
+		}
+		$("#origin_pic img").load(function(){
+			var pich=parseInt($("#origin_pic img").css("height"));
+			var picw=parseInt($("#origin_pic img").css("width"));
+			$("#origin_pic").css({marginTop:-pich/2+"px",marginLeft:-picw/2+"px"});
+			setTimeout(function(){$("#origin_pic img").show();},100);
+		});
+	});
 }

@@ -220,7 +220,7 @@ window.onload=function(){
 						}
 					}
 			$.ajax({
-				url:"/getAccount",
+				url:"getAccount",
 				type:"get",
 				data:null,
 				success:function(data){
@@ -274,7 +274,7 @@ window.onload=function(){
 								$(t).text("编辑");
 								$(t).next().text("删除");
 					$.ajax({
-						url:"/manageAccount",
+						url:"manageAccount",
 						type:"post",
 						data:{"manage":"edit","account":act,"permission":pms},
 						success:function(data){
@@ -318,7 +318,7 @@ window.onload=function(){
 							}
 							$("#waiting").hide();
 				$.ajax({
-					url:"/manageAccount",
+					url:"manageAccount",
 					type:"post",
 					data:{"manage":"delete","account":act},
 					success:function(data){
@@ -347,7 +347,7 @@ window.onload=function(){
 				data={username:"Trzinory"};
 						$("#details .my_account .account").text(data.username);
 				$.ajax({
-					url:"/managePassword",
+					url:"managePassword",
 					type:"post",
 					data:{manage:"get"},
 					success:function(data){
@@ -389,7 +389,7 @@ window.onload=function(){
 									$("#details .my_account input:eq(0)").next().text(data.status);
 								}
 						$.ajax({
-							url:"/managePassword",
+							url:"managePassword",
 							type:"post",
 							data:{manage:"change",oldpassword:op,newpassword:np},
 							success:function(data){
@@ -494,7 +494,7 @@ window.onload=function(){
 						}
 						$("#details .products_type td.first_class").html(s);
 				$.ajax({
-					url:"/getClassOne",
+					url:"getClassOne",
 					type:"post",
 					data:null,
 					success:function(data){
@@ -630,7 +630,7 @@ window.onload=function(){
 					}
 					$("#waiting").show();
 					$.ajax({
-						url:"/manageClassOne",
+						url:"manageClassOne",
 						type:"post",
 						data:{"manage":"add","classname":cn},
 						success:function(data){
@@ -662,7 +662,7 @@ window.onload=function(){
 					}
 					$("#waiting").show();
 					$.ajax({
-						url:"/manageClassTwo",
+						url:"manageClassTwo",
 						type:"post",
 						data:{"manage":"add","classone":fcn,"classname":cn},
 						success:function(data){
@@ -694,7 +694,7 @@ window.onload=function(){
 					}
 					$("#waiting").show();
 					$.ajax({
-						url:"/manageClassOne",
+						url:"manageClassOne",
 						type:"post",
 						data:{"manage":"edit","classname":cn,"oldname":ocn},
 						success:function(data){
@@ -726,7 +726,7 @@ window.onload=function(){
 					}
 					$("#waiting").show();
 					$.ajax({
-						url:"/manageClassTwo",
+						url:"manageClassTwo",
 						type:"post",
 						data:{"manage":"edit","classone":fcn,"classname":cn,"oldname":ocn},
 						success:function(data){
@@ -750,7 +750,7 @@ window.onload=function(){
 							$("#waiting").hide();
 							$("#details .products_type tr.first_class option:selected").remove();
 					$.ajax({
-						url:"/manageClassOne",
+						url:"manageClassOne",
 						type:"post",
 						data:{"manage":"delete","classname":cn},
 						success:function(data){
@@ -771,7 +771,7 @@ window.onload=function(){
 							$("#waiting").hide();
 							$("#details .products_type tr.second_class option:selected").remove();
 					$.ajax({
-						url:"/manageClassTwo",
+						url:"manageClassTwo",
 						type:"post",
 						data:{"manage":"delete","classone":fcn,"classname":cn},
 						success:function(data){
@@ -804,7 +804,7 @@ window.onload=function(){
 							$("#waiting").hide();
 							$("#details .products_type td.first_class").html(s);
 					$.ajax({
-						url:"/manageClassOne",
+						url:"manageClassOne",
 						type:"post",
 						data:{"manage":"sort","sequence":list},
 						success:function(data){
@@ -838,7 +838,7 @@ window.onload=function(){
 							$("#waiting").hide();
 							$("#details .products_type td.second_class").html(s);
 					$.ajax({
-						url:"/manageClassTwo",
+						url:"manageClassTwo",
 						type:"post",
 						data:{"manage":"sort","classone":fcn,"sequence":list},
 						success:function(data){
@@ -889,7 +889,7 @@ window.onload=function(){
 						$("#details .products_details select:eq(0)").html(s.innerHTML);
 						$("#details .products_details select:eq(0)").change();
 				$.ajax({
-					url:"/getClassOne",
+					url:"getClassOne",
 					type:"post",
 					data:null,
 					success:function(data){
@@ -932,7 +932,7 @@ window.onload=function(){
 						}
 						$("#details .products_details select:eq(1)").html(s.innerHTML);
 				$.ajax({
-					url:"/getClassTwo",
+					url:"getClassTwo",
 					type:"post",
 					data:{classone:fc},
 					success:function(data){
@@ -971,7 +971,7 @@ window.onload=function(){
 						}
 						$("#details .products_details select:eq(2)").html(s.innerHTML);
 				$.ajax({
-					url:"/getProduct",
+					url:"getProduct",
 					type:"post",
 					data:{classone:fc,classtwo:sc},
 					success:function(data){
@@ -1023,7 +1023,7 @@ window.onload=function(){
 						$("#details .products_details .article div:eq(0)").html(data.productinfo);
 						$("#details .products_details .details").show();
 				$.ajax({
-					url:"/getProductInfo",
+					url:"getProductInfo",
 					type:"post",
 					data:{"classone":classone,"classtwo":classtwo,"product":product},
 					success:function(data){
@@ -1214,7 +1214,7 @@ window.onload=function(){
 							$("#details .products_details select:eq(2)").append("<option>"+s+"</option>");
 							$("#details .products_details .edit").hide();
 					$.ajax({
-						url:"/manageProduct",
+						url:"manageProduct",
 						type:"post",
 						data:{manage:"add",classone:fc,classtwo:sc,productname:s},
 						success:function(data){
@@ -1248,7 +1248,7 @@ window.onload=function(){
 							}
 							$("#waiting").hide();
 					$.ajax({
-						url:"/manageProduct",
+						url:"manageProduct",
 						type:"post",
 						data:{manage:"edit",classone:fc,classtwo:sc,productname:s,oldname:os},
 						success:function(data){
@@ -1280,7 +1280,7 @@ window.onload=function(){
 							$("#details .products_details .details").hide();
 							$("#waiting").hide();
 					$.ajax({
-						url:"/manageProduct",
+						url:"manageProduct",
 						type:"post",
 						data:{manage:"delete",classone:fc,classtwo:sc,productname:s},
 						success:function(data){
@@ -1321,7 +1321,7 @@ window.onload=function(){
 							$("#details .products_details select:eq(2)").html(s.innerHTML);
 							$("#details .products_details .details").hide();
 					$.ajax({
-						url:"/manageProduct",
+						url:"manageProduct",
 						type:"post",
 						data:{manage:"sort",classone:fc,classtwo:sc,productname:list},
 						success:function(data){
@@ -1362,7 +1362,7 @@ window.onload=function(){
 								$("#details .products_details .products_pics").append(div).append("\n");
 								$("#waiting").hide();
 						$.ajax({
-							url:"/manageProductPic",
+							url:"manageProductPic",
 							type:"post",
 							contentType:false,
 							processData:false,
@@ -1407,7 +1407,7 @@ window.onload=function(){
 							}
 							$("#waiting").hide();
 					$.ajax({
-						url:"/manageProductPic",
+						url:"manageProductPic",
 						type:"post",
 						data:{manage:"delete",picname:ppname,classone:fc,classtwo:sc,productname:pname},
 						success:function(data){
@@ -1440,7 +1440,7 @@ window.onload=function(){
 							$("#details .products_details .products_pics").html(s);
 							$("#waiting").hide();
 					$.ajax({
-						url:"/manageProductPic",
+						url:"manageProductPic",
 						type:"post",
 						data:{manage:"sort",sequence:list,classone:fc,classtwo:sc,productname:pname},
 						success:function(data){
@@ -1479,7 +1479,7 @@ window.onload=function(){
 									$("#details .products_details .spec1").show();
 									$("#waiting").hide();
 						$.ajax({
-							url:"/manageProductInfo",
+							url:"manageProductInfo",
 							type:"post",
 							data:{classone:fc,classtwo:sc,productname:pname,content:s},
 							success:function(data){
@@ -1525,7 +1525,7 @@ window.onload=function(){
 									$("#details .products_details select:eq(3)").change();
 									$("#waiting").hide();
 						$.ajax({
-							url:"/manageProductInfo",
+							url:"manageProductInfo",
 							type:"post",
 							data:{classone:fc,classtwo:sc,productname:pname,content:s},
 							success:function(data){
@@ -1567,7 +1567,7 @@ window.onload=function(){
 								$("#details .products_details select:eq(3)").change();
 								$("#waiting").hide();
 					$.ajax({
-						url:"/manageProductInfo",
+						url:"manageProductInfo",
 						type:"post",
 						data:{classone:fc,classtwo:sc,productname:pname,content:s},
 						success:function(data){
@@ -1618,7 +1618,7 @@ window.onload=function(){
 								$("#details .products_details select:eq(3)").change();
 								$("#waiting").hide();
 					$.ajax({
-						url:"/manageProductInfo",
+						url:"manageProductInfo",
 						type:"post",
 						data:{classone:fc,classtwo:sc,productname:pname,content:s},
 						success:function(data){
@@ -1709,7 +1709,7 @@ window.onload=function(){
 					formdata.append("classtwo",sc);
 					formdata.append("productname",pname);
 					$.ajax({
-						url:"/saveProductInfoPic",
+						url:"saveProductInfoPic",
 						type:"POST",
 						contentType:false,
 						processData:false,
@@ -1744,7 +1744,7 @@ window.onload=function(){
 						$("#details .products_details .article div:eq(0)").html(text);
 						$("#waiting").hide();
 				$.ajax({
-					url:"/saveProductInfo",
+					url:"saveProductInfo",
 					type:"post",
 					data:{productinfo:text,classone:fc,classtwo:sc,productname:pname},
 					success:function(data){
@@ -1770,7 +1770,7 @@ window.onload=function(){
 						}
 						$("#details .products_susume select:eq(0)").html(s.innerHTML);
 				$.ajax({
-					url:"/getClassOne",
+					url:"getClassOne",
 					type:"post",
 					data:null,
 					success:function(data){
@@ -1818,7 +1818,7 @@ window.onload=function(){
 				$("#details .products_susume select:eq(1)").html(select.innerHTML);
 				if(sclass!="请选择分类"){
 					$.ajax({
-						url:"/manageBestProducts",
+						url:"manageBestProducts",
 						type:"post",
 						data:{"manage":"get","classone":sclass},
 						success:function(data){},
@@ -1847,7 +1847,7 @@ window.onload=function(){
 						}
 						$("#details .products_susume select:eq(2)").html(s.innerHTML);
 				$.ajax({
-					url:"/getProduct",
+					url:"getProduct",
 					type:"post",
 					data:{classone:fc,classtwo:sc},
 					success:function(data){
@@ -1910,7 +1910,7 @@ window.onload=function(){
 								$("#details .products_susume .add1").show();
 							}
 					$.ajax({
-						url:"/manageBestProducts",
+						url:"manageBestProducts",
 						type:"post",
 						data:{"manage":"add","classone":fc,"classtwo":sc,"productname":pname},
 						success:function(data){
@@ -1941,7 +1941,7 @@ window.onload=function(){
 							$("#details .products_susume .details tr:eq("+n+")").remove();
 							$("#waiting").hide();
 					$.ajax({
-						url:"/manageBestProducts",
+						url:"manageBestProducts",
 						type:"post",
 						data:{"manage":"delete","classone":fc,"classtwo":sc,"productname":pname},
 						success:function(data){
@@ -2029,7 +2029,7 @@ window.onload=function(){
 						NewsShow(data,1);
 						newsData=data;
 				$.ajax({
-					url:"/manageNews",
+					url:"manageNews",
 					type:"post",
 					data:{manage:"get"},
 					success:function(data){
@@ -2067,20 +2067,24 @@ window.onload=function(){
 					$("#full .news_edit .delete .number").text(number);
 					var title=$(this).closest("tr").find("td:eq(0)").text();
 					var time=$(this).closest("tr").find("td:eq(1)").text();
-					var data={newstitle:"格力参展117届春季广交会 绿色科技惊艳全球",content:"这里是新闻详细内容"};
+					var data={newstitle:"格力参展117届春季广交会 绿色科技惊艳全球",content:"这里是新闻详细内容",id:"1123"};
+							id=data.id;
 							$("#details .news_edit .alter").show();
 							$("#details .news_edit .alter .button").click();
 							$("#details .news_edit .alter #news_title").val(data.newstitle);
 							$("#details .news_edit .alter #text_box").html(data.content);
+							$("#details .news_edit .add .click_edit").show();
 					$.ajax({
-						url:"/manageNews",
+						url:"manageNews",
 						type:"post",
 						data:{manage:"edit",newstitle:title,time:time},
 						success:function(data){
+							id=data.id;
 							$("#details .news_edit .alter").show();
 							$("#details .news_edit .alter .button").click();
 							$("#details .news_edit .alter #news_title").val(data.newstitle);
 							$("#details .news_edit .alter #text_box").html(data.content);
+							$("#details .news_edit .add .click_edit").show();
 						},
 						error:function(){}
 					});
@@ -2101,7 +2105,7 @@ window.onload=function(){
 							$("#details .news_edit .alter").hide();
 							$("#waiting").hide();
 					$.ajax({
-						url:"/manageNews",
+						url:"manageNews",
 						type:"post",
 						data:{manage:"delete",newstitle:title,time:time},
 						success:function(data){
@@ -2118,6 +2122,9 @@ window.onload=function(){
 		//文章编辑框
 			$("#details .news_edit").delegate(".click_edit","click",function(){
 				$("#details .news_edit #news_title").show();
+				if($(this).closest("tr").hasClass("add")){
+					$("#details .news_edit .alter").hide();
+				}
 			});
 			$("#details .news_edit").delegate("#file","change",function(){
 				var file=document.getElementById("file");
@@ -2131,7 +2138,7 @@ window.onload=function(){
 					var formdata=new FormData();
 					formdata.append("pic",file.files[0]);
 					$.ajax({
-						url:"/saveNewsPic",
+						url:"saveNewsPic",
 						type:"POST",
 						contentType:false,
 						processData:false,
@@ -2164,15 +2171,17 @@ window.onload=function(){
 					var number=parseInt($("#full .news_edit .delete .number").text());
 					$("#waiting").show();
 							$("#details .news_edit .alter").hide();
+							$("#details .news_edit .add .click_edit").show();
 							newsData.news[number]=newsData.news[number].replace(/.+\#/,title+"#");
 							NewsShow(newsData,c);
 							$("#waiting").hide();
 					$.ajax({
-						url:"/manageNews",
+						url:"manageNews",
 						type:"post",
-						data:{manage:"update",newstitle:title,content:text},
+						data:{manage:"update",newstitle:title,content:text,id:id},
 						success:function(data){
 							$("#details .news_edit .alter").hide();
+							$("#details .news_edit .add .click_edit").show();
 							newsData.news[number]=newsData.news[number].replace(/.+\#/,title+"#");
 							NewsShow(newsData,c);
 							$("#waiting").hide();
@@ -2231,7 +2240,7 @@ window.onload=function(){
 							newsData=data;
 							$("#waiting").hide();
 					$.ajax({
-						url:"/manageNews",
+						url:"manageNews",
 						type:"post",
 						data:{manage:"add",newstitle:title,content:text},
 						success:function(data){
@@ -2261,7 +2270,7 @@ window.onload=function(){
 						}
 						$("#details .recruitment_type td.rclass").html(s);
 				$.ajax({
-					url:"/manageJob",
+					url:"manageJob",
 					type:"post",
 					data:{manage:"class"},
 					success:function(data){
@@ -2322,7 +2331,7 @@ window.onload=function(){
 							$("#details .recruitment_type select").append("<option>"+cn+"</option>");
 							$("#waiting").hide();
 					$.ajax({
-						url:"/manageJob",
+						url:"manageJob",
 						type:"post",
 						data:{"manage":"addclass","name":cn},
 						success:function(data){
@@ -2354,7 +2363,7 @@ window.onload=function(){
 							select.find("option:selected").text(cn);
 							$("#waiting").hide();
 					$.ajax({
-						url:"/manageJob",
+						url:"manageJob",
 						type:"post",
 						data:{"manage":"editclass","oldname":ocn,"newname":cn},
 						success:function(data){
@@ -2378,7 +2387,7 @@ window.onload=function(){
 							$("#waiting").hide();
 							$("#details .recruitment_type select option:selected").remove();
 					$.ajax({
-						url:"/manageJob",
+						url:"manageJob",
 						type:"post",
 						data:{"manage":"deleteclass","name":cn},
 						success:function(data){
@@ -2408,7 +2417,7 @@ window.onload=function(){
 						}
 						$("#details .recruitment_require td.rclass").html(s);
 				$.ajax({
-					url:"/manageJob",
+					url:"manageJob",
 					type:"post",
 					data:{manage:"class"},
 					success:function(data){
@@ -2441,7 +2450,7 @@ window.onload=function(){
 						$("#details .recruitment_require .details").show();
 						$("#details .recruitment_require .click_edit").show();
 				$.ajax({
-					url:"/manageJob",
+					url:"manageJob",
 					type:"post",
 					data:{manage:"get",name:s},
 					success:function(data){
@@ -2469,7 +2478,7 @@ window.onload=function(){
 						$("#details .recruitment_require .click_edit").show();
 						$("#waiting").hide();
 				$.ajax({
-					url:"/manageJob",
+					url:"manageJob",
 					type:"post",
 					data:{manage:"edit",name:name,content:text},
 					success:function(data){
@@ -2490,7 +2499,7 @@ window.onload=function(){
 						var s=data.content;
 						$("#details .culture_summary #intro").html(s);
 				$.ajax({
-					url:"/manageCompanyCulture",
+					url:"manageCompanyCulture",
 					type:"post",
 					data:{part:"companyinfo",manage:"get"},
 					success:function(data){
@@ -2517,7 +2526,7 @@ window.onload=function(){
 						$("#details .culture_summary .click_edit").show();
 						$("#waiting").hide();
 				$.ajax({
-					url:"/manageCompanyCulture",
+					url:"manageCompanyCulture",
 					type:"post",
 					data:{part:"companyinfo",manage:"edit",content:text},
 					success:function(data){
@@ -2538,7 +2547,7 @@ window.onload=function(){
 						var s=data.content;
 						$("#details .culture_spirit #spirit").html(s);
 				$.ajax({
-					url:"/manageCompanyCulture",
+					url:"manageCompanyCulture",
 					type:"post",
 					data:{part:"greemind",manage:"get"},
 					success:function(data){
@@ -2565,7 +2574,7 @@ window.onload=function(){
 						$("#details .culture_spirit .click_edit").show();
 						$("#waiting").hide();
 				$.ajax({
-					url:"/manageCompanyCulture",
+					url:"manageCompanyCulture",
 					type:"post",
 					data:{part:"greemind",manage:"edit",content:text},
 					success:function(data){
@@ -2586,7 +2595,7 @@ window.onload=function(){
 						var s=data.content;
 						$("#details .culture_speech #speech").html(s);
 				$.ajax({
-					url:"/manageCompanyCulture",
+					url:"manageCompanyCulture",
 					type:"post",
 					data:{part:"leaderword",manage:"get"},
 					success:function(data){
@@ -2613,7 +2622,7 @@ window.onload=function(){
 						$("#details .culture_speech .click_edit").show();
 						$("#waiting").hide();
 				$.ajax({
-					url:"/manageCompanyCulture",
+					url:"manageCompanyCulture",
 					type:"post",
 					data:{part:"leaderword",manage:"edit",content:text},
 					success:function(data){
@@ -2644,7 +2653,7 @@ window.onload=function(){
 						}
 						$("#details .culture_honor #honor_pics").html(s);
 				$.ajax({
-					url:"/manageCompanyCulture",
+					url:"manageCompanyCulture",
 					type:"post",
 					data:{part:"companyhonor",manage:"get"},
 					success:function(data){
@@ -2711,7 +2720,7 @@ window.onload=function(){
 								$("#details .culture_honor #honor_pics").append(div).append("\n");
 								$("#waiting").hide();
 						$.ajax({
-							url:"/manageProductPic",
+							url:"manageProductPic",
 							type:"post",
 							contentType:false,
 							processData:false,
@@ -2753,7 +2762,7 @@ window.onload=function(){
 							}
 							$("#waiting").hide();
 					$.ajax({
-						url:"/manageCompanyCulture",
+						url:"manageCompanyCulture",
 						type:"post",
 						data:{part:"companyhonor",manage:"delete",pic:ppname},
 						success:function(data){
@@ -2776,7 +2785,7 @@ window.onload=function(){
 						var s=data.content;
 						$("#contact_way").html(s);
 				$.ajax({
-					url:"/manageContactUs",
+					url:"manageContactUs",
 					type:"post",
 					data:{manage:"get"},
 					success:function(data){
@@ -2803,7 +2812,7 @@ window.onload=function(){
 						$("#details .contact_details .click_edit").show();
 						$("#waiting").hide();
 				$.ajax({
-					url:"/manageCompanyCulture",
+					url:"manageCompanyCulture",
 					type:"post",
 					data:{part:"leaderword",manage:"edit",content:text},
 					success:function(data){
@@ -2834,7 +2843,7 @@ window.onload=function(){
 						$("#details .stores_show select").html(s.innerHTML);
 						$("#details .stores_show select").change();
 				$.ajax({
-					url:"/manageShop",
+					url:"manageShop",
 					type:"post",
 					data:{manage:"get"},
 					success:function(data){
@@ -2870,7 +2879,7 @@ window.onload=function(){
 						$("#details .stores_show .e_detail div").html(data.content);
 						$("#details .stores_show .details").show();
 				$.ajax({
-					url:"/manageShop",
+					url:"manageShop",
 					type:"post",
 					data:{manage:"get",shopname:s},
 					success:function(data){
@@ -2934,7 +2943,7 @@ window.onload=function(){
 					formdata.append("pic",file.files[0]);
 					formdata.append("shopname",cname);
 					$.ajax({
-						url:"/saveShopPic",
+						url:"saveShopPic",
 						type:"POST",
 						contentType:false,
 						processData:false,
@@ -2969,7 +2978,7 @@ window.onload=function(){
 						$("#details .stores_show .click_edit").show();
 						$("#waiting").hide();
 				$.ajax({
-					url:"/saveShopInfo",
+					url:"saveShopInfo",
 					type:"post",
 					data:{shopname:cname,content:text},
 					success:function(data){
@@ -3003,7 +3012,7 @@ window.onload=function(){
 								$("#details .stores_show .edit").hide();
 								$("#waiting").hide();
 						$.ajax({
-							url:"/manageShop",
+							url:"manageShop",
 							type:"post",
 							data:{manage:"add",shopname:s},
 							success:function(data){
@@ -3031,7 +3040,7 @@ window.onload=function(){
 								}
 								$("#waiting").hide();
 						$.ajax({
-							url:"/manageShop",
+							url:"manageShop",
 							type:"post",
 							data:{manage:"edit",shopname:s,oldname:os},
 							success:function(data){
@@ -3062,7 +3071,7 @@ window.onload=function(){
 							$("#details .stores_show .details").hide();
 							$("#waiting").hide();
 					$.ajax({
-						url:"/manageShop",
+						url:"manageShop",
 						type:"post",
 						data:{manage:"delete",shopname:s},
 						success:function(data){
@@ -3101,7 +3110,7 @@ window.onload=function(){
 							$("#details .stores_show select").html(s.innerHTML);
 							$("#details .stores_show .details").hide();
 					$.ajax({
-						url:"/manageShop",
+						url:"manageShop",
 						type:"post",
 						data:{manage:"sort",sequence:list},
 						success:function(data){
@@ -3129,7 +3138,7 @@ window.onload=function(){
 							$("#details .stores_show .c_pic img").attr({"src":data.picname});
 							$("#waiting").hide();
 					$.ajax({
-						url:"/saveShopFirstPic",
+						url:"saveShopFirstPic",
 						type:"post",
 						contentType:false,
 						processData:false,
@@ -3185,7 +3194,7 @@ window.onload=function(){
 						$("#details .engineering_show select").html(s.innerHTML);
 						$("#details .engineering_show select").change();
 				$.ajax({
-					url:"/manageCase",
+					url:"manageCase",
 					type:"post",
 					data:{manage:"get"},
 					success:function(data){
@@ -3221,7 +3230,7 @@ window.onload=function(){
 						$("#details .engineering_show .e_detail div").html(data.content);
 						$("#details .engineering_show .details").show();
 				$.ajax({
-					url:"/manageCase",
+					url:"manageCase",
 					type:"post",
 					data:{manage:"get",casename:s},
 					success:function(data){
@@ -3285,7 +3294,7 @@ window.onload=function(){
 					formdata.append("pic",file.files[0]);
 					formdata.append("casename",cname);
 					$.ajax({
-						url:"/saveCasePic",
+						url:"saveCasePic",
 						type:"POST",
 						contentType:false,
 						processData:false,
@@ -3320,7 +3329,7 @@ window.onload=function(){
 						$("#details .engineering_show .click_edit").show();
 						$("#waiting").hide();
 				$.ajax({
-					url:"/saveCaseInfo",
+					url:"saveCaseInfo",
 					type:"post",
 					data:{casename:cname,content:text},
 					success:function(data){
@@ -3354,7 +3363,7 @@ window.onload=function(){
 								$("#details .engineering_show .edit").hide();
 								$("#waiting").hide();
 						$.ajax({
-							url:"/manageCase",
+							url:"manageCase",
 							type:"post",
 							data:{manage:"add",casename:s},
 							success:function(data){
@@ -3382,7 +3391,7 @@ window.onload=function(){
 								}
 								$("#waiting").hide();
 						$.ajax({
-							url:"/manageCase",
+							url:"manageCase",
 							type:"post",
 							data:{manage:"edit",casename:s,oldname:os},
 							success:function(data){
@@ -3413,7 +3422,7 @@ window.onload=function(){
 							$("#details .engineering_show .details").hide();
 							$("#waiting").hide();
 					$.ajax({
-						url:"/manageCase",
+						url:"manageCase",
 						type:"post",
 						data:{manage:"delete",casename:s},
 						success:function(data){
@@ -3452,7 +3461,7 @@ window.onload=function(){
 							$("#details .engineering_show select").html(s.innerHTML);
 							$("#details .engineering_show .details").hide();
 					$.ajax({
-						url:"/manageCase",
+						url:"manageCase",
 						type:"post",
 						data:{manage:"sort",sequence:list},
 						success:function(data){
@@ -3480,7 +3489,7 @@ window.onload=function(){
 							$("#details .engineering_show .c_pic img").attr({"src":data.picname});
 							$("#waiting").hide();
 					$.ajax({
-						url:"/saveCaseFirstPic",
+						url:"saveCaseFirstPic",
 						type:"post",
 						contentType:false,
 						processData:false,

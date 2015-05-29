@@ -2,6 +2,7 @@
 	*{margin:0;padding:0;font-family:"微软雅黑";}
 	ul{list-style-type:none;}
 	a{text-decoration:none;color:black;}
+	body{}
 	.clear{clear:both;}
 	#top{
 		padding-top:0px;
@@ -46,16 +47,21 @@
 		text-align:center;
 		cursor:default;
 	}
+	#nav li a{
+		display:block;
+		cursor:default;
+	}
 	#nav ul li:hover{
 		background-color:rgba(65,65,65,0.6);
 	}
 	#first_ul{
-		width:900px;
+		position:relative;
+		left:-10px;
+		width:1050px;
 		margin:0 auto;
 	}
 	#first_ul>li{
 		float:left;
-		margin:0 10px;
 	}
 	#first_ul>li:hover .second_ul{
 		display:block;
@@ -72,6 +78,7 @@
 	#first_ul>li:hover .second_ul li:hover{
 		background-color:rgba(65,65,65,0.6);
 	}
+	/*--------------------------------------------------------------------------*/
 	#subtitle h1{
 		width:900px;
 		margin:0 auto;
@@ -93,6 +100,69 @@
 	#news_nav span:last-child{
 		color:#226ddd;
 	}
+	/*-------------------------------------------------------------------------*/
+	#main
+		{
+		display:none;
+		font-size:14px;
+		color:#202020;
+		padding:40px 0;
+		}
+	#content
+		{
+		margin:0 auto;
+		list-style-type:none;
+		width:800px;
+		}
+	#content li
+		{
+		padding-bottom:10px;
+		border-bottom:dashed 2.5px #c1c1c1;
+		}
+	#content li h1
+		{
+		cursor:pointer;
+		}
+	#news img
+		{
+		max-width:600px;
+		}
+	#back{
+		padding:1px 12px 3px 12px;
+		font-size:20px;
+		color:#34333f;
+		border:1px solid #a1a1a1;
+		cursor:pointer;
+	}
+	#back:hover{
+		color:white;
+		background-color:#226ddd;
+		border:1px solid #226ddd;
+	}
+	#news_title{
+		padding:20px 0;
+		font-size:30px;
+		text-align:center;
+		word-break:break-all;
+		}
+	#news_date
+		{
+		color:#818181;
+		text-align:center;
+		}
+	#text
+		{
+		margin-top:26px;
+		}
+	#text p
+		{
+		line-height:26px;
+		margin-bottom:30px;
+		font-size:16px;
+		text-indent:33px;
+		word-break:break-all;
+		}
+	/*-------------------------------------------------------------------------*/
 	#news_list{
 		margin-top:40px;
 	}
@@ -103,6 +173,7 @@
 		cursor:pointer;
 	}
 	.news_box:hover{
+		color:red;
 		background-color:#f1f1f1;
 	}
 	.news_box p{
@@ -159,9 +230,9 @@
 	}
 	/*-------------------------------------*/
 	#foot_bar{
+		color:white;
 		padding:30px;
 		font-size:14px;
-		color:white;
 		background-color:rgb(24,38,41);
 	}
 	#foot_bar ul{
@@ -170,6 +241,9 @@
 	}
 	#foot_bar li{
 		float:left;
+	}
+	#foot_bar a{
+		color:white;
 	}
 	#foot_bar p{
 		margin-top:5px;
