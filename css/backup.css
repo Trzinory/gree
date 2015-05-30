@@ -498,8 +498,16 @@
 		margin-left:10px;
 	}
 	/*--------------------stores_show-------------------*/
+	#details .stores_show .details{
+		display:none;
+	}
 	#details .stores_show .button{
 		margin-left:10px;
+	}
+	#details .stores_show .c_pic img{
+		max-width:400px;
+		min-width:200px;
+		max-height:100px;
 	}
 	/*--------------------engineering_show-------------------*/
 	#details .engineering_show .details{
@@ -508,7 +516,7 @@
 	#details .engineering_show .button{
 		margin-left:10px;
 	}
-	#details .engineering_show .e_pic img{
+	#details .engineering_show .c_pic img{
 		max-width:400px;
 		min-width:200px;
 		max-height:100px;

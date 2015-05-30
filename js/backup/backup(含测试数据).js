@@ -524,6 +524,9 @@ window.onload=function(){
 	//-----------------------products_type-----------------------
 		//点击进入页面时发送ajax
 			$("#function .products_type").click(function(){
+				$("#details .products_type .details1").hide();
+				$("#details .products_type .details2").hide();
+				$("#details .products_type .edit").hide();
 				var data="{classone:['家用空调','中央空调','生活电器']}";
 				data=eval("("+data+")");
 						var s=document.createElement("select");
@@ -536,6 +539,8 @@ window.onload=function(){
 							s.appendChild(option);
 						}
 						$("#details .products_type td.first_class").html(s);
+						$("#details .products_type .details1").show();
+						$("#details .products_type select:eq(0)").change();
 				$.ajax({
 					url:"getClassOne",
 					type:"post",
@@ -551,6 +556,8 @@ window.onload=function(){
 							s.appendChild(option);
 						}
 						$("#details .products_type td.first_class").html(s);
+						$("#details .products_type .details1").show();
+						$("#details .products_type select:eq(0)").change();
 					},
 					error:function(){
 						alert("页面获取失败");
@@ -559,6 +566,8 @@ window.onload=function(){
 			});
 		//点击一级选项时发送ajax请求二级选项
 			$("#details .products_type").delegate("select:eq(0)","change",function(){
+				$("#details .products_type .details2").hide();
+				$("#details .products_type .edit").hide();
 				if($("option:selected",this).text()=="请选择分类"){
 					$("#details .products_type select:eq(1)").html("");
 					return;
@@ -576,6 +585,7 @@ window.onload=function(){
 							s.appendChild(option);
 						}
 						$("#details .products_type td.second_class").html(s);
+						$("#details .products_type .details2").show();
 				$.ajax({
 					url:"getClassTwo",
 					type:"post",
@@ -590,6 +600,7 @@ window.onload=function(){
 							s.appendChild(option);
 						}
 						$("#details .products_type td.second_class").html(s);
+						$("#details .products_type .details2").show();
 					},
 					error:function(){
 						alert("二级分类获取失败");
@@ -1049,6 +1060,8 @@ window.onload=function(){
 				$("#details .products_details .click_edit").show();
 				$("#details .edit_box").remove();
 				$("#details .products_details .edit").hide();
+				$("#details .products_details #select_spec option:eq(0)").attr({"selected":true});
+				$("#details .products_details #select_spec").change();
 				if($("option:selected",this).text()=="请选择产品"){
 					$("#details .products_details .details").hide();
 					return;
@@ -2092,6 +2105,7 @@ window.onload=function(){
 			}
 		//点击进入页面时发送ajax
 			$("#function .news_edit").click(function(){
+				$("#details .news_edit .click_edit").hide();
 				$("#details .edit_box").remove();
 				$(this).find(".click_edit").show();
 				data={newscount:30,news:[
@@ -2128,6 +2142,7 @@ window.onload=function(){
 					]}
 						NewsShow(data,1);
 						newsData=data;
+						$("#details .news_edit .click_edit").show();
 				$.ajax({
 					url:"manageNews",
 					type:"post",
@@ -2135,6 +2150,7 @@ window.onload=function(){
 					success:function(data){
 						NewsShow(data,1);
 						newsData=data;
+						$("#details .news_edit .click_edit").show();
 					},
 					error:function(){}
 				});
@@ -2375,6 +2391,8 @@ window.onload=function(){
 	//-----------------------recruitment_type-----------------------
 		//点击进入页面时发送ajax
 			$("#function .recruitment_type").click(function(){
+				$("#details .recruitment_type .details").hide();
+				$("#details .recruitment_type .edit").hide();
 				var data="{class:['会计','空调安装','仓库管理']}";
 				data=eval("("+data+")");
 						var s=document.createElement("select");
@@ -2387,6 +2405,7 @@ window.onload=function(){
 							s.appendChild(option);
 						}
 						$("#details .recruitment_type td.rclass").html(s);
+						$("#details .recruitment_type .details").show();
 				$.ajax({
 					url:"manageJob",
 					type:"post",
@@ -2430,6 +2449,10 @@ window.onload=function(){
 				}
 			});
 		//确定取消按钮
+			$("#details .recruitment_type .button").click(function(){
+				if($(this).text()=="取消"){
+					$("#details .recruitment_type .edit").hide();				}
+			});
 			$("#details .recruitment_type .add .button").click(function(){
 				if($(this).text()=="确定"){
 					var cn=$(this).closest("tr").find("input").val().replace(/\s/g,"");

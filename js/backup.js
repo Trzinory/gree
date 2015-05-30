@@ -487,6 +487,9 @@ window.onload=function(){
 	//-----------------------products_type-----------------------
 		//点击进入页面时发送ajax
 			$("#function .products_type").click(function(){
+				$("#details .products_type .details1").hide();
+				$("#details .products_type .details2").hide();
+				$("#details .products_type .edit").hide();
 				$.ajax({
 					url:"getClassOne",
 					type:"post",
@@ -502,6 +505,8 @@ window.onload=function(){
 							s.appendChild(option);
 						}
 						$("#details .products_type td.first_class").html(s);
+						$("#details .products_type .details1").show();
+						$("#details .products_type select:eq(0)").change();
 					},
 					error:function(){
 						alert("页面获取失败");
@@ -510,6 +515,7 @@ window.onload=function(){
 			});
 		//点击一级选项时发送ajax请求二级选项
 			$("#details .products_type").delegate("select:eq(0)","change",function(){
+				$("#details .products_type .edit").hide();
 				if($("option:selected",this).text()=="请选择分类"){
 					$("#details .products_type select:eq(1)").html("");
 					return;
@@ -530,6 +536,7 @@ window.onload=function(){
 							s.appendChild(option);
 						}
 						$("#details .products_type td.second_class").html(s);
+						$("#details .products_type .details2").show();
 					},
 					error:function(){
 						alert("二级分类获取失败");
@@ -945,6 +952,8 @@ window.onload=function(){
 				$("#details .products_details .click_edit").show();
 				$("#details .edit_box").remove();
 				$("#details .products_details .edit").hide();
+				$("#details .products_details #select_spec option:eq(0)").attr({"selected":true});
+				$("#details .products_details #select_spec").change();
 				if($("option:selected",this).text()=="请选择产品"){
 					$("#details .products_details .details").hide();
 					return;
@@ -1604,7 +1613,9 @@ window.onload=function(){
 		//文章编辑框
 			$("#details .products_details .click_edit").click(function(){
 				var s=$(this).prev().html();
-				$("#text_box").html(s);
+				if(s.replace(/\s/g,"").length!=0){
+					$("#text_box").html(s);
+				}
 			});
 			var range;
 			$("#details").delegate("#text_box","blur",function(){
@@ -1884,6 +1895,7 @@ window.onload=function(){
 			}
 		//点击进入页面时发送ajax
 			$("#function .news_edit").click(function(){
+				$("#details .news_edit .click_edit").hide();
 				$("#details .edit_box").remove();
 				$(this).find(".click_edit").show();
 				$.ajax({
@@ -1893,6 +1905,7 @@ window.onload=function(){
 					success:function(data){
 						NewsShow(data,1);
 						newsData=data;
+						$("#details .news_edit .click_edit").show();
 					},
 					error:function(){}
 				});
@@ -2073,6 +2086,8 @@ window.onload=function(){
 	//-----------------------recruitment_type-----------------------
 		//点击进入页面时发送ajax
 			$("#function .recruitment_type").click(function(){
+				$("#details .recruitment_type .details").hide();
+				$("#details .recruitment_type .edit").hide();
 				$.ajax({
 					url:"manageJob",
 					type:"post",
@@ -2088,6 +2103,7 @@ window.onload=function(){
 							s.appendChild(option);
 						}
 						$("#details .recruitment_type td.rclass").html(s);
+						$("#details .recruitment_type .details").show();
 					},
 					error:function(){
 						//alert("页面获取失败");
@@ -2116,6 +2132,10 @@ window.onload=function(){
 				}
 			});
 		//确定取消按钮
+			$("#details .recruitment_type .button").click(function(){
+				if($(this).text()=="取消"){
+					$("#details .recruitment_type .edit").hide();				}
+			});
 			$("#details .recruitment_type .add .button").click(function(){
 				if($(this).text()=="确定"){
 					var cn=$(this).closest("tr").find("input").val().replace(/\s/g,"");
@@ -2250,7 +2270,9 @@ window.onload=function(){
 			$("#details .recruitment_require .click_edit").click(function(){
 				$("#details .recruitment_require .edit_function span:eq(0)").hide();
 				var s=$("#details .recruitment_require .details div").html();
-				$("#details .recruitment_require #text_box").html(s);
+				if(s.replace(/\s/g,"").length!=0){
+					$("#details .recruitment_require #text_box").html(s);
+				}
 			});
 			$("#details .recruitment_require").delegate(".pub","click",function(){
 				var name=$("#details .recruitment_require select option:selected").text();
@@ -2273,8 +2295,8 @@ window.onload=function(){
 	//-----------------------culture_summary-----------------------
 		//点击进入页面时发送ajax
 			$("#function .culture_summary").click(function(){
+				$("#details .culture_summary .click_edit").hide();
 				$("#details .culture_summary .edit_box").hide();
-				$("#details .culture_summary .click_edit").show();
 				$.ajax({
 					url:"manageCompanyCulture",
 					type:"post",
@@ -2287,6 +2309,7 @@ window.onload=function(){
 						else{
 							$("#details .culture_summary #intro").html(s);
 						}
+						$("#details .culture_summary .click_edit").show();
 					},
 					error:function(){}
 				});
@@ -2295,7 +2318,7 @@ window.onload=function(){
 			$("#details .culture_summary .click_edit").click(function(){
 				$("#details .culture_summary .edit_function span:eq(0)").hide();
 				var s=$("#details .culture_summary #intro").html();
-				if(s){
+				if(s.replace(/\s/g,"").length!=0){
 					$("#details .culture_summary #text_box").html(s);
 				}
 			});
@@ -2319,8 +2342,8 @@ window.onload=function(){
 	//-----------------------culture_spirit-----------------------
 		//点击进入页面时发送ajax
 			$("#function .culture_spirit").click(function(){
+				$("#details .culture_spirit .click_edit").hide();
 				$("#details .culture_spirit .edit_box").hide();
-				$("#details .culture_spirit .click_edit").show();
 				$.ajax({
 					url:"manageCompanyCulture",
 					type:"post",
@@ -2333,6 +2356,7 @@ window.onload=function(){
 						else{
 							$("#details .culture_spirit #spirit").html(s);
 						}
+						$("#details .culture_spirit .click_edit").show();
 					},
 					error:function(){}
 				});
@@ -2341,7 +2365,7 @@ window.onload=function(){
 			$("#details .culture_spirit .click_edit").click(function(){
 				$("#details .culture_spirit .edit_function span:eq(0)").hide();
 				var s=$("#details .culture_spirit #spirit").html();
-				if(s){
+				if(s.replace(/\s/g,"").length!=0){
 					$("#details .culture_spirit #text_box").html(s);
 				}
 			});
@@ -2365,8 +2389,8 @@ window.onload=function(){
 	//-----------------------culture_speech-----------------------
 		//点击进入页面时发送ajax
 			$("#function .culture_speech").click(function(){
+				$("#details .culture_speech .click_edit").hide();
 				$("#details .culture_speech .edit_box").hide();
-				$("#details .culture_speech .click_edit").show();
 				$.ajax({
 					url:"manageCompanyCulture",
 					type:"post",
@@ -2379,6 +2403,7 @@ window.onload=function(){
 						else{
 							$("#details .culture_speech #speech").html(s);
 						}
+						$("#details .culture_speech .click_edit").show();
 					},
 					error:function(){}
 				});
@@ -2387,7 +2412,7 @@ window.onload=function(){
 			$("#details .culture_speech .click_edit").click(function(){
 				$("#details .culture_speech .edit_function span:eq(0)").hide();
 				var s=$("#details .culture_speech #speech").html();
-				if(s){
+				if(s.replace(/\s/g,"").length!=0){
 					$("#details .culture_speech #text_box").html(s);
 				}
 			});
@@ -2527,8 +2552,8 @@ window.onload=function(){
 	//-----------------------contact_details-----------------------
 		//点击进入页面时发送ajax
 			$("#function .contact_details").click(function(){
+				$("#details .contact_details .click_edit").hide();
 				$("#details .contact_details .edit_box").hide();
-				$("#details .contact_details .click_edit").show();
 				$.ajax({
 					url:"manageContactUs",
 					type:"post",
@@ -2541,6 +2566,7 @@ window.onload=function(){
 						else{
 							$("#contact_way").html(s);
 						}
+						$("#details .contact_details .click_edit").show();
 					},
 					error:function(){}
 				});
@@ -2549,7 +2575,7 @@ window.onload=function(){
 			$("#details .contact_details .click_edit").click(function(){
 				$("#details .contact_details .edit_function span:eq(0)").hide();
 				var s=$("#details .contact_details #contact_way").html();
-				if(s){
+				if(s.replace(/\s/g,"").length!=0){
 					$("#details .contact_details #text_box").html(s);
 				}
 			});
@@ -2664,7 +2690,7 @@ window.onload=function(){
 		//文章编辑框
 			$("#details .stores_show .click_edit").click(function(){
 				var s=$("#details .stores_show .c_detail div").html();
-				if(s){
+				if(s.replace(/\s/g,"").length!=0){
 					$("#text_box").html(s);
 				}
 			});
@@ -2986,7 +3012,7 @@ window.onload=function(){
 		//文章编辑框
 			$("#details .engineering_show .click_edit").click(function(){
 				var s=$("#details .engineering_show .c_detail div").html();
-				if(s){
+				if(s.replace(/\s/g,"").length!=0){
 					$("#text_box").html(s);
 				}
 			});
