@@ -9,6 +9,7 @@
 <link href="./css/stores.css" rel="stylesheet">
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 <script src="./js/stores.js"></script>
+<script src="./js/jquery-1.11.2.js"></script>
 </head>
 <body>
 	<div id="top">
@@ -50,32 +51,26 @@
 	<div id="subtitle">
 		<h1><span>&nbsp;STORES</span> / 店面展示</h1>
 		<div id="stores_box">
-			<div class="all">
-				<img src="./img/stores/2.jpg">
-				<p>XXX分店</p>
-			</div>
-			<div class="all">
-				<img src="./img/stores/3.jpg">
-				<p>XXX分店</p>
-			</div>
-			<div class="all">
-				<img src="./img/stores/4.jpg">
-				<p>XXX分店</p>
-			</div>
-			<div class="all">
-				<img src="./img/stores/5.jpg">
-				<p>XXX分店</p>
-			</div>
+			<div></div>
+			<p></p>
+			<div></div>
 		</div>
 		<div class="clear"></div>
 	</div>
 	<div id="p_details">
 		<p id="stores_nav">
 			<span class="not_link">当前位置 : </span>
-			<span class="link">店面展示</span>
+			<span class="not_link">店面展示</span>
+			<span class="not_link"> &gt; </span>
+			<span class="link"></span>
 		</p>
 		<div id="stores_show">
-			<img src="./img/stores/2.jpg">
+			<div id="content">
+				<div id="stores" data-url="/change/{{ passage.id }}">
+					<p id="stores_title">这里是新闻的标题</p>
+					<div id="text"></div>
+				</div>
+			</div>
 		</div>
 	</div>
     <div id="foot_bar">
@@ -93,7 +88,38 @@
     	<p>版权所有 CopyRight(C)2013-2015 东莞市忠胜格力产品销售中心</p>
     </div>
 	<script>
-		
+	var data={stores:[
+		{storename:"X1",pic:"pic1"},
+		{storename:"X2",pic:"pic2"},
+		{storename:"X3",pic:"pic3"},
+		{storename:"X4",pic:"pic4"},
+		{storename:"X5",pic:"pic5"},
+		{storename:"X6",pic:"pic6"},
+		{storename:"X7",pic:"pic7"},
+		{storename:"X8",pic:"pic8"},
+		{storename:"X9",pic:"pic9"},
+		{storename:"X10",pic:"pic10"},
+		{storename:"X11",pic:"pic11"},
+		{storename:"X12",pic:"pic12"},
+		]}
+				var s="";
+				for(var i=0;i<data.stores.length;i++){
+					s+="<div><img src='"+data.stores[i].pic+"'><p>"+data.stores[i].storename+"</p></div>";
+				}
+				$("#stores_box>p").html(s);
+		$.ajax({
+			url:"getStore",
+			type:"post",
+			data:{amount:"all"},
+			success:function(data){
+				var s="";
+				for(var i=0;i<data.stores.length;i++){
+					s+="<div><img src='"+data.stores[i].pic+"'><p>"+data.stores[i].storename+"</p></div>";
+				}
+				$("#stores_box>p").html(s);
+			},
+			error:function(){}
+		});
 	</script>
 </body>
 </html>

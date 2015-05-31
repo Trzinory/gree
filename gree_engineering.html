@@ -25,38 +25,21 @@
 			<li><a href="./gree_index.html">首页</a></li>
 			<li>
 				<a href="./gree_products.html">产品中心</a>
-				<ul class="second_ul">
-					<li>家用空调</li>
-					<li>商用空调</li>
-					<li>小家电</li>
-					<li>晶弘冰箱</li>
-					<li>空气能热水器</li>
-					<li>净水机</li>
-				</ul>
 			</li>
 			<li>
 				<a href="./gree_news.html">新闻中心</a>
-				<ul class="second_ul">
-					<li>公司新闻</li>
-					<li>行业动态</li>
-				</ul>
 			</li>
+     		<li>
+    			<a href="./gree_stores.html">店面展示</a>
+     		 </li>
+    		<li>
+     			<span>工程案例</span>
+    		</li>
 			<li>
 				<a href="./gree_recruitment.html">人才招聘</a>
-				<ul class="second_ul">
-					<li>空调维修师</li>
-					<li>空调安装师</li>
-				</ul>
 			</li>
 			<li>
 				<a href="./gree_culture.html">企业文化</a>
-				<ul class="second_ul">
-					<li>公司简介</li>
-					<li>企业文化</li>
-					<li>企业荣誉</li>
-					<li>领导致辞</li>
-					<li>销售网络</li>
-				</ul>
 			</li>
 			<li>
 				<a href="./gree_contact.html">联系我们</a>
@@ -66,28 +49,10 @@
 	</div>
 	<div id="subtitle">
 		<h1><span>&nbsp;Engineering</span> / 工程案例</h1>
-		<ul>
-			<li id="all">
-				<span>全部</span>
-			</li>
-		</ul>
 		<div id="engineer_box">
-			<div class="all">
-				<img src="./img/engineer/中央热水工程1.jpg">
-				<p>中央热水工程</p>
-			</div>
-			<div class="all">
-				<img src="./img/engineer/中央热水工程2.jpg">
-				<p>中央热水工程</p>
-			</div>
-			<div class="all">
-				<img src="./img/engineer/南方医科大学广济医院.jpg">
-				<p>南方医科大学广济医院</p>
-			</div>
-			<div class="all">
-				<img src="./img/engineer/海关.jpg">
-				<p>海关</p>
-			</div>
+			<div></div>
+			<p></p>
+			<div></div>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -96,28 +61,65 @@
 			<span class="not_link">当前位置 : </span>
 			<span class="link">工程案例</span>
 			<span class="not_link"> &gt; </span>
-			<span class="link">中央热水工程</span>
+			<span class="link"></span>
 		</p>
 		<div id="engineer_show">
-			<img src="./img/engineer/中央热水工程1.jpg">
+			<div id="content">
+				<div id="engineer" data-url="/change/{{ passage.id }}">
+					<p id="engineer_title">这里是新闻的标题</p>
+					<div id="text">
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
     <div id="foot_bar">
     	<ul>
-    		<li>关于我们</li>
+    		<li><a href="./gree_culture.html">关于我们</a></li>
     		<li>&nbsp;|&nbsp;</li>
-    		<li>联系我们</li>
+    		<li><a href="./gree_contact.html">联系我们</a></li>
     		<li>&nbsp;|&nbsp;</li>
-    		<li>文件下载</li>
+    		<li><a href="">文件下载</a></li>
     		<li>&nbsp;|&nbsp;</li>
-    		<li>人才招聘</li>
+    		<li><a href="./gree_recruitment.html">人才招聘</a></li>
     		<li>&nbsp;|&nbsp;</li>
-    		<li>友情链接</li>
+    		<li><a href="">友情链接</a></li>
     	</ul>
     	<p>版权所有 CopyRight(C)2013-2015 东莞市忠胜格力产品销售中心</p>
     </div>
 	<script>
-		
+		var data={engineer:[
+		{engineername:"X1",pic:"pic1"},
+		{engineername:"X2",pic:"pic2"},
+		{engineername:"X3",pic:"pic3"},
+		{engineername:"X4",pic:"pic4"},
+		{engineername:"X5",pic:"pic5"},
+		{engineername:"X6",pic:"pic6"},
+		{engineername:"X7",pic:"pic7"},
+		{engineername:"X8",pic:"pic8"},
+		{engineername:"X9",pic:"pic9"},
+		{engineername:"X10",pic:"pic10"},
+		{engineername:"X11",pic:"pic11"},
+		{engineername:"X12",pic:"pic12"},
+		]}
+				var s="";
+				for(var i=0;i<data.engineer.length;i++){
+					s+="<div><img src='"+data.engineer[i].pic+"'><p>"+data.engineer[i].engineername+"</p></div>";
+				}
+				$("#engineer_box>p").html(s);
+		$.ajax({
+			url:"getEngineer",
+			type:"post",
+			data:{amount:"all"},
+			success:function(data){
+				var s="";
+				for(var i=0;i<data.engineer.length;i++){
+					s+="<div><img src='"+data.engineer[i].pic+"'><p>"+data.engineer[i].engineername+"</p></div>";
+				}
+				$("#engineer_box>p").html(s);
+			},
+			error:function(){}
+		});
 	</script>
 </body>
 </html>

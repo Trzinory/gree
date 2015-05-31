@@ -1,65 +1,42 @@
 window.onload=function(){
 	var flag=0;
-		$("#subtitle>ul>li").on({
-			"click":function(){
-				if(flag==0){
-					$("#flag").remove();
-				}
-				else if(flag==1){
-					flag=0;
-				}
-				$("#subtitle>ul>li").css({
-					"background-color":"white",
-					"color":"#22222a"
-				});
-				$(this).css({
-					"background-color":"rgba(65,65,65,0.3)",
-					"color":"white"
-				});
-				$(">span",this).css({
-					"border-bottom":"none"
-				});
-				$(".all").hide();
-				$("."+this.id).show();
-				//处理mouseout的不同性
-				$("#subtitle>ul>li").unbind("mouseout");
-				$("#subtitle>ul>li").mouseout(function(){
-					$(">span",this).css({
-						"border-bottom":"none"
-					});
-					$(".second_class",this).hide();
-				});
-				$(this).unbind("mouseout");
-				$("#subtitle>ul>li").mouseout();
-				$(this).mouseout(function(){
-					$(".second_class",this).hide();
-				});
-				//处理mouseover的不同性
-				$("#subtitle>ul>li").unbind("mouseover");
-				$("#subtitle>ul>li").mouseover(function(){
-					$(">span",this).css({
-						"border-bottom":"2px solid"
-					});
-					$(".second_class",this).show();
-				});
-				$(this).unbind("mouseover");
-				$(this).mouseover(function(){
-					$(".second_class",this).show();
-				});
-			}
-		});
 		$(".second_class li").click(function(){
 			flag=1;
 			$("#flag").remove();
 			$(this).parent().prev().append("<span id='flag'> ＞"+$(this).text()+"</span>");
 		});
-		$(".stores_box img").click(function(){
-			$("#p_details").show();
+		$("#stores_box>p>div").click(function(){
+			var s=$(this).find("p").text();
+			$("#stores_nav span:last").text($(this).find("p").text());
+			$("#stores_title").html(s);
+					data={content:"这里是文章内容"};
+					$("#text").html(data.content);
+			$.ajax({
+				url:"getStore",
+				type:"post",
+				data:{amount:"one",storename:s},
+				success:function(data){
+				},
+				error:function(){}
+			});
 		});
-		$("#subtitle li:eq(0)").click();
+		$("#stores_box>p>div:eq(0)").click();
 
-		//图片点击显示
-		$("#stores_box img").click(function(){
-			$("#stores_show img").attr({"src":$(this).attr("src")})
-		});
+		//移动动画
+			var n=Math.ceil($("#stores_box>p>div").length/6);
+			var count=0;
+			$("#stores_box>div:eq(0)").click(function(){
+				if(count-1<0){
+					return;
+				}
+				count--;
+				$("#stores_box>p>div").animate({left:"+=1012px"});
+			});
+			$("#stores_box>div:eq(1)").click(function(){
+				if(count+1>=n){
+					return;
+				}
+				count++;
+				$("#stores_box>p>div").animate({left:"-=1012px"});
+			});
 }

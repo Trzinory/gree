@@ -50,12 +50,13 @@
 		background-color:rgba(65,65,65,0.6);
 	}
 	#first_ul{
-		width:900px;
+		position:relative;
+		left:-10px;
+		width:1050px;
 		margin:0 auto;
 	}
 	#first_ul>li{
 		float:left;
-		margin:0 10px;
 	}
 	#first_ul>li:hover .second_ul{
 		display:block;
@@ -131,20 +132,51 @@
 		text-align:center;
 		background-color:rgba(65,65,65,0.3);
 	}
-	#engineer_box div{
+	#engineer_box>p{
+		display:inline-block;
+		width:1012px;
+		text-indent:0px;
+		overflow-x:hidden;
+		white-space: nowrap;
+	}
+	#engineer_box>div{
+		display:inline-block;
+		position:relative;
+		top:-45px;
+	}
+	#engineer_box>div:first-child:hover{
+		border-right:30px solid white;
+	}
+	#engineer_box>div:last-child:hover{
+		border-left:30px solid white;
+	}
+	#engineer_box>div:first-child{
+		border-right:30px solid rgba(255,255,255,0.5);
+		border-top:30px solid transparent;
+		border-bottom:30px solid transparent;
+	}
+	#engineer_box>div:last-child{
+		border-left:30px solid rgba(255,255,255,0.5);
+		border-top:30px solid transparent;
+		border-bottom:30px solid transparent;
+	}
+	#engineer_box p div{
+		border-top:4px solid transparent;
 		display:none;
 		display:inline-block;
+		position:relative;
 		width:140px;
 		padding-top:30px;
-		margin:0px 10px 0 10px;
+		margin:0px 14px;
 	}
-	#subtitle li:hover .engineer_box{
+	#engineer_box p div:hover{
+		border-top:4px solid #414141;
 	}
 	#engineer_box img{
 		width:100%;
 		height:100px;
 	}
-	#engineer_box p{
+	#engineer_box>p p{
 		margin-top:15px;
 		font-size:13px;
 		color:white;
@@ -167,18 +199,67 @@
 	#engineer_nav span:last-child{
 		color:#226ddd;
 	}
-	#engineer_show{
-		margin-top:50px;
+	/*----------------------------------------------------*/
+	#engineer_show
+		{
+		font-size:14px;
+		color:#202020;
+		padding:40px 0;
+		}
+	#content
+		{
+		margin:0 auto;
+		list-style-type:none;
+		width:800px;
+		}
+	#content li
+		{
+		padding-bottom:10px;
+		border-bottom:dashed 2.5px #c1c1c1;
+		}
+	#content li h1
+		{
+		cursor:pointer;
+		}
+	#engineer img
+		{
+		max-width:800px;
+		}
+	#back{
+		padding:1px 12px 3px 12px;
+		font-size:20px;
+		color:#34333f;
+		border:1px solid #a1a1a1;
+		cursor:pointer;
+	}
+	#back:hover{
+		color:white;
+		background-color:#226ddd;
+		border:1px solid #226ddd;
+	}
+	#engineer_title{
+		padding:20px 0;
+		font-size:30px;
 		text-align:center;
-	}
-	#engineer_show img{
-		width:700px;
-	}
+		word-break:break-all;
+		}
+	#text
+		{
+		margin-top:26px;
+		}
+	#text p
+		{
+		line-height:26px;
+		margin-bottom:30px;
+		font-size:16px;
+		text-indent:33px;
+		word-break:break-all;
+		}
 	/*-----------------------------------------*/
 	#foot_bar{
+		color:white;
 		padding:30px;
 		font-size:14px;
-		color:white;
 		background-color:rgb(24,38,41);
 	}
 	#foot_bar ul{
@@ -187,6 +268,9 @@
 	}
 	#foot_bar li{
 		float:left;
+	}
+	#foot_bar a{
+		color:white;
 	}
 	#foot_bar p{
 		margin-top:5px;
