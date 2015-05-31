@@ -46,6 +46,10 @@
 		text-align:center;
 		cursor:default;
 	}
+	#nav li a{
+		display:block;
+		cursor:default;
+	}
 	#nav ul li:hover{
 		background-color:rgba(65,65,65,0.6);
 	}

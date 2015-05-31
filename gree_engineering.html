@@ -102,11 +102,6 @@
 		{engineername:"X11",pic:"pic11"},
 		{engineername:"X12",pic:"pic12"},
 		]}
-				var s="";
-				for(var i=0;i<data.engineer.length;i++){
-					s+="<div><img src='"+data.engineer[i].pic+"'><p>"+data.engineer[i].engineername+"</p></div>";
-				}
-				$("#engineer_box>p").html(s);
 		$.ajax({
 			url:"getEngineer",
 			type:"post",

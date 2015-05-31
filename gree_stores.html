@@ -102,11 +102,6 @@
 		{storename:"X11",pic:"pic11"},
 		{storename:"X12",pic:"pic12"},
 		]}
-				var s="";
-				for(var i=0;i<data.stores.length;i++){
-					s+="<div><img src='"+data.stores[i].pic+"'><p>"+data.stores[i].storename+"</p></div>";
-				}
-				$("#stores_box>p").html(s);
 		$.ajax({
 			url:"getStore",
 			type:"post",
