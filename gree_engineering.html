@@ -51,7 +51,36 @@
 		<h1><span>&nbsp;Engineering</span> / 工程案例</h1>
 		<div id="engineer_box">
 			<div></div>
-			<p></p>
+			<div id="box">
+				<div>
+					<img src="工程封面图">
+					<p>工程1</p>
+				</div>
+				<div>
+					<img src="工程封面图">
+					<p>工程2</p>
+				</div>
+				<div>
+					<img src="工程封面图">
+					<p>工程3</p>
+				</div>
+				<div>
+					<img src="工程封面图">
+					<p>工程4</p>
+				</div>
+				<div>
+					<img src="工程封面图">
+					<p>工程5</p>
+				</div>
+				<div>
+					<img src="工程封面图">
+					<p>工程6</p>
+				</div>
+				<div>
+					<img src="工程封面图">
+					<p>工程7</p>
+				</div>
+			</div>
 			<div></div>
 		</div>
 		<div class="clear"></div>
@@ -88,33 +117,6 @@
     	<p>版权所有 CopyRight(C)2013-2015 东莞市忠胜格力产品销售中心</p>
     </div>
 	<script>
-		var data={engineer:[
-		{engineername:"X1",pic:"pic1"},
-		{engineername:"X2",pic:"pic2"},
-		{engineername:"X3",pic:"pic3"},
-		{engineername:"X4",pic:"pic4"},
-		{engineername:"X5",pic:"pic5"},
-		{engineername:"X6",pic:"pic6"},
-		{engineername:"X7",pic:"pic7"},
-		{engineername:"X8",pic:"pic8"},
-		{engineername:"X9",pic:"pic9"},
-		{engineername:"X10",pic:"pic10"},
-		{engineername:"X11",pic:"pic11"},
-		{engineername:"X12",pic:"pic12"},
-		]}
-		$.ajax({
-			url:"getEngineer",
-			type:"post",
-			data:{amount:"all"},
-			success:function(data){
-				var s="";
-				for(var i=0;i<data.engineer.length;i++){
-					s+="<div><img src='"+data.engineer[i].pic+"'><p>"+data.engineer[i].engineername+"</p></div>";
-				}
-				$("#engineer_box>p").html(s);
-			},
-			error:function(){}
-		});
 	</script>
 </body>
 </html>

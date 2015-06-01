@@ -1,14 +1,12 @@
 所有页面ajax请求接口：
 主页	产品和新闻的链接需要点击页面后再发送ajax，暂不知道如何实现，在链接的后面加"?XXX=XXX"之类？
-产品	"/getProduct"	{classone:"类别名"}				{pic:["产品1图片链接","产品2图片链接"],picname:"["产品1系列型号","产品2系列型号"]"}
-	"/getProduct"	{classtwo:"类别名"}				{pic:["产品1图片链接","产品2图片链接"],picname:"["产品1系列型号","产品2系列型号"]"}
-	"/getProduct"	{productname:"产品系列型号"}		{pic:["产品图片1链接","产品图片2链接"],table:"产品html格式表格的字符串"}
-新闻	"/moreNews"	{page:"页码"}				{html:"8个新闻标题简介日期的html"}
-	"/getNews"	{title:"新闻标题"}				{content:"新闻正文内容"}
+产品	点击一级类别	"/getProduct"	{classone:"类别名"}				{pic:["产品1图片链接","产品2图片链接"],picname:"["产品1系列型号","产品2系列型号"]"}
+	点击二级类别	"/getProduct"	{classtwo:"类别名"}				{pic:["产品1图片链接","产品2图片链接"],picname:"["产品1系列型号","产品2系列型号"]"}
+	点击产品		"/getProduct"	{productname:"产品系列型号"}		{pic:["产品图片1链接","产品图片2链接"],table:"产品html格式表格的字符串"}
+新闻	点击页码		"/moreNews"	{page:"页码"}				{html:"8个新闻标题简介日期的html"}
+	点击某新闻	"/getNews"	{title:"新闻标题"}				{content:"新闻正文内容"}
 招聘	无
 企业	企业荣誉的图片用原图链接，所以点击图片查看大图时不用再改变图片链接
 联系	无
-店面	"/getStore"	{amount:"all"}				{stores:[{storename:"店铺名1",pic:"图片链接1"},{storename:"店铺名2",pic:"图片链接2"}]}
-	"/getStore"	{amount:"one",storename:"店铺名"}		{content:"店铺介绍文章"}
-工程	"/getEngineer"	{amount:"all"}				{engineer:[{engineername:"店铺名1",pic:"图片链接1"},{engineername:"店铺名2",pic:"图片链接2"}]}
-	"/getEngineer"	{amount:"one",engineername:"店铺名"}	{content:"店铺介绍文章"}
+店面	点击某店铺	"/getStore"	{storename:"店铺名"}			{content:"店铺介绍文章"}
+工程	点击某工程	"/getEngineer"	{engineername:"店铺名"}			{content:"店铺介绍文章"}

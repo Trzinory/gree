@@ -250,6 +250,18 @@ window.onload=function(){
 			for(var i=1;i<len;i++){
 				table.find("tr:eq(1)").remove();
 			}
+			data={userinfo:[{account:"Trzinory",permission:1},{account:"ChanSea",permission:2},{account:"Hanin",permission:0},]};
+					for(var i=0;i<data.userinfo.length;i++){
+						TrInsert("#details .account_manage table table");
+						$("#details .account_manage table table tr:last .account span").text(data.userinfo[i].account);
+						$("#details .account_manage table table tr:last .permission span").text(data.userinfo[i].permission);
+						if(data.userinfo[i].permission<2){
+							$("#details .account_manage table table tr:last .operation").html("<span class='button'>编辑</span><span class='button'>删除</span>");
+						}
+						else{
+							$("#details .account_manage table table tr:last .operation").html("无法修改");
+						}
+					}
 			$.ajax({
 				url:"getAccount",
 				type:"get",
@@ -299,6 +311,11 @@ window.onload=function(){
 				else{
 					var pms=permission.find("option:selected").text();
 					var act=$(this).parent().siblings(".account").find("span").text();
+								$("#waiting").hide();
+								permission.find("select").remove();
+								permission.find("span").text(pms).show();
+								$(t).text("编辑");
+								$(t).next().text("删除");
 					$.ajax({
 						url:"manageAccount",
 						type:"post",
@@ -313,11 +330,11 @@ window.onload=function(){
 							}
 						},
 						error:function(){
-							alert("error");
-							permission.find("select").remove();
-							permission.children().show();
-							$(t).text("编辑");
-							$(t).next().text("删除");
+							//alert("error");
+							//permission.find("select").remove();
+							//permission.children().show();
+							//$(t).text("编辑");
+							//$(t).next().text("删除");
 						}
 					});
 				}
@@ -335,6 +352,14 @@ window.onload=function(){
 				$("#full>div>div").hide();
 				$("#waiting").show();
 				var act=$(this).closest("div").find("p span").text();
+							var len=$("#details .account_manage table table tr").length;
+							for(var i=1;i<len;i++){
+								if(act==$("#details .account_manage table table tr:eq("+i+")").find(".account span").text()){
+									$("#details .account_manage table table tr:eq("+i+")").remove();
+									break;
+								}
+							}
+							$("#waiting").hide();
 				$.ajax({
 					url:"manageAccount",
 					type:"post",
@@ -362,6 +387,8 @@ window.onload=function(){
 			$("#top .my_account").click(function(){
 				$("#details .my_account input").val("");
 				$("#details .my_account p").text("");
+				data={username:"Trzinory"};
+						$("#details .my_account .account").text(data.username);
 				$.ajax({
 					url:"managePassword",
 					type:"post",
@@ -394,6 +421,16 @@ window.onload=function(){
 					else if(flag[0]&&flag[1]&&flag[2]){
 						var op=$("#details .my_account input:eq(0)").val();
 						var np=$("#details .my_account input:eq(1)").val();
+						var data={status:"error"};
+								if(data.status=="success"){
+									var form=document.createElement("form");
+									form.method="get";
+									form.action="/logout";
+									form.submit();
+								}
+								else{
+									$("#details .my_account input:eq(0)").next().text(data.status);
+								}
 						$.ajax({
 							url:"managePassword",
 							type:"post",
@@ -490,6 +527,20 @@ window.onload=function(){
 				$("#details .products_type .details1").hide();
 				$("#details .products_type .details2").hide();
 				$("#details .products_type .edit").hide();
+				var data="{classone:['家用空调','中央空调','生活电器']}";
+				data=eval("("+data+")");
+						var s=document.createElement("select");
+						var option=document.createElement("option");
+						option.text="请选择分类";
+						s.appendChild(option);
+						for(var i=0;i<data.classone.length;i++){
+							var option=document.createElement("option");
+							option.text=data.classone[i];
+							s.appendChild(option);
+						}
+						$("#details .products_type td.first_class").html(s);
+						$("#details .products_type .details1").show();
+						$("#details .products_type select:eq(0)").change();
 				$.ajax({
 					url:"getClassOne",
 					type:"post",
@@ -515,12 +566,26 @@ window.onload=function(){
 			});
 		//点击一级选项时发送ajax请求二级选项
 			$("#details .products_type").delegate("select:eq(0)","change",function(){
+				$("#details .products_type .details2").hide();
 				$("#details .products_type .edit").hide();
 				if($("option:selected",this).text()=="请选择分类"){
 					$("#details .products_type select:eq(1)").html("");
 					return;
 				}
 				var fc=$("#details .products_type select:eq(0) option:selected").text();
+				var data="{classtwo:['柜式','挂式']}";
+				data=eval("("+data+")");
+						var s=document.createElement("select");
+						var option=document.createElement("option");
+						option.text="请选择分类";
+						s.appendChild(option);
+						for(var i=0;i<data.classtwo.length;i++){
+							option=document.createElement("option");
+							option.text=data.classtwo[i];
+							s.appendChild(option);
+						}
+						$("#details .products_type td.second_class").html(s);
+						$("#details .products_type .details2").show();
 				$.ajax({
 					url:"getClassTwo",
 					type:"post",
@@ -529,7 +594,6 @@ window.onload=function(){
 						var s=document.createElement("select");
 						var option=document.createElement("option");
 						option.text="请选择分类";
-						s.appendChild(option);
 						for(var i=0;i<data.classtwo.length;i++){
 							option=document.createElement("option");
 							option.text=data.classtwo[i];
@@ -625,6 +689,9 @@ window.onload=function(){
 						}
 					}
 					$("#waiting").show();
+							$("#waiting").hide();
+							$("#details .products_type .edit").hide();
+							$("#details .products_type td.first_class select").append("<option>"+cn+"</option>");
 					$.ajax({
 						url:"manageClassOne",
 						type:"post",
@@ -744,6 +811,8 @@ window.onload=function(){
 					$("#bottom").hide();
 					$("#full>div>div").hide();
 					$("#waiting").show();
+							$("#waiting").hide();
+							$("#details .products_type tr.first_class option:selected").remove();
 					$.ajax({
 						url:"manageClassOne",
 						type:"post",
@@ -763,6 +832,8 @@ window.onload=function(){
 					$("#bottom").hide();
 					$("#full>div>div").hide();
 					$("#waiting").show();
+							$("#waiting").hide();
+							$("#details .products_type tr.second_class option:selected").remove();
 					$.ajax({
 						url:"manageClassTwo",
 						type:"post",
@@ -790,10 +861,12 @@ window.onload=function(){
 						option.text=$(this).closest("div").find("div span:eq("+i+")").text();
 						list+=option.text;
 						s.appendChild(option);
-					}
+					}alert(list)
 					$("#bottom").hide();
 					$("#full>div>div").hide();
 					$("#waiting").show();
+							$("#waiting").hide();
+							$("#details .products_type td.first_class").html(s);
 					$.ajax({
 						url:"manageClassOne",
 						type:"post",
@@ -826,6 +899,8 @@ window.onload=function(){
 					$("#bottom").hide();
 					$("#full>div>div").hide();
 					$("#waiting").show();
+							$("#waiting").hide();
+							$("#details .products_type td.second_class").html(s);
 					$.ajax({
 						url:"manageClassTwo",
 						type:"post",
@@ -864,6 +939,19 @@ window.onload=function(){
 			$("#function .products_details").click(function(){
 				$("#details .products_details .click_edit").show();
 				$("#details .edit_box").remove();
+				var data="{classone:['家用空调','中央空调','生活电器']}";
+				data=eval("("+data+")");
+						var s=document.createElement("select");
+						var option=document.createElement("option");
+						option.text="请选择分类";
+						s.appendChild(option);
+						for(var i=0;i<data.classone.length;i++){
+							var option=document.createElement("option");
+							option.text=data.classone[i];
+							s.appendChild(option);
+						}
+						$("#details .products_details select:eq(0)").html(s.innerHTML);
+						$("#details .products_details select:eq(0)").change();
 				$.ajax({
 					url:"getClassOne",
 					type:"post",
@@ -874,7 +962,7 @@ window.onload=function(){
 						option.text="请选择分类";
 						s.appendChild(option);
 						for(var i=0;i<data.classone.length;i++){
-							var option=document.createElement("option");
+							option=document.createElement("option");
 							option.text=data.classone[i];
 							s.appendChild(option);
 						}
@@ -895,15 +983,24 @@ window.onload=function(){
 					return;
 				}
 				var fc=$("option:selected",this).text();
+				var data="{classtwo:['柜式','挂式']}";
+				data=eval("("+data+")");
+						var s=document.createElement("select");
+						var option=document.createElement("option");
+						option.text="请选择分类";
+						s.appendChild(option);
+						for(var i=0;i<data.classtwo.length;i++){
+							option=document.createElement("option");
+							option.text=data.classtwo[i];
+							s.appendChild(option);
+						}
+						$("#details .products_details select:eq(1)").html(s.innerHTML);
 				$.ajax({
 					url:"getClassTwo",
 					type:"post",
 					data:{classone:fc},
 					success:function(data){
 						var s=document.createElement("select");
-						var option=document.createElement("option");
-						option.text="请选择分类";
-						s.appendChild(option);
 						for(var i=0;i<data.classtwo.length;i++){
 							option=document.createElement("option");
 							option.text=data.classtwo[i];
@@ -926,6 +1023,18 @@ window.onload=function(){
 				$("#details .products_details .details_add").show();
 				var fc=$("#details .products_details select:eq(0) option:selected").text();
 				var sc=$("option:selected",this).text();
+				var data="{products:['Q铂_KFR-36LW','Q铂_KFR-50LW','Q铂_KFR-72LW']}";
+				data=eval("("+data+")");
+						var s=document.createElement("select");
+						var option=document.createElement("option");
+						option.text="请选择产品";
+						s.appendChild(option);
+						for(var i=0;i<data.products.length;i++){
+							option=document.createElement("option");
+							option.text=data.products[i];
+							s.appendChild(option);
+						}
+						$("#details .products_details select:eq(2)").html(s.innerHTML);
 				$.ajax({
 					url:"getProduct",
 					type:"post",
@@ -934,7 +1043,6 @@ window.onload=function(){
 						var s=document.createElement("select");
 						var option=document.createElement("option");
 						option.text="请选择产品";
-						s.appendChild(option);
 						for(var i=0;i<data.products.length;i++){
 							option=document.createElement("option");
 							option.text=data.products[i];
@@ -961,6 +1069,31 @@ window.onload=function(){
 				var classone=$("#details .products_details select:eq(0) option:selected").text();
 				var classtwo=$("#details .products_details select:eq(1) option:selected").text();
 				var product=$("#details .products_details select:eq(2) option:selected").text();
+				var data={
+					productpic:['picname1.jpg','picname2.jpg','picname3.jpg','picname4.jpg'],
+					productinfo:'<p> </p><p>这里是文章</p>',
+					content:"<table border='1'><tr class='table_title'><td colspan='4'>主体</td></tr><tr class='table_title'><td colspan='4'>功能</td></tr><tr class='table_title'><td colspan='4'>规格</td></tr></table>"
+				};
+						$("#details .products_details .save_table").html(data.content);
+						var s="";
+						for(var i=0;i<data.productpic.length;i++){
+							var div=document.createElement("div");
+							var img=document.createElement("img");
+							img.src=data.productpic[i];
+							var input=document.createElement("input");
+							input.type="checkbox";
+							div.appendChild(img);
+							div.appendChild(input);
+							s+=div.outerHTML+"\n";
+						}
+						$("#details .products_details .products_pics").html(s);
+						if(data.productinfo.length==0){
+							$("#details .products_details .article div:eq(0)").html('<p> </p><p><br></p>');
+						}
+						else{
+							$("#details .products_details .article div:eq(0)").html(data.productinfo);
+						}
+						$("#details .products_details .details").show();
 				$.ajax({
 					url:"getProductInfo",
 					type:"post",
@@ -1070,10 +1203,6 @@ window.onload=function(){
 			$("#details .products_details .edit_pic .button").click(function(){
 				$("#details .products_details .edit").hide();
 				if($(this).text()=="添加"){
-					if($("#details .products_details .products_pics img").length>7){
-						alert("一个产品最多8张图片");
-						return;
-					}
 					$("#details .products_details .add_pic").show();
 				}
 				else if($(this).text()=="删除"){
@@ -1087,7 +1216,7 @@ window.onload=function(){
 						if(i!=0){
 							list+=" ";
 						}
-						pic_name[i]=$("#details .products_details .products_pics").find("input:checked:eq("+i+")").prev().attr('src').replace(/.+\//,"");
+						pic_name[i]=$("#details .products_details .products_pics").find("input:checked:eq("+i+")").prev().attr('src').replace(/.+\//,"").replace(/\..+/,"");
 						list+=pic_name[i];
 					}
 					$("#full .products_details .delete2 p span").text(list);
@@ -1171,6 +1300,9 @@ window.onload=function(){
 					var fc=$("#details .products_details select:eq(0) option:selected").text();
 					var sc=$("#details .products_details select:eq(1) option:selected").text();
 					$("#waiting").show();
+							$("#waiting").hide();
+							$("#details .products_details select:eq(2)").append("<option>"+s+"</option>");
+							$("#details .products_details .edit").hide();
 					$.ajax({
 						url:"manageProduct",
 						type:"post",
@@ -1203,6 +1335,13 @@ window.onload=function(){
 					var fc=$("#details .products_details select:eq(0) option:selected").text();
 					var sc=$("#details .products_details select:eq(1) option:selected").text();
 					$("#waiting").show();
+							$("#details .products_details .edit").hide();
+							for(var i=1;i<$("#details .products_details select:eq(2) option").length;i++){
+								if(os==$("#details .products_details select:eq(2) option:eq("+i+")").text()){
+									$("#details .products_details select:eq(2) option:eq("+i+")").text(s);
+								}
+							}
+							$("#waiting").hide();
 					$.ajax({
 						url:"manageProduct",
 						type:"post",
@@ -1228,6 +1367,13 @@ window.onload=function(){
 					$("#bottom").hide();
 					$("#full .products_details .delete1").hide();
 					$("#waiting").show();
+							for(var i=1;i<$("#details .products_details select:eq(2) option").length;i++){
+								if(s==$("#details .products_details select:eq(2) option:eq("+i+")").text()){
+									$("#details .products_details select:eq(2) option:eq("+i+")").remove();
+								}
+							}
+							$("#details .products_details .details").hide();
+							$("#waiting").hide();
 					$.ajax({
 						url:"manageProduct",
 						type:"post",
@@ -1266,10 +1412,13 @@ window.onload=function(){
 					$("#bottom").hide();
 					$("#full>div>div").hide();
 					$("#waiting").show();
+							$("#waiting").hide();
+							$("#details .products_details select:eq(2)").html(s.innerHTML);
+							$("#details .products_details .details").hide();
 					$.ajax({
 						url:"manageProduct",
 						type:"post",
-						data:{manage:"sort",classone:fc,classtwo:sc,sequence:list},
+						data:{manage:"sort",classone:fc,classtwo:sc,productname:list},
 						success:function(data){
 							$("#waiting").hide();
 							$("#details .products_details select:eq(2)").html(s.innerHTML);
@@ -1297,6 +1446,16 @@ window.onload=function(){
 						formdata.append("classtwo",sc);
 						formdata.append("productname",pname);
 						$("#waiting").show();
+						var data={picname:"picname.jpg"};
+								var div=document.createElement("div");
+								var img=document.createElement("img");
+								img.src=data.picname;
+								var input=document.createElement("input");
+								input.type="checkbox";
+								div.appendChild(img);
+								div.appendChild(input);
+								$("#details .products_details .products_pics").append(div).append("\n");
+								$("#waiting").hide();
 						$.ajax({
 							url:"manageProductPic",
 							type:"post",
@@ -1337,6 +1496,11 @@ window.onload=function(){
 					//var ppname=$(this).siblings("p").find(".pic_name").text();
 					//ppname=ppname.replace(/\s/g,"\",\"");
 					//ppname="[\""+ppname+"\"]";
+							var len=$("#details .products_details .products_pics").find("input:checked").length;
+							for(var i=0;i<len;i++){
+								$("#details .products_details .products_pics").find("input:checked:eq(0)").parent().remove();
+							}
+							$("#waiting").hide();
 					$.ajax({
 						url:"manageProductPic",
 						type:"post",
@@ -1364,10 +1528,12 @@ window.onload=function(){
 							list+="#";
 						}
 						list+=$(this).siblings("div").find("img:eq("+i+")").attr('src').replace(/.+\//,"");
-					}
+					}alert(list)
 					var fc=$("#details .products_details select:eq(0) option:selected").text();
 					var sc=$("#details .products_details select:eq(1) option:selected").text();
 					var pname=$("#details .products_details select:eq(2) option:selected").text();
+							$("#details .products_details .products_pics").html(s);
+							$("#waiting").hide();
 					$.ajax({
 						url:"manageProductPic",
 						type:"post",
@@ -1408,6 +1574,11 @@ window.onload=function(){
 						var pname=$("#details .products_details select:eq(2) option:selected").text();
 						var s=$("#details .products_details .save_table").html();
 						$("#waiting").show();
+									$(t).closest("tr").find(".spec1:eq(0)").text(spec);
+									$(t).closest("tr").find(".spec1:eq(1)").text(value);
+									$("#details .products_details .spec2").hide();
+									$("#details .products_details .spec1").show();
+									$("#waiting").hide();
 						$.ajax({
 							url:"manageProductInfo",
 							type:"post",
@@ -1462,6 +1633,9 @@ window.onload=function(){
 						var pname=$("#details .products_details select:eq(2) option:selected").text();
 						s=$("#details .products_details .save_table").html();
 						$("#waiting").show();
+									var title=$("#details .products_details select:eq(3) option:selected").text();
+									$("#details .products_details select:eq(3)").change();
+									$("#waiting").hide();
 						$.ajax({
 							url:"manageProductInfo",
 							type:"post",
@@ -1501,6 +1675,9 @@ window.onload=function(){
 					var sc=$("#details .products_details select:eq(1) option:selected").text();
 					var pname=$("#details .products_details select:eq(2) option:selected").text();
 					var s=$("#details .products_details .save_table").html();
+								var title=$("#details .products_details select:eq(3) option:selected").text();
+								$("#details .products_details select:eq(3)").change();
+								$("#waiting").hide();
 					$.ajax({
 						url:"manageProductInfo",
 						type:"post",
@@ -1550,6 +1727,8 @@ window.onload=function(){
 					var sc=$("#details .products_details select:eq(1) option:selected").text();
 					var pname=$("#details .products_details select:eq(2) option:selected").text();
 					var s=$("#details .products_details .save_table").html();
+								$("#details .products_details select:eq(3)").change();
+								$("#waiting").hide();
 					$.ajax({
 						url:"manageProductInfo",
 						type:"post",
@@ -1613,9 +1792,7 @@ window.onload=function(){
 		//文章编辑框
 			$("#details .products_details .click_edit").click(function(){
 				var s=$(this).prev().html();
-				if(s.replace(/\s/g,"").length!=0){
-					$("#text_box").html(s);
-				}
+				$("#text_box").html(s);
 			});
 			var range;
 			$("#details").delegate("#text_box","blur",function(){
@@ -1676,6 +1853,8 @@ window.onload=function(){
 				var text=$("#details .products_details #text_box").html();
 				text=text.replace(/&amp;/g,"&");
 				$("#waiting").show();
+						$("#details .products_details .article div:eq(0)").html(text);
+						$("#waiting").hide();
 				$.ajax({
 					url:"saveProductInfo",
 					type:"post",
@@ -1691,6 +1870,18 @@ window.onload=function(){
 		//点击进入页面时发送ajax
 			$("#function .products_susume").click(function(){
 				$("#details .products_susume .details").hide();
+				var data="{classone:['家用空调','中央空调','生活电器']}";
+				data=eval("("+data+")");
+						var s=document.createElement("select");
+						var option=document.createElement("option");
+						option.text="请选择分类";
+						s.appendChild(option);
+						for(var i=0;i<data.classone.length;i++){
+							var option=document.createElement("option");
+							option.text=data.classone[i];
+							s.appendChild(option);
+						}
+						$("#details .products_susume select:eq(0)").html(s.innerHTML);
 				$.ajax({
 					url:"getClassOne",
 					type:"post",
@@ -1705,45 +1896,45 @@ window.onload=function(){
 							option.text=data.classone[i];
 							s.appendChild(option);
 						}
-						$("#details .products_susume select:eq(0)").html(s.innerHTML);
-					},
+						$("#details .products_susume select:eq(0)").html(s.innerHTML);},
 					error:function(){}
 				});
 			});
 		//点击一级选项时发送ajax请求推荐产品
 			$("#details .products_susume select:eq(0)").change(function(){
 				var sclass=$("option:selected",this).text();
+				var data="{products:['立式#Q铂_KFR-50LW','立式#Q铂_KFR-72LW','柜式#Q铂_KFR-36GW'],classtwo:['立式','柜式']}";
+				data=eval("("+data+")");
+				var s="<tr><td><span>一级分类</span></td><td><span>二级分类</span></td><td><span>系列型号</span></td><td><span>操作</span></td></tr>";
+				var count=0;
+				for(var i=0;i<data.products.length;i++){
+					var classtwo=data.products[i].replace(/\#.+/,"");
+					var series=data.products[i].replace(/.+\#/,"").replace(/\_/," ");
+					s+="<tr><td>"+sclass+"</td><td>"+classtwo+"</td><td>"+series+"</td><td><span class='button'>删除</span></td></tr>";
+					count=i;
+				}
+				s+="<tr class='add1'><td></td><td></td><td></td><td><span class='button'>添加</span></td></tr>"
+				s+="<tr class='add2'><td>"+sclass+"</td><td><select></select></td><td><select></select></td><td><span class='button'>确定</span><span class='button'>取消</span></td></tr>";
+				$('#details .products_susume .details').html(s).show();
+				if(count<3){
+					$("#details .products_susume .details .add1").show();
+				}
+				var select=document.createElement("select");
+				var option=document.createElement("option");
+				option.text="请选择分类";
+				select.appendChild(option);
+				for(var i=0;i<data.classtwo.length;i++){
+					option=document.createElement("option");
+					option.text=data.classtwo[i];
+					select.appendChild(option);
+				}
+				$("#details .products_susume select:eq(1)").html(select.innerHTML);
 				if(sclass!="请选择分类"){
 					$.ajax({
 						url:"manageBestProducts",
 						type:"post",
 						data:{"manage":"get","classone":sclass},
-						success:function(data){
-							var s="<tr><td><span>一级分类</span></td><td><span>二级分类</span></td><td><span>系列型号</span></td><td><span>操作</span></td></tr>";
-							var count=0;
-							for(var i=0;i<data.products.length;i++){
-								var classtwo=data.products[i].replace(/\#.+/,"");
-								var series=data.products[i].replace(/.+\#/,"").replace(/\_/," ");
-								s+="<tr><td>"+sclass+"</td><td>"+classtwo+"</td><td>"+series+"</td><td><span class='button'>删除</span></td></tr>";
-								count=i;
-							}
-							s+="<tr class='add1'><td></td><td></td><td></td><td><span class='button'>添加</span></td></tr>"
-							s+="<tr class='add2'><td>"+sclass+"</td><td><select></select></td><td><select></select></td><td><span class='button'>确定</span><span class='button'>取消</span></td></tr>";
-							$('#details .products_susume .details').html(s).show();
-							if(count<3){
-								$("#details .products_susume .details .add1").show();
-							}
-							var select=document.createElement("select");
-							var option=document.createElement("option");
-							option.text="请选择分类";
-							select.appendChild(option);
-							for(var i=0;i<data.classtwo.length;i++){
-								option=document.createElement("option");
-								option.text=data.classtwo[i];
-								select.appendChild(option);
-							}
-							$("#details .products_susume select:eq(1)").html(select.innerHTML);
-						},
+						success:function(data){},
 						error:function(){}
 					});
 				}
@@ -1756,6 +1947,18 @@ window.onload=function(){
 				}
 				var fc=$("#details .products_susume select:eq(0) option:selected").text();
 				var sc=$("option:selected",this).text();
+				var data="{products:['Q铂_KFR-36LW','Q铂_KFR-50LW','Q铂_KFR-72LW']}";
+				data=eval("("+data+")");
+						var s=document.createElement("select");
+						var option=document.createElement("option");
+						option.text="请选择产品";
+						s.appendChild(option);
+						for(var i=0;i<data.products.length;i++){
+							option=document.createElement("option");
+							option.text=data.products[i];
+							s.appendChild(option);
+						}
+						$("#details .products_susume select:eq(2)").html(s.innerHTML);
 				$.ajax({
 					url:"getProduct",
 					type:"post",
@@ -1764,7 +1967,6 @@ window.onload=function(){
 						var s=document.createElement("select");
 						var option=document.createElement("option");
 						option.text="请选择产品";
-						s.appendChild(option);
 						for(var i=0;i<data.products.length;i++){
 							option=document.createElement("option");
 							option.text=data.products[i];
@@ -1810,11 +2012,6 @@ window.onload=function(){
 					}
 					$("#waiting").show();
 					pname=pname.replace(/\s/,"_");
-					$.ajax({
-						url:"manageBestProducts",
-						type:"post",
-						data:{"manage":"add","classone":fc,"classtwo":sc,"productname":pname},
-						success:function(data){
 							$("#waiting").hide();
 							var s="<tr><td>"+fc+"</td><td>"+sc+"</td><td>"+pname+"</td><td><span class='button'>删除</span></td></tr>"
 							$("#details .products_susume .add1").before(s);
@@ -1824,6 +2021,17 @@ window.onload=function(){
 							}
 							else{
 								$("#details .products_susume .add1").show();
+							}
+					$.ajax({
+						url:"manageBestProducts",
+						type:"post",
+						data:{"manage":"add","classone":fc,"classtwo":sc,"productname":pname},
+						success:function(data){
+							$("#waiting").hide();
+							var s="<tr><td>"+fc+"</td><td>"+sc+"</td><td>"+pname+"</td><td><span class='button'>删除</span></td></tr>"
+							$("#details .products_susume .add1").before(s);
+							if($("#details .products_susume table table tr").length>=6){
+								$("#details .products_susume add2").hide();
 							}
 						},
 						error:function(){}
@@ -1843,6 +2051,8 @@ window.onload=function(){
 					$("#bottom").hide();
 					$("#full .products_susume .delete").hide();
 					$("#waiting").show();
+							$("#details .products_susume .details tr:eq("+n+")").remove();
+							$("#waiting").hide();
 					$.ajax({
 						url:"manageBestProducts",
 						type:"post",
@@ -1898,6 +2108,41 @@ window.onload=function(){
 				$("#details .news_edit .click_edit").hide();
 				$("#details .edit_box").remove();
 				$(this).find(".click_edit").show();
+				data={newscount:30,news:[
+					"格力参展117届春季广交会 绿色科技惊艳全球#2015 4 15",
+					"2015中国制冷展今起开幕 制冷风向标格力参展看点多#2015 4 08",
+					"格力工业制品首次亮相中国制冷展#2015 4 08",
+					"格力点亮2015中国制冷展 成国内唯一获AHRI表彰企业#2015 4 08",
+					"第二届金叶轮奖暖通空调设计大赛于上海启动#2015 4 08",
+					"格力参展117届春季广交会 绿色科技惊艳全球#2015 4 07",
+					"2015中国制冷展今起开幕 制冷风向标格力参展看点多#2015 4 06",
+					"格力工业制品首次亮相中国制冷展#2015 4 05",
+					"格力点亮2015中国制冷展 成国内唯一获AHRI表彰企业#2015 4 04",
+					"第二届金叶轮奖暖通空调设计大赛于上海启动#2015 4 03",
+					"格力参展117届春季广交会 绿色科技惊艳全球#2015 4 02",
+					"2015中国制冷展今起开幕 制冷风向标格力参展看点多#2015 4 01",
+					"格力工业制品首次亮相中国制冷展#2015 3 30",
+					"格力点亮2015中国制冷展 成国内唯一获AHRI表彰企业#2015 3 29",
+					"第二届金叶轮奖暖通空调设计大赛于上海启动#2015 3 28",
+					"格力参展117届春季广交会 绿色科技惊艳全球#2015 3 27",
+					"2015中国制冷展今起开幕 制冷风向标格力参展看点多#2015 3 26",
+					"格力工业制品首次亮相中国制冷展#2015 3 25",
+					"格力点亮2015中国制冷展 成国内唯一获AHRI表彰企业#2015 3 24",
+					"第二届金叶轮奖暖通空调设计大赛于上海启动#2015 3 23",
+					"格力参展117届春季广交会 绿色科技惊艳全球#2015 3 22",
+					"2015中国制冷展今起开幕 制冷风向标格力参展看点多#2015 3 21",
+					"格力工业制品首次亮相中国制冷展#2015 3 20",
+					"格力点亮2015中国制冷展 成国内唯一获AHRI表彰企业#2015 3 19",
+					"第二届金叶轮奖暖通空调设计大赛于上海启动#2015 3 18",
+					"格力参展117届春季广交会 绿色科技惊艳全球#2015 3 17",
+					"2015中国制冷展今起开幕 制冷风向标格力参展看点多#2015 3 16",
+					"格力工业制品首次亮相中国制冷展#2015 3 15",
+					"格力点亮2015中国制冷展 成国内唯一获AHRI表彰企业#2015 3 14",
+					"第二届金叶轮奖暖通空调设计大赛于上海启动#2015 3 13",
+					]}
+						NewsShow(data,1);
+						newsData=data;
+						$("#details .news_edit .click_edit").show();
 				$.ajax({
 					url:"manageNews",
 					type:"post",
@@ -1938,6 +2183,18 @@ window.onload=function(){
 					$("#full .news_edit .delete .number").text(number);
 					var title=$(this).closest("tr").find("td:eq(0)").text();
 					var time=$(this).closest("tr").find("td:eq(1)").text();
+					var data={newstitle:"格力参展117届春季广交会 绿色科技惊艳全球",content:"这里是新闻详细内容",id:"1123"};
+							id=data.id;
+							$("#details .news_edit .alter").show();
+							$("#details .news_edit .alter .button").click();
+							$("#details .news_edit .alter #news_title").val(data.newstitle);
+							if(data.content.length==0){
+								$("#details .news_edit .alter #text_box").html("<p> </p><p><br></p>");
+							}
+							else{
+								$("#details .news_edit .alter #text_box").html(data.content);
+							}
+							$("#details .news_edit .add .click_edit").show();
 					$.ajax({
 						url:"manageNews",
 						type:"post",
@@ -1968,6 +2225,11 @@ window.onload=function(){
 					var title=$("#full .news_edit .delete .news_title").text();
 					var time=$("#full .news_edit .delete .news_date").text();
 					var number=parseInt($("#full .news_edit .delete .number").text());
+							newsData.newscount-=1;
+							newsData.news.splice(number,1);
+							NewsShow(newsData,c);
+							$("#details .news_edit .alter").hide();
+							$("#waiting").hide();
 					$.ajax({
 						url:"manageNews",
 						type:"post",
@@ -2038,6 +2300,11 @@ window.onload=function(){
 					text=text.replace(/&amp;/g,"&");
 					var number=parseInt($("#full .news_edit .delete .number").text());
 					$("#waiting").show();
+							$("#details .news_edit .alter").hide();
+							$("#details .news_edit .add .click_edit").show();
+							newsData.news[number]=newsData.news[number].replace(/.+\#/,title+"#");
+							NewsShow(newsData,c);
+							$("#waiting").hide();
 					$.ajax({
 						url:"manageNews",
 						type:"post",
@@ -2068,6 +2335,44 @@ window.onload=function(){
 					var text=$("#details .news_edit .add #text_box").html();
 					text=text.replace(/&amp;/g,"&");
 					$("#waiting").show();
+						data={newscount:31,news:[
+						"格力参展117届春季广交会 绿色科技惊艳全球#2015 4 15",
+						"2015中国制冷展今起开幕 制冷风向标格力参展看点多#2015 4 08",
+						"格力工业制品首次亮相中国制冷展#2015 4 08",
+						"格力点亮2015中国制冷展 成国内唯一获AHRI表彰企业#2015 4 08",
+						"第二届金叶轮奖暖通空调设计大赛于上海启动#2015 4 08",
+						"格力参展117届春季广交会 绿色科技惊艳全球#2015 4 07",
+						"2015中国制冷展今起开幕 制冷风向标格力参展看点多#2015 4 06",
+						"格力工业制品首次亮相中国制冷展#2015 4 05",
+						"格力点亮2015中国制冷展 成国内唯一获AHRI表彰企业#2015 4 04",
+						"第二届金叶轮奖暖通空调设计大赛于上海启动#2015 4 03",
+						"格力参展117届春季广交会 绿色科技惊艳全球#2015 4 02",
+						"2015中国制冷展今起开幕 制冷风向标格力参展看点多#2015 4 01",
+						"格力工业制品首次亮相中国制冷展#2015 3 30",
+						"格力点亮2015中国制冷展 成国内唯一获AHRI表彰企业#2015 3 29",
+						"第二届金叶轮奖暖通空调设计大赛于上海启动#2015 3 28",
+						"格力参展117届春季广交会 绿色科技惊艳全球#2015 3 27",
+						"2015中国制冷展今起开幕 制冷风向标格力参展看点多#2015 3 26",
+						"格力工业制品首次亮相中国制冷展#2015 3 25",
+						"格力点亮2015中国制冷展 成国内唯一获AHRI表彰企业#2015 3 24",
+						"第二届金叶轮奖暖通空调设计大赛于上海启动#2015 3 23",
+						"格力参展117届春季广交会 绿色科技惊艳全球#2015 3 22",
+						"2015中国制冷展今起开幕 制冷风向标格力参展看点多#2015 3 21",
+						"格力工业制品首次亮相中国制冷展#2015 3 20",
+						"格力点亮2015中国制冷展 成国内唯一获AHRI表彰企业#2015 3 19",
+						"第二届金叶轮奖暖通空调设计大赛于上海启动#2015 3 18",
+						"格力参展117届春季广交会 绿色科技惊艳全球#2015 3 17",
+						"2015中国制冷展今起开幕 制冷风向标格力参展看点多#2015 3 16",
+						"格力工业制品首次亮相中国制冷展#2015 3 15",
+						"格力点亮2015中国制冷展 成国内唯一获AHRI表彰企业#2015 3 14",
+						"第二届金叶轮奖暖通空调设计大赛于上海启动#2015 3 13",
+						"第二届金叶轮奖暖通空调设计大赛于上海启动#2015 3 13",
+						]}
+							$("#details .news_edit .edit_box").remove();
+							$("#details .news_edit .add .click_edit").show();
+							NewsShow(data,1);
+							newsData=data;
+							$("#waiting").hide();
 					$.ajax({
 						url:"manageNews",
 						type:"post",
@@ -2088,6 +2393,19 @@ window.onload=function(){
 			$("#function .recruitment_type").click(function(){
 				$("#details .recruitment_type .details").hide();
 				$("#details .recruitment_type .edit").hide();
+				var data="{class:['会计','空调安装','仓库管理']}";
+				data=eval("("+data+")");
+						var s=document.createElement("select");
+						var option=document.createElement("option");
+						option.text="请选择分类";
+						s.appendChild(option);
+						for(var i=0;i<data.class.length;i++){
+							var option=document.createElement("option");
+							option.text=data.class[i];
+							s.appendChild(option);
+						}
+						$("#details .recruitment_type td.rclass").html(s);
+						$("#details .recruitment_type .details").show();
 				$.ajax({
 					url:"manageJob",
 					type:"post",
@@ -2103,7 +2421,6 @@ window.onload=function(){
 							s.appendChild(option);
 						}
 						$("#details .recruitment_type td.rclass").html(s);
-						$("#details .recruitment_type .details").show();
 					},
 					error:function(){
 						//alert("页面获取失败");
@@ -2151,6 +2468,9 @@ window.onload=function(){
 						}
 					}
 					$("#waiting").show();
+							$("#details .recruitment_type .edit").hide();
+							$("#details .recruitment_type select").append("<option>"+cn+"</option>");
+							$("#waiting").hide();
 					$.ajax({
 						url:"manageJob",
 						type:"post",
@@ -2180,6 +2500,9 @@ window.onload=function(){
 						}
 					}
 					$("#waiting").show();
+							$("#details .recruitment_type .edit").hide();
+							select.find("option:selected").text(cn);
+							$("#waiting").hide();
 					$.ajax({
 						url:"manageJob",
 						type:"post",
@@ -2202,6 +2525,8 @@ window.onload=function(){
 					$("#bottom").hide();
 					$("#full>div>div").hide();
 					$("#waiting").show();
+							$("#waiting").hide();
+							$("#details .recruitment_type select option:selected").remove();
 					$.ajax({
 						url:"manageJob",
 						type:"post",
@@ -2220,6 +2545,18 @@ window.onload=function(){
 				$("#details .recruitment_require .click_edit").hide();
 				$("#details .recruitment_require .edit_box").hide();
 				$("#details .recruitment_require .details").hide();
+				var data="{class:['会计','空调安装','仓库管理']}";
+				data=eval("("+data+")");
+						var s=document.createElement("select");
+						var option=document.createElement("option");
+						option.text="请选择分类";
+						s.appendChild(option);
+						for(var i=0;i<data.class.length;i++){
+							var option=document.createElement("option");
+							option.text=data.class[i];
+							s.appendChild(option);
+						}
+						$("#details .recruitment_require td.rclass").html(s);
 				$.ajax({
 					url:"manageJob",
 					type:"post",
@@ -2247,6 +2584,17 @@ window.onload=function(){
 				if(s=="请选择分类"){
 					return;
 				}
+				data={info:"这里是招聘具体要求"};
+						var s=data.info;
+						if(s.length==0){
+							$("#details .recruitment_require .details div").html("<p> </p><p><br></p>");
+						}
+						else{
+							$("#details .recruitment_require .details div").html(s);
+						}
+						$("#details .recruitment_require .edit_box").remove();
+						$("#details .recruitment_require .details").show();
+						$("#details .recruitment_require .click_edit").show();
 				$.ajax({
 					url:"manageJob",
 					type:"post",
@@ -2270,15 +2618,17 @@ window.onload=function(){
 			$("#details .recruitment_require .click_edit").click(function(){
 				$("#details .recruitment_require .edit_function span:eq(0)").hide();
 				var s=$("#details .recruitment_require .details div").html();
-				if(s.replace(/\s/g,"").length!=0){
-					$("#details .recruitment_require #text_box").html(s);
-				}
+				$("#details .recruitment_require #text_box").html(s);
 			});
 			$("#details .recruitment_require").delegate(".pub","click",function(){
 				var name=$("#details .recruitment_require select option:selected").text();
 				var text=$("#details .recruitment_require #text_box").html();
 				text=text.replace(/&amp;/g,"&");
 				$("#waiting").show();
+						$("#details .recruitment_require .edit_box").hide();
+						$("#details .recruitment_require .details div").html(text);
+						$("#details .recruitment_require .click_edit").show();
+						$("#waiting").hide();
 				$.ajax({
 					url:"manageJob",
 					type:"post",
@@ -2295,8 +2645,16 @@ window.onload=function(){
 	//-----------------------culture_summary-----------------------
 		//点击进入页面时发送ajax
 			$("#function .culture_summary").click(function(){
-				$("#details .culture_summary .click_edit").hide();
 				$("#details .culture_summary .edit_box").hide();
+				$("#details .culture_summary .click_edit").show();
+				data={content:"<p>东莞市忠胜格力产品销售中心成立于1992年，是一家集中央空调批发、销售、设计、安装、保养的专业化企业，本公司现有80余人。</p><p>我司拥有实力雄厚、专业技术水平较高的售后队伍，全体服务人员都经过厂家严格的专业培训持证上岗。</p><p>我司在塘厦、凤岗、樟木头等镇均设有服务网点，售后服务实行计算机一体化专业管理，24小时制售后跟踪服务，我司主要针对服务行业设有专门售后技术人员4小时内上门服务。</p><p>我司凭借高水平、高要求、高效益的管理体制，以“用一流的技术、做一流的服务”为宗旨。经过多年的创业与发展，在同行业内已树立起良好的口碑，受到了广大客户的一致好评。</p><p>我司在全体员工的共同努力和社会各界友好人士的鼎力支持下，规模和经营范围不断扩大、业务蒸蒸日上。</p><p>公司重视人才，以人为本，给员工提供充分发挥才能的平台。本着诚信为本，服务至上，精进卓越，亲和共生的经营理念，给顾客提供优质的服务。</p>"};
+						var s=data.content;
+						if(s.length==0){
+							$("#details .culture_summary #intro").html("<p> </p><p><br></p>");
+						}
+						else{
+							$("#details .culture_summary #intro").html(s);
+						}
 				$.ajax({
 					url:"manageCompanyCulture",
 					type:"post",
@@ -2309,7 +2667,6 @@ window.onload=function(){
 						else{
 							$("#details .culture_summary #intro").html(s);
 						}
-						$("#details .culture_summary .click_edit").show();
 					},
 					error:function(){}
 				});
@@ -2318,7 +2675,7 @@ window.onload=function(){
 			$("#details .culture_summary .click_edit").click(function(){
 				$("#details .culture_summary .edit_function span:eq(0)").hide();
 				var s=$("#details .culture_summary #intro").html();
-				if(s.replace(/\s/g,"").length!=0){
+				if(s){
 					$("#details .culture_summary #text_box").html(s);
 				}
 			});
@@ -2326,6 +2683,10 @@ window.onload=function(){
 				var text=$("#details .culture_summary #text_box").html();
 				text=text.replace(/&amp;/g,"&");
 				$("#waiting").show();
+						$("#details .culture_summary .edit_box").hide();
+						$("#details .culture_summary #intro").html(text);
+						$("#details .culture_summary .click_edit").show();
+						$("#waiting").hide();
 				$.ajax({
 					url:"manageCompanyCulture",
 					type:"post",
@@ -2342,8 +2703,16 @@ window.onload=function(){
 	//-----------------------culture_spirit-----------------------
 		//点击进入页面时发送ajax
 			$("#function .culture_spirit").click(function(){
-				$("#details .culture_spirit .click_edit").hide();
 				$("#details .culture_spirit .edit_box").hide();
+				$("#details .culture_spirit .click_edit").show();
+				data={content:"<p><span>企业精神</span><span>忠诚、友善、勤奋、进取</span></p><p><span>经营理念</span><span>制造最好的空调奉献给广大消费者</span></p><p><span>管理理念</span><span>创新永无止境</span></p><p><span>管理特色</span><span>合理化、科学化、变准化、网络化</span></p><p><span>服务理念</span><span>您的每一件小事都是格力的大事</span></p><p><span>人力资源理念</span><span>以人为本</span></p>"}
+						var s=data.content;
+						if(s.length==0){
+							$("#details .culture_spirit #spirit").html("<p> </p><p><br></p>");
+						}
+						else{
+							$("#details .culture_spirit #spirit").html(s);
+						}
 				$.ajax({
 					url:"manageCompanyCulture",
 					type:"post",
@@ -2356,7 +2725,6 @@ window.onload=function(){
 						else{
 							$("#details .culture_spirit #spirit").html(s);
 						}
-						$("#details .culture_spirit .click_edit").show();
 					},
 					error:function(){}
 				});
@@ -2365,7 +2733,7 @@ window.onload=function(){
 			$("#details .culture_spirit .click_edit").click(function(){
 				$("#details .culture_spirit .edit_function span:eq(0)").hide();
 				var s=$("#details .culture_spirit #spirit").html();
-				if(s.replace(/\s/g,"").length!=0){
+				if(s){
 					$("#details .culture_spirit #text_box").html(s);
 				}
 			});
@@ -2373,6 +2741,10 @@ window.onload=function(){
 				var text=$("#details .culture_spirit #text_box").html();
 				text=text.replace(/&amp;/g,"&");
 				$("#waiting").show();
+						$("#details .culture_spirit .edit_box").hide();
+						$("#details .culture_spirit #spirit").html(text);
+						$("#details .culture_spirit .click_edit").show();
+						$("#waiting").hide();
 				$.ajax({
 					url:"manageCompanyCulture",
 					type:"post",
@@ -2389,8 +2761,16 @@ window.onload=function(){
 	//-----------------------culture_speech-----------------------
 		//点击进入页面时发送ajax
 			$("#function .culture_speech").click(function(){
-				$("#details .culture_speech .click_edit").hide();
 				$("#details .culture_speech .edit_box").hide();
+				$("#details .culture_speech .click_edit").show();
+				data={content:"<p>我公司自建立以来，承蒙各生产厂家和客户朋友鼎立相助，公司规模逐渐壮大，取得了较好的成绩。在此，我谨代表全体同仁发自内心地相各位致以深深的谢意！常言道：十年修得同船渡。相逢是缘，相交更是缘。公司全体员工在这十余年的路途上，本着“与人方便，自己方便”的古训为人做事，时刻与各厂家和用户朋友亲密相处，精诚合作、风雨同舟、甘苦共享。我们深以与你们同行共渡为容！我们更看重和珍惜彼此间的事业和友情。无论何时何地，我们全体员工都会不遗余力地投入到工作之中，竭尽所能为各位朋友提供满意的服务,以达到我们彼此的共赢和多赢。朋友们：闲时请来公司做客忙时电话短信问候。承蒙各生产厂家和客户朋友鼎立相助，公司规模逐渐壮大，取得了较好的成绩。在此，我谨代表全体同仁发自内心地相各位致以深深的谢意！常言道：十年修得同船渡。相逢是缘，相交更是缘。公司全体员工在这十余年的路途上，本着“与人方便，自己方便”的古训为人做事，时刻与各厂家和用户朋友亲密相处，精诚合作、风雨同舟、甘苦共享。我们深以与你们同行共渡为容！我们更看重和珍惜彼此间的事业和友情。无论何时何地，我们全体员工都会不遗余力地投入到工作之中，竭尽所能为各位朋友提供满意的服务,以达到我们彼此的共赢和多赢。朋友们：闲时请来公司做客忙时电话短信问候。</p>"}
+						var s=data.content;
+						if(s.length==0){
+							$("#details .culture_speech #speech").html("<p> </p><p><br></p>");
+						}
+						else{
+							$("#details .culture_speech #speech").html(s);
+						}
 				$.ajax({
 					url:"manageCompanyCulture",
 					type:"post",
@@ -2403,7 +2783,6 @@ window.onload=function(){
 						else{
 							$("#details .culture_speech #speech").html(s);
 						}
-						$("#details .culture_speech .click_edit").show();
 					},
 					error:function(){}
 				});
@@ -2412,7 +2791,7 @@ window.onload=function(){
 			$("#details .culture_speech .click_edit").click(function(){
 				$("#details .culture_speech .edit_function span:eq(0)").hide();
 				var s=$("#details .culture_speech #speech").html();
-				if(s.replace(/\s/g,"").length!=0){
+				if(s){
 					$("#details .culture_speech #text_box").html(s);
 				}
 			});
@@ -2420,6 +2799,10 @@ window.onload=function(){
 				var text=$("#details .culture_speech #text_box").html();
 				text=text.replace(/&amp;/g,"&");
 				$("#waiting").show();
+						$("#details .culture_speech .edit_box").hide();
+						$("#details .culture_speech #speech").html(text);
+						$("#details .culture_speech .click_edit").show();
+						$("#waiting").hide();
 				$.ajax({
 					url:"manageCompanyCulture",
 					type:"post",
@@ -2436,6 +2819,21 @@ window.onload=function(){
 	//-----------------------culture_honor-----------------------
 		//点击进入页面时发送ajax
 			$("#function .culture_honor").click(function(){
+				data={honorpic:["picname1.jpg","picname2.jpg","picname3.jpg","picname4.jpg","picname5.jpg","picname6.jpg"]}
+						var pics=data.honorpic;
+						var s="";
+						for(var i=0;i<pics.length;i++){
+							var div=document.createElement("div");
+							var img=document.createElement("img");
+							img.src=pics[i];
+							img.alt=i;
+							var input=document.createElement("input");
+							input.type="checkbox";
+							div.appendChild(img);
+							div.appendChild(input);
+							s+=div.outerHTML+"\n";
+						}
+						$("#details .culture_honor #honor_pics").html(s);
 				$.ajax({
 					url:"manageCompanyCulture",
 					type:"post",
@@ -2447,7 +2845,6 @@ window.onload=function(){
 							var div=document.createElement("div");
 							var img=document.createElement("img");
 							img.src=pics[i];
-							img.alt=i;
 							var input=document.createElement("input");
 							input.type="checkbox";
 							div.appendChild(img);
@@ -2494,6 +2891,16 @@ window.onload=function(){
 						formdata.append("manage","add");
 						formdata.append("pic",file.files[0]);
 						$("#waiting").show();
+						var data={picname:"picname.jpg"};
+								var div=document.createElement("div");
+								var img=document.createElement("img");
+								img.src=data.picname;
+								var input=document.createElement("input");
+								input.type="checkbox";
+								div.appendChild(img);
+								div.appendChild(input);
+								$("#details .culture_honor #honor_pics").append(div).append("\n");
+								$("#waiting").hide();
 						$.ajax({
 							url:"manageProductPic",
 							type:"post",
@@ -2534,6 +2941,11 @@ window.onload=function(){
 					//var ppname=$(this).siblings("p").find(".pic_name").text();
 					//ppname=ppname.replace(/\s/g,"\",\"");
 					//ppname="[\""+ppname+"\"]";
+							var len=$("#details .culture_honor #honor_pics").find("input:checked").length;
+							for(var i=0;i<len;i++){
+								$("#details .culture_honor #honor_pics").find("input:checked:eq(0)").parent().remove();
+							}
+							$("#waiting").hide();
 					$.ajax({
 						url:"manageCompanyCulture",
 						type:"post",
@@ -2552,8 +2964,16 @@ window.onload=function(){
 	//-----------------------contact_details-----------------------
 		//点击进入页面时发送ajax
 			$("#function .contact_details").click(function(){
-				$("#details .contact_details .click_edit").hide();
 				$("#details .contact_details .edit_box").hide();
+				$("#details .contact_details .click_edit").show();
+				data={content:"<div><p><span>地址：东莞市樟木头镇柏地东城路68号</span></p><p><span>电话：0769-87568836</span></p><p><span>传真：0769-82778628</span></p><p><span>邮箱：dgzsdq@163.com</span></p><p><span>邮编：523635</span></p><p class='clear'></p></div>"}
+						var s=data.content;
+						if(s.length==0){
+							$("#contact_way").html("<p> </p><p><br></p>");
+						}
+						else{
+							$("#contact_way").html(s);
+						}
 				$.ajax({
 					url:"manageContactUs",
 					type:"post",
@@ -2566,7 +2986,6 @@ window.onload=function(){
 						else{
 							$("#contact_way").html(s);
 						}
-						$("#details .contact_details .click_edit").show();
 					},
 					error:function(){}
 				});
@@ -2575,7 +2994,7 @@ window.onload=function(){
 			$("#details .contact_details .click_edit").click(function(){
 				$("#details .contact_details .edit_function span:eq(0)").hide();
 				var s=$("#details .contact_details #contact_way").html();
-				if(s.replace(/\s/g,"").length!=0){
+				if(s){
 					$("#details .contact_details #text_box").html(s);
 				}
 			});
@@ -2583,6 +3002,10 @@ window.onload=function(){
 				var text=$("#details .contact_details #text_box").html();
 				text=text.replace(/&amp;/g,"&");
 				$("#waiting").show();
+						$("#details .contact_details .edit_box").hide();
+						$("#details .contact_details #contact_way").html(text);
+						$("#details .contact_details .click_edit").show();
+						$("#waiting").hide();
 				$.ajax({
 					url:"manageCompanyCulture",
 					type:"post",
@@ -2601,6 +3024,20 @@ window.onload=function(){
 			$("#function .stores_show").click(function(){
 				$("#details .stores_show .click_edit").show();
 				$("#details .edit_box").remove();
+				var data="{shop:['shop1','shop2','shop3']}";
+				data=eval("("+data+")");
+						var s=document.createElement("select");
+						var option=document.createElement("option");
+						option.text="请选择店铺";
+						s.appendChild(option);
+						for(var i=0;i<data.shop.length;i++){
+							var option=document.createElement("option");
+							option.text=data.shop[i];
+							s.appendChild(option);
+						}
+						$("#details .stores_show select").html(s.innerHTML);
+						$("#details .stores_show select").change();
+						$("#details .stores_show .details_add").show();
 				$.ajax({
 					url:"manageShop",
 					type:"post",
@@ -2615,8 +3052,8 @@ window.onload=function(){
 							option.text=data.shop[i];
 							s.appendChild(option);
 						}
-						$("#details .stores_show select").html(s.innerHTML);
-						$("#details .stores_show select").change();
+						$("#details .stores_show select:eq(0)").html(s.innerHTML);
+						$("#details .stores_show select:eq(0)").change();
 						$("#details .stores_show .details_add").show();
 					},
 					error:function(){
@@ -2635,11 +3072,7 @@ window.onload=function(){
 					return;
 				}
 				$("#waiting").show();
-				$.ajax({
-					url:"manageShop",
-					type:"post",
-					data:{manage:"get",shopname:s},
-					success:function(data){
+				var data={pic:"/getPic/shop1.jpg",content:"这里是店铺介绍文章"};
 						$("#details .stores_show .c_pic img").attr({"src":data.pic});
 						if(data.content.length==0){
 							$("#details .stores_show .c_detail div").html("<p> </p><p><br></p>");
@@ -2649,6 +3082,21 @@ window.onload=function(){
 						}
 						$("#details .stores_show .details").show();
 						$("#waiting").hide();
+				$.ajax({
+					url:"manageShop",
+					type:"post",
+					data:{manage:"get",shopname:s},
+					success:function(data){
+						$("#details .stores_show .c_pic img").src=data.pic;
+						if(data.content.length==0){
+							$("#details .stores_show .c_detail div").html("<p> </p><p><br></p>");
+						}
+						else{
+							$("#details .stores_show .c_detail div").html(data.content);
+						}
+						$("#details .stores_show .details").show();
+						$("#waiting").hide();
+
 					},
 					error:function(){}
 				});
@@ -2690,7 +3138,7 @@ window.onload=function(){
 		//文章编辑框
 			$("#details .stores_show .click_edit").click(function(){
 				var s=$("#details .stores_show .c_detail div").html();
-				if(s.replace(/\s/g,"").length!=0){
+				if(s){
 					$("#text_box").html(s);
 				}
 			});
@@ -2738,6 +3186,10 @@ window.onload=function(){
 				var text=$("#details .stores_show #text_box").html();
 				text=text.replace(/&amp;/g,"&");
 				$("#waiting").show();
+						$("#details .stores_show .c_detail div").html(text);
+						$("#details .stores_show .edit_box").remove();
+						$("#details .stores_show .click_edit").show();
+						$("#waiting").hide();
 				$.ajax({
 					url:"saveShopInfo",
 					type:"post",
@@ -2769,6 +3221,9 @@ window.onload=function(){
 							}
 						}
 						$("#waiting").show();
+								$("#details .stores_show select").append("<option>"+s+"</option>");
+								$("#details .stores_show .edit").hide();
+								$("#waiting").hide();
 						$.ajax({
 							url:"manageShop",
 							type:"post",
@@ -2790,6 +3245,13 @@ window.onload=function(){
 						}
 						var os=$("#details .stores_show select option:selected").text();
 						$("#waiting").show();
+								$("#details .stores_show .edit").hide();
+								for(var i=1;i<$("#details .stores_show select option").length;i++){
+									if(os==$("#details .stores_show select option:eq("+i+")").text()){
+										$("#details .stores_show select option:eq("+i+")").text(s);
+									}
+								}
+								$("#waiting").hide();
 						$.ajax({
 							url:"manageShop",
 							type:"post",
@@ -2814,6 +3276,13 @@ window.onload=function(){
 					$("#bottom").hide();
 					$("#full .stores_show .delete").hide();
 					$("#waiting").show();
+							for(var i=1;i<$("#details .stores_show select option").length;i++){
+								if(s==$("#details .stores_show select option:eq("+i+")").text()){
+									$("#details .stores_show select option:eq("+i+")").remove();
+								}
+							}
+							$("#details .stores_show .details").hide();
+							$("#waiting").hide();
 					$.ajax({
 						url:"manageShop",
 						type:"post",
@@ -2850,6 +3319,9 @@ window.onload=function(){
 					$("#bottom").hide();
 					$("#full>div>div").hide();
 					$("#waiting").show();
+							$("#waiting").hide();
+							$("#details .stores_show select").html(s.innerHTML);
+							$("#details .stores_show .details").hide();
 					$.ajax({
 						url:"manageShop",
 						type:"post",
@@ -2876,6 +3348,9 @@ window.onload=function(){
 						formdata.append("pic",file.files[0]);
 						formdata.append("shopname",s);
 						$("#waiting").show();
+						var data={picname:"picname.jpg"};
+								$("#details .stores_show .c_pic img").attr({"src":data.picname});
+								$("#waiting").hide();
 						$.ajax({
 							url:"saveShopFirstPic",
 							type:"post",
@@ -2923,6 +3398,20 @@ window.onload=function(){
 			$("#function .engineering_show").click(function(){
 				$("#details .engineering_show .click_edit").show();
 				$("#details .edit_box").remove();
+				var data="{case:['case1','case2','case3']}";
+				data=eval("("+data+")");
+						var s=document.createElement("select");
+						var option=document.createElement("option");
+						option.text="请选择工程";
+						s.appendChild(option);
+						for(var i=0;i<data.case.length;i++){
+							var option=document.createElement("option");
+							option.text=data.case[i];
+							s.appendChild(option);
+						}
+						$("#details .engineering_show select").html(s.innerHTML);
+						$("#details .engineering_show select").change();
+						$("#details .engineering_show .details_add").show();
 				$.ajax({
 					url:"manageCase",
 					type:"post",
@@ -2937,8 +3426,8 @@ window.onload=function(){
 							option.text=data.case[i];
 							s.appendChild(option);
 						}
-						$("#details .engineering_show select").html(s.innerHTML);
-						$("#details .engineering_show select").change();
+						$("#details .engineering_show select:eq(0)").html(s.innerHTML);
+						$("#details .engineering_show select:eq(0)").change();
 						$("#details .engineering_show .details_add").show();
 					},
 					error:function(){
@@ -2957,11 +3446,7 @@ window.onload=function(){
 					return;
 				}
 				$("#waiting").show();
-				$.ajax({
-					url:"manageCase",
-					type:"post",
-					data:{manage:"get",casename:s},
-					success:function(data){
+				var data={pic:"/getPic/case1.jpg",content:"这里是工程介绍文章"};
 						$("#details .engineering_show .c_pic img").attr({"src":data.pic});
 						if(data.content.length==0){
 							$("#details .engineering_show .c_detail div").html("<p> </p><p><br></p>");
@@ -2971,6 +3456,21 @@ window.onload=function(){
 						}
 						$("#details .engineering_show .details").show();
 						$("#waiting").hide();
+				$.ajax({
+					url:"manageCase",
+					type:"post",
+					data:{manage:"get",casename:s},
+					success:function(data){
+						$("#details .engineering_show .c_pic img").src=data.pic;
+						if(data.content.length==0){
+							$("#details .engineering_show .c_detail div").html("<p> </p><p><br></p>");
+						}
+						else{
+							$("#details .engineering_show .c_detail div").html(data.content);
+						}
+						$("#details .engineering_show .details").show();
+						$("#waiting").hide();
+
 					},
 					error:function(){}
 				});
@@ -3012,7 +3512,7 @@ window.onload=function(){
 		//文章编辑框
 			$("#details .engineering_show .click_edit").click(function(){
 				var s=$("#details .engineering_show .c_detail div").html();
-				if(s.replace(/\s/g,"").length!=0){
+				if(s){
 					$("#text_box").html(s);
 				}
 			});
@@ -3060,6 +3560,10 @@ window.onload=function(){
 				var text=$("#details .engineering_show #text_box").html();
 				text=text.replace(/&amp;/g,"&");
 				$("#waiting").show();
+						$("#details .engineering_show .c_detail div").html(text);
+						$("#details .engineering_show .edit_box").remove();
+						$("#details .engineering_show .click_edit").show();
+						$("#waiting").hide();
 				$.ajax({
 					url:"saveCaseInfo",
 					type:"post",
@@ -3091,6 +3595,9 @@ window.onload=function(){
 							}
 						}
 						$("#waiting").show();
+								$("#details .engineering_show select").append("<option>"+s+"</option>");
+								$("#details .engineering_show .edit").hide();
+								$("#waiting").hide();
 						$.ajax({
 							url:"manageCase",
 							type:"post",
@@ -3112,6 +3619,13 @@ window.onload=function(){
 						}
 						var os=$("#details .engineering_show select option:selected").text();
 						$("#waiting").show();
+								$("#details .engineering_show .edit").hide();
+								for(var i=1;i<$("#details .engineering_show select option").length;i++){
+									if(os==$("#details .engineering_show select option:eq("+i+")").text()){
+										$("#details .engineering_show select option:eq("+i+")").text(s);
+									}
+								}
+								$("#waiting").hide();
 						$.ajax({
 							url:"manageCase",
 							type:"post",
@@ -3136,6 +3650,13 @@ window.onload=function(){
 					$("#bottom").hide();
 					$("#full .engineering_show .delete").hide();
 					$("#waiting").show();
+							for(var i=1;i<$("#details .engineering_show select option").length;i++){
+								if(s==$("#details .engineering_show select option:eq("+i+")").text()){
+									$("#details .engineering_show select option:eq("+i+")").remove();
+								}
+							}
+							$("#details .engineering_show .details").hide();
+							$("#waiting").hide();
 					$.ajax({
 						url:"manageCase",
 						type:"post",
@@ -3172,6 +3693,9 @@ window.onload=function(){
 					$("#bottom").hide();
 					$("#full>div>div").hide();
 					$("#waiting").show();
+							$("#waiting").hide();
+							$("#details .engineering_show select").html(s.innerHTML);
+							$("#details .engineering_show .details").hide();
 					$.ajax({
 						url:"manageCase",
 						type:"post",
@@ -3199,6 +3723,8 @@ window.onload=function(){
 						formdata.append("casename",s);
 						$("#waiting").show();
 						var data={picname:"picname.jpg"};
+								$("#details .engineering_show .c_pic img").attr({"src":data.picname});
+								$("#waiting").hide();
 						$.ajax({
 							url:"saveCaseFirstPic",
 							type:"post",
