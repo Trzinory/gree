@@ -8,3 +8,10 @@ window.onload=function(){
     		$("img",this).attr({"src":s});
     	});
 }
+{ "keys": ["f1"], "command": "side_bar_files_open_with",
+             "args": {
+                "paths": [],
+                "application": "C:\\Users\\Bin\\AppData\\Local\\360Chrome\\Chrome\\Application\\360chrome.exe",
+                "extensions":".*" //匹配任何文件类型
+            }
+    }
